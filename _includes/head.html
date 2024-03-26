@@ -38,6 +38,8 @@
     {% if page.tags %}
         <meta name="keywords" content="{{ page.tags | join: ', ' }}">
     {% endif %}
+    <!-- Include Google Analytics script -->
+    {% include stats.html %}
 <!--
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
