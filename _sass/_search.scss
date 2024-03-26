@@ -70,6 +70,7 @@
     }
 
     .search-list-category-box{
+      align-content: center;
       flex: 1 1 0;
     }
 
@@ -88,6 +89,11 @@
 
     .search-list-title-box{
       flex: 8 1 0;
+    }
+
+    .search-list-datetime-box{
+      font-size: rem(20px);
+      align-content: center;
     }
 
     .entry-date {
