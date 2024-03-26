@@ -108,7 +108,8 @@
       padding: rem(15px) 0;
       width: 100%;
       transition: all 0.3s;
-      line-height: rem(25px);
+      line-height: rem(64px);
+      letter-spacing: rem(32px);
 
       &:hover {
         color: $themeColor;
