@@ -1,7 +1,7 @@
 # Site Settings
 name: elphon
 title: Elphon's blog
-description: This blog was created based on the Jekfilix template.
+description: 개인적인 학습과 연구를 통해 발견한 정보 보안의 세계를 탐험하는 블로그입니다. 최신 보안 취약점 분석부터 방어 메커니즘, 암호화 기술에 이르기까지, 저의 발견과 이해를 사전 형식으로 공유합니다. 정보 보안 학습자, 연구자, 그리고 보안에 관심 있는 모든 이들에게 귀중한 리소스가 되고자 합니다. 저와 함께 정보 보안의 깊이를 탐색하고, 지식의 보고를 함께 쌓아가요.
 tags:
   - blog
   - template
