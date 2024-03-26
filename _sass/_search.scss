@@ -2,6 +2,7 @@
   position: fixed;
   top: 30px;
   width: 100%;
+  padding-top: 3%;
   padding-right: 5%;
   padding-left: 5%;
   transform: translateY(-200px);
@@ -50,7 +51,7 @@
     width: 100%;
     @include mainFont(300);
     display: none;
-    padding: 0 rem(20px);
+    padding: 0 rem(32px);
     margin: rem(20px) 0;
     list-style-type: none;
 
@@ -76,12 +77,13 @@
     .entry-category {
       text-transform: uppercase;
       background-color: $themeColor;
-      margin-right: rem(5px);
+      margin-right: rem(10px);
       height: rem(20px);
       border-radius: rem(10px);
-      font-size: rem(12px);
-      padding: rem(2px) rem(8px);
+      font-size: rem(16px);
+      padding: rem(6px) rem(10px);
       color: #ffffff;
+      letter-spacing: rem(4px);
     }
 
     a {
@@ -110,11 +112,11 @@
     display: block;
     width: rem(50px);
     height: rem(50px);
-    padding: rem(20px);
+    padding: rem(10px);
     fill: $accentDark;
     background-color: $themeColor;
     border-radius: 13px;
-    margin: rem(7px);
+    margin: rem(14px);
     cursor: pointer;
     outline: 0;
     z-index: 1;
