@@ -28,8 +28,8 @@
     line-height: rem(30px);
     @include mainFont(300);
     font-size: rem(40px);
-    color: $primaryDark;
-    background-color: $accentDark;
+    color: $accentDark;
+    background-color: $primaryDark;
     border: 0;
     border-radius: rem(20px);
     padding: rem(5px) rem(25px);
@@ -75,7 +75,8 @@
 
     .entry-category {
       text-transform: uppercase;
-      background-color: $themeColor;
+      // background-color: $themeColor;
+      border: $themeColor;
       margin-right: rem(10px);
       height: rem(20px);
       border-radius: rem(10px);
