@@ -89,10 +89,11 @@
 
     .search-list-title-box{
       flex: 8 1 0;
+      font-size: rem(36px);
     }
 
     .search-list-datetime-box{
-      font-size: rem(20px);
+      font-size: rem(24px);
       align-content: center;
     }
 
@@ -115,7 +116,7 @@
       width: 100%;
       transition: all 0.3s;
       line-height: rem(64px);
-      letter-spacing: rem(32px);
+      letter-spacing: rem(6px);
 
       &:hover {
         color: $themeColor;
