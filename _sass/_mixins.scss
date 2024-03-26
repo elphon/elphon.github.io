@@ -1,8 +1,9 @@
 @mixin mainFont($weight: 700) {
-  font-family: "noto-sans ,Titillium Web", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Titillium Web, noto-sans,", "Helvetica Neue", Helvetica, sans-serif;
   font-weight: $weight;
   font-style: normal;
 }
+
 
 @mixin size($width: 30, $height: 30) {
   width: #{$width}px;
