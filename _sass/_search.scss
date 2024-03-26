@@ -16,17 +16,17 @@
   position: relative;
   top: 0;
   width: 100%;
-  transform: translateX(-200px);
-  transition: all 200ms 100ms cubic-bezier(0, 0.6, 0.4, 1);
+  transform: translateY(-200px);
+  transition: all 200ms 100ms cubic-bezier(0, 0.79, 0, 1.02);
   opacity: 0;
   z-index: 19;
 
   .search-field {
     width: 100%;
-    height: rem(40px);
+    height: rem(80px);
     line-height: rem(30px);
     @include mainFont(300);
-    font-size: rem(20px);
+    font-size: rem(40px);
     color: $primaryDark;
     background-color: $accentDark;
     border: 0;
@@ -108,9 +108,9 @@
     top: 0;
     right: 0;
     display: block;
-    width: rem(26px);
-    height: rem(26px);
-    padding: rem(5px);
+    width: rem(50px);
+    height: rem(50px);
+    padding: rem(20px);
     fill: $accentDark;
     background-color: $themeColor;
     border-radius: 13px;
