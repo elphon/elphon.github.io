@@ -64,14 +64,13 @@
       display: block;
     }
 
-    .entry-date {
-      float: right;
-      display: none;
-      font-size: rem(14px);
+    .search-list-entry-box{
+      display: flex;
+      border-bottom: 1px solid darken($accentDark, 80%);
+    }
 
-      @include media(">=sm") {
-        display: inline;
-      }
+    .search-list-category-box{
+      flex: 1 1 0;
     }
 
     .entry-category {
@@ -86,13 +85,27 @@
       letter-spacing: rem(4px);
     }
 
+    .search-list-title-box{
+      flex: 8 1 0;
+    }
+
+    .entry-date {
+      float: right;
+      display: none;
+      font-size: rem(14px);
+
+      @include media(">=sm") {
+        display: inline;
+      }
+    }
+
+
     a {
       color: $accentDark;
       text-decoration: none;
       display: block;
       padding: rem(15px) 0;
       width: 100%;
-      border-bottom: 1px solid darken($accentDark, 80%);
       transition: all 0.3s;
       line-height: rem(25px);
 
