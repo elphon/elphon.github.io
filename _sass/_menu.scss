@@ -7,7 +7,7 @@
 body.has-push-menu,
 body.has-push-menu aside,
 body.has-push-menu .progress-bar {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 body.has-push-menu {
@@ -34,7 +34,7 @@ aside.sidebar {
   height: 100%;
   top: 0;
   left: rem(-240px);
-  background-color: $accentDark;
+  background-color: $primaryDark;
   z-index: 20;
 
   @include media(">=sm") {
@@ -49,8 +49,8 @@ aside.sidebar {
     margin: 0 rem(20px) 0;
     @include mainFont(400);
     font-size: rem(18px);
-    color: $primaryDark;
-    border-bottom: 1px solid $primaryDark;
+    color: $accentDark;
+    border-bottom: 1px solid $accentDark;
     line-height: 50px;
 
     @include media(">=sm") {
