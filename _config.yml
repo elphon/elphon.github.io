@@ -19,6 +19,7 @@ menu:
   - title: Feed
     url: /feed.xml
   - title: Category
+    url: /cata.html
 email: elphon909@gmail.com
 # See: https://disqus.com/
 disqus_username: disqus_username
