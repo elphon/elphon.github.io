@@ -81,7 +81,7 @@
       margin-right: rem(10px);
       height: rem(20px);
       border-radius: rem(10px);
-      font-size: rem(16px);
+      font-size: 100%;
       padding: rem(6px) rem(10px);
       color: #ffffff;
       letter-spacing: rem(4px);
@@ -102,6 +102,7 @@
     .entry-date {
       float: right;
       display: none;
+      align-content: center;
       font-size: rem(14px);
 
       @include media(">=sm") {
