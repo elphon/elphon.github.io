@@ -81,7 +81,7 @@
       margin-right: rem(10px);
       height: rem(20px);
       border-radius: rem(10px);
-      font-size: 6vw;
+      font-size: 0.5vw;
       padding: rem(6px) rem(10px);
       color: #ffffff;
       letter-spacing: rem(4px);
@@ -89,7 +89,7 @@
 
     .search-list-title-box{
       flex: 8 1 0;
-      font-size: 8vw;
+      font-size: 1vw;
       margin-left: rem(36px);
       margin-right: rem(36px);
     }
@@ -103,7 +103,7 @@
       float: right;
       display: none;
       align-content: center;
-      font-size: 6vw;
+      font-size: 0.5vw;
 
       @include media(">=sm") {
         display: inline;
