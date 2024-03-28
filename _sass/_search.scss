@@ -126,7 +126,7 @@
       @include mainFont(100);
       
       color: $secondthemeColor;
-      letter-spacing: 2vm;
+      letter-spacing: 0.2vh;
       @include media(">=sm") {
         display: inline;
       }
@@ -137,7 +137,7 @@
       color: $accentDark;
       text-decoration: none;
       display: block;
-      padding: rem(15px) 0;
+      padding: 2vh;
       width: 100%;
       transition: all 0.3s;
       line-height: 4vw;
