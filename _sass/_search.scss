@@ -52,7 +52,7 @@
     @include mainFont(300);
     display: none;
     padding: 0 rem(32px);
-    margin: rem(20px) 0;
+    margin: 4vm 0;
     list-style-type: none;
 
     @include media("<sm") {
