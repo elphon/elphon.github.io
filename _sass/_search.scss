@@ -47,9 +47,10 @@
   }
 
   .search-list {
-    overflow: scroll;
+    overflow: auto;
     position: absolute;
     width: 100%;
+    height: 38vw;
     @include mainFont(300);
     display: none;
     padding: 0 2vm;
@@ -59,6 +60,16 @@
     @include media("<sm") {
       height: 380px;
       overflow: scroll;
+    }
+    .search-list::-webkit-scrollbar{
+      width: 1vw;
+    }
+    .search-list::-webkit-scrollbar-thumb{
+      height: 30%;
+      background-color: $themeColor;;
+    }
+    .search-list::-webkit-scrollbar-track{
+      background-color: $trueDark;
     }
 
     .active & {
