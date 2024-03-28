@@ -88,7 +88,7 @@
     }
 
     .search-list-title-box{
-      flex: 8 1 0;
+      flex: 9 1 0;
       font-size: 2vw;
       margin-left: 2vw;
       margin-right: 2vw;
@@ -96,6 +96,7 @@
     }
 
     .search-list-datetime-box{
+      flex: 1 1 0;
       font-size: rem(24px);
       align-content: center;
     }
