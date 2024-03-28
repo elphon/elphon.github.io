@@ -24,10 +24,10 @@
 
   .search-field {
     width: 100%;
-    height: rem(80px);
+    height: 8vh;
     line-height: rem(30px);
     @include mainFont(300);
-    font-size: rem(40px);
+    font-size: 4vh;
     color: $accentDark;
     background-color: $primaryDark;
     border: 0;
@@ -152,13 +152,13 @@
     top: 0;
     right: 0;
     display: block;
-    width: rem(50px);
-    height: rem(50px);
-    padding: rem(10px);
+    width: 5vh;
+    height: 5vh;
+    padding: 1vh;
     fill: $accentDark;
     background-color: $themeColor;
     border-radius: 13px;
-    margin: rem(14px);
+    margin: 1.5vh;
     cursor: pointer;
     outline: 0;
     z-index: 1;
