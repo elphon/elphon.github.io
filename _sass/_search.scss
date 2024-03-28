@@ -114,6 +114,7 @@
 
     .search-list-datetime-box{
       font-size: rem(24px);
+      margin-right: 2vw;
       align-content: center;
     }
 
@@ -122,6 +123,9 @@
       display: none;
       align-content: center;
       font-size: 1vw;
+      @include mainFont(100);
+      
+      color: $secondthemeColor;
       letter-spacing: 2vm;
       @include media(">=sm") {
         display: inline;
