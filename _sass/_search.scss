@@ -47,6 +47,7 @@
   }
 
   .search-list {
+    overflow: scroll;
     position: absolute;
     width: 100%;
     @include mainFont(300);
