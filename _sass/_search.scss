@@ -64,12 +64,16 @@
     .search-list::-webkit-scrollbar{
       width: 1vw;
     }
+    .search-list::-webkit-scrollbar-track{
+      background-color: $trueDark;
+    }
     .search-list::-webkit-scrollbar-thumb{
       height: 30%;
       background-color: $themeColor;
+      border-radius: 10px;
     }
-    .search-list::-webkit-scrollbar-track{
-      background-color: $trueDark;
+    .search-list::-webkit-scrollbar-button{
+      display: none;
     }
 
     .active & {
