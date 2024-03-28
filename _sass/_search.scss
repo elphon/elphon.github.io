@@ -51,8 +51,8 @@
     width: 100%;
     @include mainFont(300);
     display: none;
-    padding: 0 rem(32px);
-    margin: 4vm 0;
+    padding: 0 2vm;
+    margin: 2vm 0;
     list-style-type: none;
 
     @include media("<sm") {
@@ -71,7 +71,7 @@
 
     .search-list-category-box{
       align-content: center;
-      flex: 1 1 1;
+      flex: 1 1 0;
     }
 
     .entry-category {
@@ -88,7 +88,7 @@
     }
 
     .search-list-title-box{
-      flex: 9 1 1;
+      flex: 9 1 0;
       font-size: 2vw;
       margin-left: 2vw;
       margin-right: 2vw;
