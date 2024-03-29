@@ -20,7 +20,8 @@
             if (scrollTop > lastScrollTop && shouldShow) {
                 timeBar.style.bottom = '0%';
             } else {
-                timeBar.style.bottom = '-100%';
+                timeBar.style.bottom = '0%';
+                // timeBar.style.bottom = '-100%';
             }
 
             if (scrollTop <= maxScrollTop) {
@@ -62,7 +63,7 @@
                 timeCompleted.innerText = '00:00';
                 timeRemaining.innerText = minutes + ':00';
 
-                shouldShow = true;
+                shouldShow = false;
 
                 triggerFinishedReading();
             }
