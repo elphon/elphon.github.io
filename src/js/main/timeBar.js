@@ -62,7 +62,7 @@
                 timeCompleted.innerText = '00:00';
                 timeRemaining.innerText = minutes + ':00';
 
-                shouldShow = false;
+                shouldShow = true;
 
                 triggerFinishedReading();
             }
