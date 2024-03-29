@@ -171,7 +171,14 @@
     z-index: 1;
   }
 }
-
+.search-list-overlay {
+  position: absolute;
+  height: 100vh;
+  width: 89%;
+  background: linear-gradient(360deg, #000000 20%, #00000000 30%, #00000000);
+  z-index: 22;
+  pointer-events: none;
+}
 .search-overlay {
   overflow: hidden;
 
