@@ -111,6 +111,7 @@
       margin-left: 2vw;
       margin-right: 2vw;
       align-content: center;
+      letter-spacing: 1vw;
     }
 
     .search-list-datetime-box{
@@ -138,10 +139,10 @@
       color: $accentDark;
       text-decoration: none;
       display: block;
-      padding: 3vh;
+      padding: 1vh;
       width: 100%;
       transition: all 0.3s;
-      line-height: 3.5vw;
+      line-height: 8.5vw;
       align-content: center;
 
       &:hover {
