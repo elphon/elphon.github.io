@@ -138,10 +138,11 @@
       color: $accentDark;
       text-decoration: none;
       display: block;
-      padding: 2vh;
+      padding: 3vh;
       width: 100%;
       transition: all 0.3s;
       line-height: 3.5vw;
+      align-content: center;
 
       &:hover {
         color: $themeColor;
