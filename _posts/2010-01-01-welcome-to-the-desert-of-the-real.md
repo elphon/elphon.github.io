@@ -14,8 +14,7 @@ category: blog
 tags:
   - welcome
   - blog
-author: mranderson
-paginate: true
+author: Elphon
 ---
 
   # https://res.cloudinary.com/dm7h7e8xj/image/upload/v1559821647/theme6_qeeojf.jpg
