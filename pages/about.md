@@ -1,7 +1,7 @@
 ---
 layout: page
 menu: false
-date: '2020-02-27 01:53:59'
+date: '2024-04-01 13:22:59'
 title: About
 description: Some description.
 permalink: /about/
@@ -11,9 +11,10 @@ permalink: /about/
 
 # About
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+안녕하세요, 정보 보안의 세계를 깊이 탐험하는 저의 블로그에 오신 것을 환영합니다. 개인적인 학습과 연구를 통해 발견한 정보 보안의 다양한 측면들을 이곳에서 공유하고 있습니다. 최신 보안 취약점 분석, 방어 메커니즘, 그리고 암호화 기술에 이르기까지 저의 발견과 이해를 여러분과 나누고자 합니다.
+
+저는 정보 보안 학습자이자 연구자로, 이 분야에 대한 깊은 열정을 가지고 있습니다. 저의 목표는 이 블로그가 정보 보안에 관심 있는 모든 이들에게 귀중한 리소스가 되는 것입니다. 여기서 제가 공유하는 지식이 여러분의 학습 경로에 도움이 되기를 바랍니다.
+
+저와 함께 정보 보안의 깊은 지식을 탐색하고, 이 분야에 대한 이해를 함께 넓혀가요. 여러분의 피드백과 질문은 언제나 환영이며, 이를 통해 함께 성장해 나갈 수 있기를 기대합니다. 지식의 보고를 함께 쌓아가면서, 우리 모두가 보다 안전한 디지털 세계를 만들어가는 데 기여할 수 있기를 소망합니다.
+
+감사합니다.
