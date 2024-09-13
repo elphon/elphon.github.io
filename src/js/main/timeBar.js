@@ -20,7 +20,7 @@
             if (scrollTop > lastScrollTop && shouldShow) {
                 timeBar.style.bottom = '0%';
             } else {
-                timeBar.style.bottom = '-20%';
+                timeBar.style.bottom = '-100%';
             }
 
             if (scrollTop <= maxScrollTop) {
@@ -53,7 +53,7 @@
 
                 triggerStillReading();
             } else {
-                completed.style.width = '100%';
+                completed.style.width = '200%';
                 remaining.style.width = '0%';
 
                 var minutes = parseInt(timeBar.getAttribute('data-minutes'));
