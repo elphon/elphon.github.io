@@ -310,7 +310,7 @@ Show/hide the reading progress bar. It accepts the values `true` or `false`.
 
 ```yaml
 # posts.yml
-show_time_bar: false
+show_time_bar: true
 ```
 
 ![Reading Progress Bar Screenshot](https://res.cloudinary.com/dm7h7e8xj/image/upload/v1566425470/progress-bar-screenshot_gem7xb.jpg)
