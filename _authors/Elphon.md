@@ -4,7 +4,7 @@ photo: /assets/img/uploads/profile.png
 name: Elphon
 display_name: Elphon
 position: The One
-bio: YuEl_0x
+bio: YuEl_0x<br>elphon909@gmail.com
 github_username: elphon
 facebook_username: facebook_username
 twitter_username: twitter_username
