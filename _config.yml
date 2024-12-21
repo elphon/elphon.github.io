@@ -46,6 +46,14 @@ show_modal_on_finish_post: true
 two_columns_layout: true
 comments: true # disqus 서비스 ON
 
+comments:
+  provider               : "disqus" # 블로그 댓글 기능 false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  disqus:
+    shortname            : "elphon-github-io" # 블로그 댓글 기능 https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+  discourse:
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+
+
 
 # Advanced Settings
 baseurl: "" # the subpath of your site, e.g. /blog
