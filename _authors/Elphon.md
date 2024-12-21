@@ -4,8 +4,8 @@ photo: /assets/img/uploads/profile.png
 name: Elphon
 display_name: Elphon
 position: The One
-bio: Bulletproof hacker passionate about leather clothes.
-github_username: github_username
+bio: YuEl_0x
+github_username: elphon
 facebook_username: facebook_username
 twitter_username: twitter_username
 instagram_username: instagram_username
