@@ -1,6 +1,6 @@
 ---
 layout: author
-photo: /assets/img/uploads/profile.png
+photo: /assets/img/uploads/profile2.webp
 name: Elphon
 display_name: Elphon
 position: The One
