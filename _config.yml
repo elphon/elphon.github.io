@@ -26,7 +26,7 @@ disqus_username: disqus_username
 # Contact Form Setting
 # See: https://formspree.io/
 formspree_form_id: mbjnzypy
-# timezone: Asia/Seoul
+timezone: Asia/Seoul
 
 
 # Social Media Settings
