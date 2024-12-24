@@ -19,6 +19,20 @@ tags:
 author: Elphon
 ---
 
+<style>
+.three-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* 이미지 사이 간격 */
+}
+
+.three-columns img {
+  width: calc(33.333% - 10px); /* 3분할 계산 */
+  height: auto;
+}
+</style>
+
+
 ### **앱 개발의 시작: nmap을 폰에서 구현할 수 있을까?**  
 "네트워크 점검이 필요할 때, 자주 사용하는 툴은 단연 **nmap**이었다. 하지만 PC 없이 스마트폰에서 이런 강력한 도구를 구현할 수 있을까?"  
 
@@ -36,8 +50,13 @@ author: Elphon
 
 2. **테스트 진행**
     - nmap을 `pkg install nmap` 으로 설치 후 nmap 명령어 테스트
-    [스크린샷 이미지]
-    ``` nmap scanme.nmap.org```
+    - Connect scan 사용
+    ``` nmap -sT scanme.nmap.org```
+    <div class="gallery-three">
+    <a href="https://ibb.co/d58NJkq"><img src="https://i.ibb.co/LZVTh9W/1nmap-to-app-wifi-testing-img.webp" alt="1nmap-to-app-wifi-testing-img" border="0"></a>
+    <a href="https://ibb.co/fDhVfzm"><img src="https://i.ibb.co/dmdsFwn/2nmap-to-app-data-testing-img.webp" alt="2nmap-to-app-data-testing-img" border="0"></a>
+    <a href="https://ibb.co/r2XX833"><img src="https://i.ibb.co/xqrr9YY/3nmap-to-app-data-ping-testing-img.webp" alt="3nmap-to-app-data-ping-testing-img" border="0"></a>
+    </div>
 
 3. **테스트 결과**  
    - **Wi-Fi 네트워크**와 **모바일 데이터** 모두에서 정상적으로 작동했다.  
@@ -78,7 +97,8 @@ Termux 테스트를 통해 nmap의 주요 기능을 구현할 수 있다는 가�
 스텔스 스캔은 단순한 스캔 기능 이상의 정교한 설계가 필요하다:  
 
 #### **1. 스캔 기법**  
-- **TCP SYN 스캔 (비 루트 권한 방식)**:  
+- **TCP SYN 스캔 (비 루트 권한 Connect로 구현)**: 
+  - TCP SYN 스캔은 ROW 패킷을 생성을 할 수 있는 루트권한이 필요하기 때문에 
   - 포트가 열려 있는지 확인하기 위해 SYN 패킷만 전송.  
   - 중간에 타임아웃을 설정해 응답이 느릴 경우 스캔을 종료.  
   - 예외 상황(예: 네트워크 장애, 특정 IP 블록)에서 스캔을 자동으로 중단하는 메커니즘 추가.  
