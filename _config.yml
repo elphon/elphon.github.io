@@ -62,7 +62,7 @@ google_analytics: "G-NRW525PW6E"
 language: "ko"
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
-
+safe: false
 
 # Build settings
 markdown: kramdown
