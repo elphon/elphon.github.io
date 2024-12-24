@@ -1,0 +1,83 @@
+translations:
+  en:
+    text:
+      new_post: "New Post"
+      see_also: "See also"
+      search: "Search"
+      author: "Author"
+      share: "Share"
+      comments: "Comments"
+    button:
+      read_now: "Read Now"
+      share_on_twitter: "Share on Twitter"
+      share_on_facebook: "Share on Facebook"
+    pagination:
+      page: "Page"
+      of: "of"
+      next_page: "Next Page"
+      next_post: "Previous Page"
+    recommendation:
+      text: "Why don't you read something next?"
+      back_btn: "Go back to top"
+    error_404:
+      title: "Page not found :("
+      message: "I'm sorry. We couldn't find the page you are looking for."
+      image_alt: "404 - Page not found"
+    contact:
+      title: "Talk to me"
+      subject: "New contact!"
+      submit_btn: "Send"
+      placeholders:
+        name: "Your name"
+        email: "Your e-mail"
+        message: "Your message"
+      errors:
+        locale: "en"
+        empty_name: "Name is required"
+        empty_email: "Email is required"
+        invalid_email: "Email is invalid"
+        empty_message: "Message is required"
+      after_send:
+        title: "Message sent!"
+        message: "Thank you for sending me a message. I'm going to answer ASAP."
+  ko:
+    text:
+      new_post: "새 글"
+      see_also: "관련 글"
+      search: "검색"
+      author: "작성자"
+      share: "공유"
+      comments: "댓글"
+    button:
+      read_now: "지금 읽기"
+      share_on_twitter: "트위터에서 공유"
+      share_on_facebook: "페이스북에서 공유"
+    pagination:
+      page: "페이지"
+      of: "총"
+      next_page: "다음 페이지"
+      next_post: "이전 페이지"
+    recommendation:
+      text: "이거는 어떠세요?"
+      back_btn: "맨 위로 돌아가기"
+    error_404:
+      title: "페이지를 찾을 수 없습니다 :("
+      message: "죄송합니다. 찾으시는 페이지를 찾을 수 없습니다."
+      image_alt: "404 - 페이지를 찾을 수 없음"
+    contact:
+      title: "문의하기"
+      subject: "새로운 문의!"
+      submit_btn: "보내기"
+      placeholders:
+        name: "이름"
+        email: "이메일"
+        message: "메시지"
+      errors:
+        locale: "ko"
+        empty_name: "이름을 입력해주세요"
+        empty_email: "이메일을 입력해주세요"
+        invalid_email: "이메일 형식이 올바르지 않습니다"
+        empty_message: "메시지를 입력해주세요"
+      after_send:
+        title: "메시지가 전송되었습니다!"
+        message: "메시지를 보내주셔서 감사합니다. 가능한 빨리 답변드리겠습니다."
