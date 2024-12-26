@@ -5,8 +5,9 @@
 # texts: '#333333'
 
 
-themeColor: #00218d,
-primaryDark: #030211,
-accentDark: #ffffff,
-lightGray: #dcdcee,
-texts: #1c1b1f
+themeColor: '#00218d'
+scrollbarColor: '#9ab1ff'
+primaryDark: '#030211'
+accentDark: '#ffffff'
+lightGray: '#f2f2f2'
+texts: '#1c1b1f'
