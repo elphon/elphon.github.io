@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Tips
-slug: tips
-description: A category for tips.
+title: project
+slug: project
+description: A category for project.
 ---

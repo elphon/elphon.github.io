@@ -40,18 +40,18 @@
   #       message: "Thank you for sending me a message. I'm going to answer ASAP."
 
 text:
-  new_post: "새 글"
+  new_post: "New Post"
   see_also: "관련 글"
-  search: "검색"
+  search: "Search"
   author: "작성자"
   share: "공유"
   comments: "댓글"
 button:
-  read_now: "지금 읽기"
+  read_now: "Read Now"
   share_on_twitter: "트위터에서 공유"
   share_on_facebook: "페이스북에서 공유"
 pagination:
-  page: "페이지"
+  page: "page"
   of: "총"
   next_page: "다음 페이지"
   next_post: "이전 페이지"
@@ -67,9 +67,9 @@ contact:
   subject: "새로운 문의!"
   submit_btn: "보내기"
   placeholders:
-    name: "이름"
-    email: "이메일"
-    message: "메시지"
+    name: "Your name"
+    email: "Your email"
+    message: "Your message"
   errors:
     locale: "ko"
     empty_name: "이름을 입력해주세요"
