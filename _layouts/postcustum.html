@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ site.language }}" class="no-js">
-    {% include head.html %}
-    <body class="has-push-menu">
-        {% include svg-icons.html %}
-        {% include header.html %}
+    {% include headcustum.html %}
 
-        <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}">
-            <article role="article" class="post-content">
-                
+        {{ content }}
 
-                {% include pagination-post.html progressBar=true %}
-
-                {% include toc.html %}
-
-                {{ content }}
-
-                {% include pagination-post.html %}
-            </article>
 
             {% if site.two_columns_layout %}
                 <aside class="see-also">
