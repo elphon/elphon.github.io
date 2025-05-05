@@ -36,7 +36,7 @@
     color: $accentDark;
     background-color: $primaryDark;
     border: 0;
-    border-radius: rem(20px);
+    border-radius:0.5rem;
     padding: rem(5px) rem(25px);
     outline: 0;
   }
@@ -75,7 +75,8 @@
     padding: 0 2vh;
     margin: 2vh 0;
     list-style-type: none;
-    background-color: #000000e3;
+    background-color: #0000009c;
+    border-radius: 0.5rem;
     
 
     @include media("<sm") {
@@ -172,7 +173,7 @@
     padding: 1vh;
     fill: $accentDark;
     background-color: $themeColor;
-    border-radius: 13px;
+    border-radius: 0.5rem;
     margin: 1.5vh;
     cursor: pointer;
     outline: 0;
