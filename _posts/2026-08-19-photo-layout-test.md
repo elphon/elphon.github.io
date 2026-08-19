@@ -6,7 +6,7 @@ subtitle: "빛이 낮게 내려앉는 시간부터 바람이 차가워지는 밤
 description: "3:4 세로 사진을 중심으로 구성한 포토 에세이 레이아웃 테스트"
 category: Travel
 type: photo
-photo_theme: fresh
+photo_theme: instagram
 kicker: "TRAVEL / JEJU"
 intro_label: "A VISUAL JOURNAL"
 location: "Jeju, Korea"
@@ -131,4 +131,4 @@ feature:
 
 여행에서 가장 오래 남는 것은 유명한 장소의 이름보다 **그날의 공기와 빛의 방향**인 경우가 많다. 이번 포스트는 제주를 설명하기보다, 걷다가 자연스럽게 멈춰 서게 만들었던 순간들을 한 장면씩 모아 보여준다.
 
-사진의 원본 크기는 서로 달라도 화면에서는 3:4 비율의 일정한 리듬으로 이어진다. 밝고 상큼한 여행 사진이 중심인 이 샘플은 `fresh` 테마를 사용하며, 다른 포스트는 내용에 맞춰 `nature`, `studio`, `cinematic`, `neutral`로 바꿀 수 있다.
+사진의 원본 크기는 서로 달라도 화면에서는 3:4 비율의 일정한 리듬으로 이어진다. 이 샘플은 밝은 피드와 스토리 감성의 `instagram` 테마를 사용하며, 사진 자체의 색은 최대한 그대로 유지하도록 구성했다.
