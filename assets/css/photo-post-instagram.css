@@ -1,0 +1,291 @@
+/* Instagram-inspired editorial theme for post-photo.
+ * Keeps the photographs neutral while borrowing the bright, social,
+ * gradient-accented energy of modern photo feeds and stories.
+ */
+
+body.photo-theme-instagram {
+  --photo-bg: #fafafa;
+  --photo-bg-soft: #ffffff;
+  --photo-panel: #ffffff;
+  --photo-line: rgba(0, 0, 0, 0.10);
+  --photo-accent: #d62976;
+  --photo-hero-brightness: .78;
+  --photo-hero-saturation: 1.04;
+  --photo-hero-blur: 24px;
+  background: #fafafa;
+}
+
+/* Hero ------------------------------------------------------------------ */
+
+.photo-theme-instagram .photo-hero {
+  background: #171217;
+}
+
+.photo-theme-instagram .photo-hero__backdrop img {
+  filter: blur(24px) saturate(1.08) brightness(.76);
+}
+
+.photo-theme-instagram .photo-hero__backdrop::after {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(214, 41, 118, .22), transparent 26%),
+    radial-gradient(circle at 62% 78%, rgba(250, 126, 30, .20), transparent 30%),
+    radial-gradient(circle at 90% 72%, rgba(150, 47, 191, .20), transparent 27%),
+    linear-gradient(90deg, rgba(17, 11, 18, .68) 0%, rgba(17, 11, 18, .22) 42%, rgba(17, 11, 18, .06) 72%, rgba(17, 11, 18, .20) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, .04), rgba(0, 0, 0, .28));
+}
+
+.photo-theme-instagram .photo-hero__portrait {
+  border-radius: 22px;
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, .25),
+    0 0 0 1px rgba(255, 255, 255, .22);
+}
+
+.photo-theme-instagram .photo-hero__label > span:first-child,
+.photo-theme-instagram .photo-hero__meta span,
+.photo-theme-instagram .photo-hero__scroll {
+  font-weight: 600;
+}
+
+.photo-theme-instagram .photo-hero__controls button,
+.photo-theme-instagram .photo-hero__scroll span {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .32);
+  backdrop-filter: blur(14px) saturate(135%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+}
+
+.photo-theme-instagram .photo-hero__controls button:hover,
+.photo-theme-instagram .photo-hero__controls button:focus-visible,
+.photo-theme-instagram .photo-hero__scroll:hover span,
+.photo-theme-instagram .photo-hero__scroll:focus-visible span {
+  background:
+    linear-gradient(135deg, rgba(214, 41, 118, .82), rgba(250, 126, 30, .76) 52%, rgba(150, 47, 191, .80));
+  border-color: rgba(255, 255, 255, .52);
+}
+
+/* Bright editorial body ------------------------------------------------- */
+
+.photo-theme-instagram .photo-editorial-intro,
+.photo-theme-instagram .photo-collection,
+.photo-theme-instagram .photo-feature,
+.photo-theme-instagram .photo-story-end {
+  color: #171717;
+}
+
+.photo-theme-instagram .photo-editorial-intro {
+  border-bottom-color: rgba(0, 0, 0, .10);
+}
+
+.photo-theme-instagram .photo-editorial-intro__index {
+  background: linear-gradient(135deg, #feda75 0%, #fa7e1e 28%, #d62976 58%, #962fbf 82%, #4f5bd5 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: .88;
+}
+
+.photo-theme-instagram .photo-editorial-intro__eyebrow,
+.photo-theme-instagram .photo-section-heading > div {
+  color: #c72b78;
+  font-weight: 650;
+}
+
+.photo-theme-instagram .photo-editorial-intro__body,
+.photo-theme-instagram .photo-editorial-intro__body strong,
+.photo-theme-instagram .photo-section-heading h2,
+.photo-theme-instagram .photo-story-end p {
+  color: #171717;
+}
+
+.photo-theme-instagram .photo-editorial-intro__details div {
+  border-top-color: rgba(0, 0, 0, .10);
+}
+
+.photo-theme-instagram .photo-editorial-intro__details span,
+.photo-theme-instagram .photo-section-heading > p,
+.photo-theme-instagram .photo-story-end > div:not(.photo-story-end__line),
+.photo-theme-instagram .photo-story-end > a,
+.photo-theme-instagram .photo-feature__caption {
+  color: rgba(23, 23, 23, .48);
+}
+
+.photo-theme-instagram .photo-editorial-intro__details strong,
+.photo-theme-instagram .photo-story-end > div strong,
+.photo-theme-instagram .photo-feature__caption strong {
+  color: rgba(23, 23, 23, .78);
+}
+
+/* Gallery: feed/card rhythm -------------------------------------------- */
+
+.photo-theme-instagram .photo-gallery {
+  gap: clamp(10px, 1.05vw, 16px);
+}
+
+.photo-theme-instagram .photo-gallery__item {
+  padding: 3px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, .07),
+    0 8px 28px rgba(0, 0, 0, .045);
+  transition:
+    transform 220ms cubic-bezier(.2, .8, .2, 1),
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.photo-theme-instagram .photo-gallery__item img {
+  border-radius: 15px;
+}
+
+.photo-theme-instagram .photo-gallery__item::after {
+  inset: 3px;
+  border-radius: 15px;
+}
+
+.photo-theme-instagram .photo-gallery__item:hover,
+.photo-theme-instagram .photo-gallery__item:focus-visible {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #feda75 0%, #fa7e1e 28%, #d62976 58%, #962fbf 82%, #4f5bd5 100%);
+  box-shadow:
+    0 14px 36px rgba(214, 41, 118, .13),
+    0 8px 26px rgba(0, 0, 0, .09);
+}
+
+.photo-theme-instagram .photo-gallery__number {
+  top: 16px;
+  left: 17px;
+  display: inline-grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .34);
+  color: #fff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.photo-theme-instagram .photo-gallery__overlay {
+  left: 19px;
+  right: 19px;
+  bottom: 18px;
+}
+
+.photo-theme-instagram .photo-gallery__item--placeholder {
+  border: 0;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5) border-box;
+  border: 2px solid transparent;
+}
+
+/* Feature card ---------------------------------------------------------- */
+
+.photo-theme-instagram .photo-feature__stage {
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 26px;
+  background: #f1f1f1;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .07);
+}
+
+.photo-theme-instagram .photo-feature__backdrop img {
+  filter: blur(38px) brightness(.78) saturate(1.06);
+}
+
+.photo-theme-instagram .photo-feature__stage::after {
+  background:
+    radial-gradient(circle at 50% 45%, transparent 16%, rgba(255,255,255,.15) 62%, rgba(0,0,0,.09) 100%);
+}
+
+.photo-theme-instagram .photo-feature__image {
+  padding: 4px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #feda75 0%, #fa7e1e 28%, #d62976 58%, #962fbf 82%, #4f5bd5 100%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .20);
+}
+
+.photo-theme-instagram .photo-feature__image img {
+  border-radius: 18px;
+}
+
+.photo-theme-instagram .photo-story-end__line {
+  width: 42px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #fa7e1e, #d62976, #962fbf);
+}
+
+.photo-theme-instagram .photo-story-end > a {
+  border-bottom-color: rgba(214, 41, 118, .28);
+}
+
+.photo-theme-instagram .photo-story-end > a:hover {
+  color: #c72b78;
+}
+
+/* Header --------------------------------------------------------------- */
+
+body.photo-theme-instagram.photo-hero-past .bar-header {
+  background: rgba(255, 255, 255, .84);
+  border-bottom-color: rgba(0, 0, 0, .08);
+  backdrop-filter: blur(20px) saturate(145%);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+}
+
+body.photo-theme-instagram.photo-hero-past .bar-header .logo a,
+body.photo-theme-instagram.photo-hero-past .bar-header .version {
+  color: #171717;
+}
+
+body.photo-theme-instagram.photo-hero-past .bar-header .icon-menu,
+body.photo-theme-instagram.photo-hero-past .bar-header .icon-search {
+  fill: #171717;
+}
+
+/* Lightbox stays dark for image focus, but gets a subtle gradient accent. */
+.photo-theme-instagram + .photo-lightbox,
+body.photo-theme-instagram .photo-lightbox {
+  background: #090909;
+}
+
+body.photo-theme-instagram .photo-lightbox__toolbar button:hover,
+body.photo-theme-instagram .photo-lightbox__toolbar button:focus-visible {
+  border-color: rgba(214, 41, 118, .72);
+}
+
+@media (max-width: 700px) {
+  .photo-theme-instagram .photo-hero__portrait {
+    border-radius: 16px;
+  }
+
+  .photo-theme-instagram .photo-gallery__item {
+    border-radius: 13px;
+    padding: 2px;
+  }
+
+  .photo-theme-instagram .photo-gallery__item img,
+  .photo-theme-instagram .photo-gallery__item::after {
+    border-radius: 11px;
+  }
+
+  .photo-theme-instagram .photo-gallery__number {
+    top: 11px;
+    left: 11px;
+    min-width: 24px;
+    height: 24px;
+    font-size: 8px;
+  }
+
+  .photo-theme-instagram .photo-feature__stage {
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-theme-instagram .photo-gallery__item {
+    transition: none !important;
+  }
+}
