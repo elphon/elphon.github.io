@@ -67,6 +67,21 @@
                         {% unless photo_src contains '://' %}
                             {% assign photo_src = photo_src | prepend: site.baseurl %}
                         {% endunless %}
+
+                        {% assign photo_thumb = photo.thumb %}
+                        {% if photo_thumb == blank and page.photo_thumbnail_base %}
+                            {% assign photo_path = photo_src | split: '?' | first %}
+                            {% assign photo_filename = photo_path | split: '/' | last %}
+                            {% assign photo_transform = page.photo_thumbnail_transform | default: 'w-720,q-78,f-jpg' %}
+                            {% capture photo_thumb %}{{ page.photo_thumbnail_base }}/{{ photo_filename }}?tr={{ photo_transform }}{% endcapture %}
+                        {% endif %}
+                        {% if photo_thumb == blank %}
+                            {% assign photo_thumb = photo_src %}
+                        {% endif %}
+                        {% unless photo_thumb contains '://' %}
+                            {% assign photo_thumb = photo_thumb | prepend: site.baseurl %}
+                        {% endunless %}
+
                         <button
                             class="photo-gallery__item photo-gallery__item--slot-{{ slot }}"
                             type="button"
@@ -79,7 +94,7 @@
                             aria-label="Open photograph {{ forloop.index }}"
                         >
                             <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-                            <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
+                            <img src="{{ photo_thumb }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
                             <span class="photo-gallery__overlay">
                                 {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
                                 {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
@@ -106,6 +121,21 @@
                         {% unless photo_src contains '://' %}
                             {% assign photo_src = photo_src | prepend: site.baseurl %}
                         {% endunless %}
+
+                        {% assign photo_thumb = photo.thumb %}
+                        {% if photo_thumb == blank and page.photo_thumbnail_base %}
+                            {% assign photo_path = photo_src | split: '?' | first %}
+                            {% assign photo_filename = photo_path | split: '/' | last %}
+                            {% assign photo_transform = page.photo_thumbnail_transform | default: 'w-720,q-78,f-jpg' %}
+                            {% capture photo_thumb %}{{ page.photo_thumbnail_base }}/{{ photo_filename }}?tr={{ photo_transform }}{% endcapture %}
+                        {% endif %}
+                        {% if photo_thumb == blank %}
+                            {% assign photo_thumb = photo_src %}
+                        {% endif %}
+                        {% unless photo_thumb contains '://' %}
+                            {% assign photo_thumb = photo_thumb | prepend: site.baseurl %}
+                        {% endunless %}
+
                         <button
                             class="photo-gallery__item"
                             type="button"
@@ -118,7 +148,7 @@
                             aria-label="Open photograph {{ forloop.index }}"
                         >
                             <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-                            <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
+                            <img src="{{ photo_thumb }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
                             <span class="photo-gallery__overlay">
                                 {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
                                 {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
