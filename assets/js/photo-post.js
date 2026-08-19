@@ -185,14 +185,6 @@
   let lastFocus = null;
   let lightboxTouchStartX = 0;
 
-  const preload = (targetIndex) => {
-    const item = items[(targetIndex + items.length) % items.length];
-    const src = item?.dataset.photoSrc;
-    if (!src) return;
-    const preloadImage = new Image();
-    preloadImage.src = src;
-  };
-
   const replayLightboxImageMotion = () => {
     if (reduceMotion || !figure) return;
     figure.classList.remove('is-switching');
@@ -214,8 +206,6 @@
     meta.hidden = !meta.textContent;
 
     replayLightboxImageMotion();
-    preload(current - 1);
-    preload(current + 1);
   };
 
   const openLightbox = (itemIndex) => {
