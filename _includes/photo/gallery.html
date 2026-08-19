@@ -24,7 +24,7 @@
                 <div class="photo-collection__count" aria-label="Current photograph">
                     <span data-photo-current>01</span>
                     <span>/</span>
-                    <span>{{ photo_count | prepend: '0' | slice: -2, 2 }}</span>
+                    <span>{% if photo_count < 10 %}0{% endif %}{{ photo_count }}</span>
                 </div>
             </div>
 
@@ -47,16 +47,16 @@
                         <section class="photo-cluster photo-cluster--count-{{ cluster_size }}{% if cluster_side == 1 %} photo-cluster--reverse{% endif %}" data-photo-cluster>
                             <header class="photo-cluster__header">
                                 <div class="photo-cluster__chapter">
-                                    <span>{{ cluster_number | prepend: '0' | slice: -2, 2 }}</span>
+                                    <span>{% if cluster_number < 10 %}0{% endif %}{{ cluster_number }}</span>
                                     <div>
-                                        <strong>SET {{ cluster_number | prepend: '0' | slice: -2, 2 }}</strong>
+                                        <strong>SET {% if cluster_number < 10 %}0{% endif %}{{ cluster_number }} / {% if cluster_total < 10 %}0{% endif %}{{ cluster_total }}</strong>
                                         <small>{{ page.location | default: page.category | default: 'PHOTO STORY' }}</small>
                                     </div>
                                 </div>
                                 <p>
-                                    <span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                                    <span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                                     <i aria-hidden="true"></i>
-                                    <span>{{ cluster_end | prepend: '0' | slice: -2, 2 }}</span>
+                                    <span>{% if cluster_end < 10 %}0{% endif %}{{ cluster_end }}</span>
                                 </p>
                             </header>
                             <div class="photo-cluster__grid">
@@ -78,7 +78,7 @@
                             data-photo-meta="{{ photo.meta | escape }}"
                             aria-label="Open photograph {{ forloop.index }}"
                         >
-                            <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                             <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
                             <span class="photo-gallery__overlay">
                                 {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
@@ -87,7 +87,7 @@
                         </button>
                     {% else %}
                         <div class="photo-gallery__item photo-gallery__item--placeholder photo-gallery__item--slot-{{ slot }}" aria-label="Empty 3 by 4 photo slot">
-                            <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                             <div><strong>PHOTO SLOT</strong><small>3 : 4</small></div>
                         </div>
                     {% endif %}
@@ -117,7 +117,7 @@
                             data-photo-meta="{{ photo.meta | escape }}"
                             aria-label="Open photograph {{ forloop.index }}"
                         >
-                            <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                             <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
                             <span class="photo-gallery__overlay">
                                 {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
@@ -126,7 +126,7 @@
                         </button>
                     {% else %}
                         <div class="photo-gallery__item photo-gallery__item--placeholder" aria-label="Empty 3 by 4 photo slot">
-                            <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
                             <div><strong>PHOTO SLOT</strong><small>3 : 4</small></div>
                         </div>
                     {% endif %}
@@ -135,3 +135,7 @@
         {% endif %}
     {% endif %}
 </section>
+
+{% if page.photo_theme == 'instagram' %}
+<script defer src="{{ '/assets/js/photo-post-gallery.js' | prepend: site.baseurl }}"></script>
+{% endif %}
