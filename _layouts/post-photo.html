@@ -91,51 +91,7 @@
                 </aside>
             </section>
 
-            <section class="photo-collection" id="photo-gallery">
-                <header class="photo-section-heading">
-                    <div>
-                        <span>02</span>
-                        <p>COLLECTION</p>
-                    </div>
-                    <h2>{{ page.gallery_title | default: "Selected Frames" }}</h2>
-                    <p>{{ page.gallery_note | default: "3:4 portrait frames · click any photograph to view it fullscreen" }}</p>
-                </header>
-
-                {% if page.photos %}
-                    <div class="photo-gallery">
-                        {% for photo in page.photos %}
-                            {% if photo.src != blank %}
-                                {% assign photo_src = photo.src %}
-                                {% unless photo_src contains '://' %}
-                                    {% assign photo_src = photo_src | prepend: site.baseurl %}
-                                {% endunless %}
-                                <button
-                                    class="photo-gallery__item"
-                                    type="button"
-                                    data-photo-item
-                                    data-photo-src="{{ photo_src }}"
-                                    data-photo-alt="{{ photo.alt | default: page.title | escape }}"
-                                    data-photo-caption="{{ photo.caption | escape }}"
-                                    data-photo-meta="{{ photo.meta | escape }}"
-                                    aria-label="Open photograph {{ forloop.index }}"
-                                >
-                                    <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-                                    <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
-                                    <span class="photo-gallery__overlay">
-                                        {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
-                                        {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
-                                    </span>
-                                </button>
-                            {% else %}
-                                <div class="photo-gallery__item photo-gallery__item--placeholder" aria-label="Empty 3 by 4 photo slot">
-                                    <span class="photo-gallery__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-                                    <div><strong>PHOTO SLOT</strong><small>3 : 4</small></div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </section>
+            {% include photo/gallery.html %}
 
             {% if page.feature %}
                 <section class="photo-feature">
