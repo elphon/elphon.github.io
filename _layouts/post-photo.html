@@ -1,89 +1,111 @@
 <!DOCTYPE html>
 <html lang="{{ site.language }}" class="no-js">
     {% include head.html %}
-    <body class="has-push-menu post-photo-page">
-        {% include minutes-to-read.html %}
+    <body class="has-push-menu photo-post-page">
         {% include svg-icons.html %}
         {% include header.html %}
 
-        <main class="photo-post">
-            <article role="article" class="photo-post-content">
-                <header class="photo-post-header">
-                    <div class="photo-post-kicker">
-                        {% if page.category %}<span>{{ page.category }}</span>{% endif %}
-                        {% if page.location %}<span>{{ page.location }}</span>{% endif %}
-                    </div>
-                    <h1 class="post-title photo-post-title">{{ page.title }}</h1>
-                    {% if page.subtitle %}<p class="post-subtitle photo-post-subtitle">{{ page.subtitle }}</p>{% endif %}
-                    <p class="post-info photo-post-info">
-                        {% if page.date %}
-                            <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
-                            <time class="date" datetime="{{ page.date | date_to_xmlschema }}">{% include date.html date=page.date %}</time>
-                        {% endif %}
-                        <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                        <span>{{ minutesText }}</span>
-                    </p>
-                </header>
+        <link rel="stylesheet" href="{{ '/assets/css/photo-post.css' | prepend: site.baseurl }}">
 
-                {% if page.image and paginator.activated == nil %}
-                    <figure class="photo-hero">
-                        <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title }}" class="photo-hero-image">
-                        {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
-                    </figure>
-                {% endif %}
-
-                <div class="photo-story-body">
-                    {{ content }}
+        <main class="photo-post" data-photo-post>
+            {% if page.hero %}
+            <section class="photo-hero" aria-label="Featured photographs">
+                <div class="photo-hero__track" data-hero-track>
+                    {% for slide in page.hero %}
+                        {% assign slide_src = slide.src %}
+                        {% unless slide_src contains '://' %}
+                            {% assign slide_src = slide_src | prepend: site.baseurl %}
+                        {% endunless %}
+                        <figure class="photo-hero__slide{% if forloop.first %} is-active{% endif %}" data-hero-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
+                            <img src="{{ slide_src }}" alt="{{ slide.alt | default: page.title | escape }}" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                        </figure>
+                    {% endfor %}
                 </div>
 
-                {% include pagination-post.html %}
-            </article>
+                <div class="photo-hero__shade"></div>
+                <div class="photo-hero__content">
+                    {% if page.kicker %}<p class="photo-hero__kicker">{{ page.kicker }}</p>{% endif %}
+                    <h1>{{ page.title }}</h1>
+                    {% if page.subtitle %}<p class="photo-hero__subtitle">{{ page.subtitle }}</p>{% endif %}
+                    <div class="photo-hero__meta">
+                        {% if page.location %}<span>{{ page.location }}</span>{% endif %}
+                        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>{% endif %}
+                    </div>
+                </div>
+
+                {% if page.hero.size > 1 %}
+                <button class="photo-hero__nav photo-hero__nav--prev" type="button" data-hero-prev aria-label="Previous photograph">‹</button>
+                <button class="photo-hero__nav photo-hero__nav--next" type="button" data-hero-next aria-label="Next photograph">›</button>
+                <div class="photo-hero__dots" data-hero-dots aria-label="Slide navigation"></div>
+                {% endif %}
+            </section>
+            {% endif %}
+
+            <section class="photo-intro">
+                <div class="photo-intro__inner">
+                    {{ content }}
+                </div>
+            </section>
+
+            {% if page.photos %}
+            <section class="photo-gallery" aria-label="Photo gallery">
+                {% for photo in page.photos %}
+                    {% assign photo_src = photo.src %}
+                    {% unless photo_src contains '://' %}
+                        {% assign photo_src = photo_src | prepend: site.baseurl %}
+                    {% endunless %}
+                    <button
+                        class="photo-gallery__item{% if photo.featured %} photo-gallery__item--featured{% endif %}"
+                        type="button"
+                        data-photo-item
+                        data-photo-src="{{ photo_src }}"
+                        data-photo-alt="{{ photo.alt | default: page.title | escape }}"
+                        data-photo-caption="{{ photo.caption | escape }}"
+                        data-photo-meta="{{ photo.meta | escape }}"
+                        aria-label="Open photograph {{ forloop.index }} of {{ page.photos.size }}"
+                    >
+                        <img src="{{ photo_src }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
+                        {% if photo.caption %}<span class="photo-gallery__caption">{{ photo.caption }}</span>{% endif %}
+                    </button>
+                {% endfor %}
+            </section>
+            {% endif %}
+
+            {% if page.location or page.date %}
+            <footer class="photo-story-end">
+                <span>END</span>
+                {% if page.location %}<strong>{{ page.location }}</strong>{% endif %}
+                {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %Y' }}</time>{% endif %}
+            </footer>
+            {% endif %}
         </main>
 
-        {% if paginator.activated == nil and site.show_time_bar == true %}
-            {% include time-bar.html %}
-            {% include recommendation.html %}
-        {% endif %}
+        <div class="photo-lightbox" data-photo-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+            <div class="photo-lightbox__backdrop" data-lightbox-close></div>
+            <div class="photo-lightbox__viewer">
+                <div class="photo-lightbox__toolbar">
+                    <span class="photo-lightbox__counter" data-lightbox-counter></span>
+                    <div class="photo-lightbox__actions">
+                        <button type="button" data-lightbox-fullscreen aria-label="Toggle fullscreen">⛶</button>
+                        <button type="button" data-lightbox-close aria-label="Close photo viewer">×</button>
+                    </div>
+                </div>
+                <button class="photo-lightbox__nav photo-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="Previous photograph">‹</button>
+                <figure class="photo-lightbox__figure">
+                    <img data-lightbox-image src="" alt="">
+                    <figcaption class="photo-lightbox__info">
+                        <span data-lightbox-caption></span>
+                        <small data-lightbox-meta></small>
+                    </figcaption>
+                </figure>
+                <button class="photo-lightbox__nav photo-lightbox__nav--next" type="button" data-lightbox-next aria-label="Next photograph">›</button>
+            </div>
+        </div>
 
-        {% include subscription.html %}
         {% include share.html %}
         {% include author.html %}
         {% include comments.html %}
         {% include footer.html %}
-
-        {% assign author = site.authors | where: "name", page.author | first %}
-        {% assign author_urls = '' %}
-        {% if author.github_username %}{% assign author_urls = author_urls | append: '"https://github.com/' | append: author.github_username | append: '",' %}{% endif %}
-        {% if author.facebook_username %}{% assign author_urls = author_urls | append: '"https://www.facebook.com/' | append: author.facebook_username | append: '",' %}{% endif %}
-        {% if author.twitter_username %}{% assign author_urls = author_urls | append: '"https://twitter.com/' | append: author.twitter_username | append: '",' %}{% endif %}
-        {% if author.medium_username %}{% assign author_urls = author_urls | append: '"https://medium.com/@' | append: author.medium_username | append: '",' %}{% endif %}
-        {% if author.instagram_username %}{% assign author_urls = author_urls | append: '"https://www.instagram.com/' | append: author.instagram_username | append: '",' %}{% endif %}
-        {% if author.linkedin_username %}{% assign author_urls = author_urls | append: '"https://www.linkedin.com/in/' | append: author.linkedin_username | append: '",' %}{% endif %}
-
-        <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "BlogPosting",
-            "name": "{{ page.title }}",
-            "headline": "{{ page.subtitle }}",
-            "description": "{{ page.description }}",
-            "image": "{{ page.image }}",
-            "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-            "articleBody": "{{ content | strip_html | xml_escape | textilize }}",
-            "wordcount": "{{ content | number_of_words }}",
-            "inLanguage": "{{ site.language }}",
-            "datePublished": "{{ page.date | date: '%Y-%m-%d/' }}",
-            "author": {
-                "@type": "Person",
-                "name": "{{ author.display_name }}",
-                {% if author.photo %}"image": "{{ author.photo }}",{% else %}"image": "{{ '/assets/img/user.jpg' | prepend: site.baseurl | prepend: site.url }}",{% endif %}
-                "url": "{{ author.url | prepend: site.baseurl | prepend: site.url }}",
-                "sameAs": [{{ author_urls | split: "," | join: "," }}]
-            },
-            "genre": "{{ page.category }}",
-            "articleSection": "{{ page.category }}",
-            "keywords": [{{ page.tags | join: '\",\"' | append: '\"' | prepend: '\"' }}]
-        }
-        </script>
+        <script defer src="{{ '/assets/js/photo-post.js' | prepend: site.baseurl }}"></script>
     </body>
 </html>
