@@ -172,6 +172,18 @@ body.photo-theme-cinematic {
   color: rgba(30,30,30,.72);
 }
 
+.photo-theme-fresh .photo-feature__caption,
+.photo-theme-nature .photo-feature__caption,
+.photo-theme-studio .photo-feature__caption {
+  color: rgba(30,30,30,.46);
+}
+
+.photo-theme-fresh .photo-feature__caption strong,
+.photo-theme-nature .photo-feature__caption strong,
+.photo-theme-studio .photo-feature__caption strong {
+  color: rgba(30,30,30,.76);
+}
+
 .photo-theme-fresh .photo-story-end__line,
 .photo-theme-nature .photo-story-end__line,
 .photo-theme-studio .photo-story-end__line {
@@ -356,7 +368,8 @@ body.photo-motion-ready .photo-reveal.is-revealed {
   animation: photoLightboxFade 180ms ease-out both;
 }
 
-.photo-lightbox.is-open .photo-lightbox__figure img {
+.photo-lightbox.is-open .photo-lightbox__figure img,
+.photo-lightbox__figure.is-switching img {
   animation: photoLightboxImageIn 280ms cubic-bezier(.16,1,.3,1) both;
 }
 
@@ -401,7 +414,8 @@ body.photo-motion-ready .photo-reveal.is-revealed {
   body.photo-motion-mounted .photo-hero__controls,
   body.photo-motion-ready .photo-reveal,
   .photo-lightbox.is-open,
-  .photo-lightbox.is-open .photo-lightbox__figure img {
+  .photo-lightbox.is-open .photo-lightbox__figure img,
+  .photo-lightbox__figure.is-switching img {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
