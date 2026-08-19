@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ site.language }}" class="no-js">
     {% include head.html %}
-    <body class="has-push-menu photo-post-page">
+    <body class="has-push-menu photo-post-page photo-theme-{{ page.photo_theme | default: 'neutral' }}">
         {% include svg-icons.html %}
         {% include header.html %}
 
         <link rel="stylesheet" href="{{ '/assets/css/photo-post.css' | prepend: site.baseurl }}">
+        <link rel="stylesheet" href="{{ '/assets/css/photo-post-effects.css' | prepend: site.baseurl }}">
 
-        <main class="photo-post" data-photo-post>
+        <main class="photo-post" data-photo-post data-photo-theme="{{ page.photo_theme | default: 'neutral' }}">
             <section class="photo-hero" aria-label="Photo story cover">
                 <div class="photo-hero__slides" data-hero-slides>
                     {% if page.hero %}
