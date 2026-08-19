@@ -31,10 +31,10 @@ hero:
   - src: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250712_172755_HDR.jpeg"
     alt: "Jeju hero photograph 01"
     caption: "Late afternoon"
-  - src: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250712_172755_HDR.jpeg"
+  - src: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250722_135539_HDR(1).jpeg?updatedAt=1787131721689"
     alt: "Jeju hero photograph 02"
     caption: "Along the coast"
-  - src: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250712_172755_HDR.jpeg"
+  - src: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250713_160214_HDR.jpeg?updatedAt=1787131719037"
     alt: "Jeju hero photograph 03"
     caption: "Blue hour"
 
