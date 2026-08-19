@@ -46,6 +46,7 @@ author: Elphon
 
   <figure class="photo-story-frame">
     <!-- 사진이 들어갈 자리. -->
+    <img url="https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025%2007%2012%202025%2008%2001/20250712_172755_HDR.jpeg">
     <figcaption>장소나 시간, 촬영 당시의 짧은 메모를 넣을 수 있습니다.</figcaption>
   </figure>
 
