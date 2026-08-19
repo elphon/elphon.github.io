@@ -15,6 +15,9 @@ gallery_note: "JEJU · 86 FRAMES · CLICK TO VIEW FULLSCREEN"
 closing: "사진은 여행을 설명하지 않는다. 다만 그날의 빛과 공기를 다시 불러온다."
 tags: [travel, photography, jeju, photo-essay]
 author: Elphon
+photo_thumbnail_base: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025-07-12%202025-08-01%20(ver.1)/%EC%8D%B8%EB%84%A4%EC%9D%BC"
+photo_thumbnail_transform: "w-720,q-78,f-jpg"
+photo_hero_transform: "w-1080,q-82,f-jpg"
 image: "https://ik.imagekit.io/7gsxpuecqj/%EC%A0%9C%EC%A3%BC%EB%8F%84%202025-07-12%202025-08-01%20(ver.1)/20250712_172755_HDR.jpg?updatedAt=1787166939474"
 image_alt: "Jeju photo essay cover"
 hero:
