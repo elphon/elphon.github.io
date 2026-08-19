@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}" class="no-js">
+    {% include head.html %}
+    <body class="has-push-menu post-photo-page">
+        {% include minutes-to-read.html %}
+        {% include svg-icons.html %}
+        {% include header.html %}
+
+        <main class="photo-post">
+            <article role="article" class="photo-post-content">
+                <header class="photo-post-header">
+                    <div class="photo-post-kicker">
+                        {% if page.category %}<span>{{ page.category }}</span>{% endif %}
+                        {% if page.location %}<span>{{ page.location }}</span>{% endif %}
+                    </div>
+                    <h1 class="post-title photo-post-title">{{ page.title }}</h1>
+                    {% if page.subtitle %}<p class="post-subtitle photo-post-subtitle">{{ page.subtitle }}</p>{% endif %}
+                    <p class="post-info photo-post-info">
+                        {% if page.date %}
+                            <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
+                            <time class="date" datetime="{{ page.date | date_to_xmlschema }}">{% include date.html date=page.date %}</time>
+                        {% endif %}
+                        <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
+                        <span>{{ minutesText }}</span>
+                    </p>
+                </header>
+
+                {% if page.image and paginator.activated == nil %}
+                    <figure class="photo-hero">
+                        <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title }}" class="photo-hero-image">
+                        {% if page.image_caption %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+                    </figure>
+                {% endif %}
+
+                <div class="photo-story-body">
+                    {{ content }}
+                </div>
+
+                {% include pagination-post.html %}
+            </article>
+        </main>
+
+        {% if paginator.activated == nil and site.show_time_bar == true %}
+            {% include time-bar.html %}
+            {% include recommendation.html %}
+        {% endif %}
+
+        {% include subscription.html %}
+        {% include share.html %}
+        {% include author.html %}
+        {% include comments.html %}
+        {% include footer.html %}
+
+        {% assign author = site.authors | where: "name", page.author | first %}
+        {% assign author_urls = '' %}
+        {% if author.github_username %}{% assign author_urls = author_urls | append: '"https://github.com/' | append: author.github_username | append: '",' %}{% endif %}
+        {% if author.facebook_username %}{% assign author_urls = author_urls | append: '"https://www.facebook.com/' | append: author.facebook_username | append: '",' %}{% endif %}
+        {% if author.twitter_username %}{% assign author_urls = author_urls | append: '"https://twitter.com/' | append: author.twitter_username | append: '",' %}{% endif %}
+        {% if author.medium_username %}{% assign author_urls = author_urls | append: '"https://medium.com/@' | append: author.medium_username | append: '",' %}{% endif %}
+        {% if author.instagram_username %}{% assign author_urls = author_urls | append: '"https://www.instagram.com/' | append: author.instagram_username | append: '",' %}{% endif %}
+        {% if author.linkedin_username %}{% assign author_urls = author_urls | append: '"https://www.linkedin.com/in/' | append: author.linkedin_username | append: '",' %}{% endif %}
+
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BlogPosting",
+            "name": "{{ page.title }}",
+            "headline": "{{ page.subtitle }}",
+            "description": "{{ page.description }}",
+            "image": "{{ page.image }}",
+            "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
+            "articleBody": "{{ content | strip_html | xml_escape | textilize }}",
+            "wordcount": "{{ content | number_of_words }}",
+            "inLanguage": "{{ site.language }}",
+            "datePublished": "{{ page.date | date: '%Y-%m-%d/' }}",
+            "author": {
+                "@type": "Person",
+                "name": "{{ author.display_name }}",
+                {% if author.photo %}"image": "{{ author.photo }}",{% else %}"image": "{{ '/assets/img/user.jpg' | prepend: site.baseurl | prepend: site.url }}",{% endif %}
+                "url": "{{ author.url | prepend: site.baseurl | prepend: site.url }}",
+                "sameAs": [{{ author_urls | split: "," | join: "," }}]
+            },
+            "genre": "{{ page.category }}",
+            "articleSection": "{{ page.category }}",
+            "keywords": [{{ page.tags | join: '\",\"' | append: '\"' | prepend: '\"' }}]
+        }
+        </script>
+    </body>
+</html>
