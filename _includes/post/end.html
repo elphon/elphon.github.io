@@ -1,6 +1,7 @@
 {% comment %}
-Shared post chrome used by article/canvas/photo-style layouts.
+Shared post chrome used by article/canvas/photo/tech layouts.
 Keep layout-specific content above this include.
+Pass schema_type when a layout needs something more specific than BlogPosting.
 {% endcomment %}
 
 {% if paginator.activated == nil and site.show_time_bar == true %}
@@ -57,7 +58,7 @@ Keep layout-specific content above this include.
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": {{ include.schema_type | default: "BlogPosting" | jsonify }},
     "name": {{ page.title | jsonify }},
     "headline": {{ page.subtitle | jsonify }},
     "description": {{ page.description | jsonify }},
