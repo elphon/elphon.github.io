@@ -20,14 +20,27 @@
                                 {% unless slide_src contains '://' %}
                                     {% assign slide_src = slide_src | prepend: site.baseurl %}
                                 {% endunless %}
+                                {% assign slide_thumb = slide.thumb %}
+                                {% if slide_thumb == blank and page.photo_thumbnail_base %}
+                                    {% assign slide_path = slide_src | split: '?' | first %}
+                                    {% assign slide_filename = slide_path | split: '/' | last %}
+                                    {% assign slide_transform = page.photo_hero_transform | default: 'w-1080,q-82,f-jpg' %}
+                                    {% capture slide_thumb %}{{ page.photo_thumbnail_base }}/{{ slide_filename }}?tr={{ slide_transform }}{% endcapture %}
+                                {% endif %}
+                                {% if slide_thumb == blank %}
+                                    {% assign slide_thumb = slide_src %}
+                                {% endif %}
+                                {% unless slide_thumb contains '://' %}
+                                    {% assign slide_thumb = slide_thumb | prepend: site.baseurl %}
+                                {% endunless %}
                                 <figure class="photo-hero__slide{% if forloop.first %} is-active{% endif %}" data-hero-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
                                     <div class="photo-hero__backdrop" aria-hidden="true">
-                                        <img src="{{ slide_src }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                                        <img src="{{ slide_thumb }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
                                     </div>
                                     <div class="photo-hero__portrait-wrap">
                                         <img
                                             class="photo-hero__portrait"
-                                            src="{{ slide_src }}"
+                                            src="{{ slide_thumb }}"
                                             alt="{{ slide.alt | default: page.title | escape }}"
                                             {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
                                             decoding="async">
@@ -108,7 +121,20 @@
                             {% unless feature_src contains '://' %}
                                 {% assign feature_src = feature_src | prepend: site.baseurl %}
                             {% endunless %}
-                            <div class="photo-feature__backdrop" aria-hidden="true"><img src="{{ feature_src }}" alt="" loading="lazy"></div>
+                            {% assign feature_thumb = page.feature.thumb %}
+                            {% if feature_thumb == blank and page.photo_thumbnail_base %}
+                                {% assign feature_path = feature_src | split: '?' | first %}
+                                {% assign feature_filename = feature_path | split: '/' | last %}
+                                {% assign feature_transform = page.photo_hero_transform | default: 'w-1080,q-82,f-jpg' %}
+                                {% capture feature_thumb %}{{ page.photo_thumbnail_base }}/{{ feature_filename }}?tr={{ feature_transform }}{% endcapture %}
+                            {% endif %}
+                            {% if feature_thumb == blank %}
+                                {% assign feature_thumb = feature_src %}
+                            {% endif %}
+                            {% unless feature_thumb contains '://' %}
+                                {% assign feature_thumb = feature_thumb | prepend: site.baseurl %}
+                            {% endunless %}
+                            <div class="photo-feature__backdrop" aria-hidden="true"><img src="{{ feature_thumb }}" alt="" loading="lazy"></div>
                             <button
                                 type="button"
                                 class="photo-feature__image"
@@ -118,7 +144,7 @@
                                 data-photo-caption="{{ page.feature.caption | escape }}"
                                 data-photo-meta="{{ page.feature.meta | escape }}"
                             >
-                                <img src="{{ feature_src }}" alt="{{ page.feature.alt | default: page.feature.title | default: page.title | escape }}" loading="lazy" decoding="async">
+                                <img src="{{ feature_thumb }}" alt="{{ page.feature.alt | default: page.feature.title | default: page.title | escape }}" loading="lazy" decoding="async">
                             </button>
                         {% else %}
                             <div class="photo-feature__placeholder"><span>FEATURE PHOTO · 3:4</span></div>
