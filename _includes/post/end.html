@@ -1,0 +1,96 @@
+{% comment %}
+Shared post chrome used by article/canvas/photo-style layouts.
+Keep layout-specific content above this include.
+{% endcomment %}
+
+{% if paginator.activated == nil and site.show_time_bar == true %}
+    {% include time-bar.html %}
+    {% include recommendation.html %}
+{% endif %}
+
+{% if paginator.is_last and site.show_modal_on_finish_post %}
+    {% include modal.html title="You made it!" subtitle="Why don't you try another?" %}
+{% endif %}
+
+{% if site.show_modal_on_exit %}
+    {% include modal.html title="Don't go yet!" subtitle="You may also like..." closed=true showOnExit=true %}
+{% endif %}
+
+{% include subscription.html %}
+{% include share.html %}
+{% include author.html %}
+{% include comments.html %}
+{% include footer.html %}
+
+{% if page.math %}
+<script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+    };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{% endif %}
+
+{% assign post_author = site.authors | where: "name", page.author | first %}
+{% assign author_urls = '' %}
+{% if post_author.github_username %}
+    {% assign author_urls = author_urls | append: '"https://github.com/' | append: post_author.github_username | append: '",' %}
+{% endif %}
+{% if post_author.facebook_username %}
+    {% assign author_urls = author_urls | append: '"https://www.facebook.com/' | append: post_author.facebook_username | append: '",' %}
+{% endif %}
+{% if post_author.twitter_username %}
+    {% assign author_urls = author_urls | append: '"https://twitter.com/' | append: post_author.twitter_username | append: '",' %}
+{% endif %}
+{% if post_author.medium_username %}
+    {% assign author_urls = author_urls | append: '"https://medium.com/@' | append: post_author.medium_username | append: '",' %}
+{% endif %}
+{% if post_author.instagram_username %}
+    {% assign author_urls = author_urls | append: '"https://www.instagram.com/' | append: post_author.instagram_username | append: '",' %}
+{% endif %}
+{% if post_author.linkedin_username %}
+    {% assign author_urls = author_urls | append: '"https://www.linkedin.com/in/' | append: post_author.linkedin_username | append: '",' %}
+{% endif %}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "name": {{ page.title | jsonify }},
+    "headline": {{ page.subtitle | jsonify }},
+    "description": {{ page.description | jsonify }},
+    "image": {{ page.image | jsonify }},
+    "url": {{ page.url | prepend: site.baseurl | prepend: site.url | jsonify }},
+    "articleBody": {{ content | strip_html | strip_newlines | jsonify }},
+    "wordCount": {{ content | number_of_words }},
+    "inLanguage": {{ site.language | jsonify }},
+    "dateCreated": {{ page.date | date_to_xmlschema | jsonify }},
+    "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+    "dateModified": {{ page.last_modified_at | default: page.date | date_to_xmlschema | jsonify }},
+    "author": {
+        "@type": "Person",
+        "name": {{ post_author.display_name | default: page.author | jsonify }},
+        "image": {% if post_author.photo %}{{ post_author.photo | jsonify }}{% else %}{{ "/assets/img/user.jpg" | prepend: site.baseurl | prepend: site.url | jsonify }}{% endif %},
+        "jobTitle": {{ post_author.position | jsonify }},
+        "url": {{ post_author.url | prepend: site.baseurl | prepend: site.url | jsonify }},
+        "sameAs": [{{ author_urls | split: "," | join: "," }}]
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": {{ site.name | jsonify }},
+        "url": {{ site.url | append: site.baseurl | append: "/" | jsonify }},
+        "logo": {
+            "@type": "ImageObject",
+            "url": {{ site.url | append: site.baseurl | append: "/assets/img/blog-image.png" | jsonify }},
+            "width": 600,
+            "height": 315
+        }
+    },
+    "mainEntityOfPage": true,
+    "genre": {{ page.category | jsonify }},
+    "articleSection": {{ page.category | jsonify }},
+    "keywords": {{ page.tags | jsonify }}
+}
+</script>
