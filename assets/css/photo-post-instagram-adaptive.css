@@ -1,0 +1,201 @@
+/*
+ * Adaptive composition details for the Instagram photo theme.
+ * Loaded after the base gallery presets.
+ *
+ * - `pair + tone: blend` creates a two-image blurred color field.
+ * - `wide` adapts after JS inspects the image's natural aspect ratio.
+ */
+
+/* ---------------------------------------------------------------------
+   Pair / blend tone
+   ------------------------------------------------------------------ */
+
+body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend {
+  width: min(1440px, 100%);
+  padding: clamp(30px, 4vw, 64px);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: clamp(24px, 2.8vw, 42px);
+  background: #171519;
+  box-shadow: 0 32px 90px rgba(28,22,26,.15);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-bg {
+  position: absolute;
+  z-index: -2;
+  inset: -8%;
+  overflow: hidden;
+  pointer-events: none;
+  background: #171519;
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half {
+  position: absolute;
+  top: -8%;
+  bottom: -8%;
+  width: 68%;
+  overflow: hidden;
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half--left {
+  left: -8%;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 53%, rgba(0,0,0,.9) 68%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 53%, rgba(0,0,0,.9) 68%, transparent 100%);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half--right {
+  right: -8%;
+  -webkit-mask-image: linear-gradient(270deg, #000 0%, #000 53%, rgba(0,0,0,.9) 68%, transparent 100%);
+  mask-image: linear-gradient(270deg, #000 0%, #000 53%, rgba(0,0,0,.9) 68%, transparent 100%);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(58px) saturate(1.18) brightness(.58);
+  transform: scale(1.22);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,.08), transparent 28%),
+    linear-gradient(90deg, rgba(9,8,10,.22), transparent 25%, transparent 75%, rgba(9,8,10,.22)),
+    linear-gradient(180deg, rgba(9,8,10,.08), rgba(9,8,10,.32));
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__meta,
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__grid {
+  position: relative;
+  z-index: 1;
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__meta {
+  color: rgba(255,255,255,.54);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__meta > span {
+  color: #fff;
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__meta > i {
+  background: rgba(255,255,255,.22);
+}
+
+body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-composition__grid {
+  width: min(1080px, 84%);
+  padding-bottom: clamp(12px, 2vw, 30px);
+  gap: clamp(28px, 6vw, 96px);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-gallery__item {
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 24px 70px rgba(0,0,0,.24);
+}
+
+body.photo-theme-instagram .photo-composition--tone-blend .photo-gallery__item--slot-1 {
+  margin-top: clamp(34px, 5vw, 76px);
+}
+
+/* ---------------------------------------------------------------------
+   Adaptive wide presentation
+   ------------------------------------------------------------------ */
+
+/* Default before image dimensions are known: use the portrait-safe mode. */
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-backdrop img,
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-backdrop img {
+  filter: blur(42px) saturate(1.02) brightness(.60);
+  transform: scale(1.14);
+}
+
+/* Portrait source: blurred full stage + intentionally cropped central window. */
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait,
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait {
+  padding: clamp(18px, 2vw, 34px);
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait img,
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait img {
+  width: min(60%, 760px);
+  height: 88%;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.28);
+}
+
+/* Landscape source: no artificial blur stage; use the photo directly. */
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-media::after {
+  background: linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.10));
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait {
+  inset: 0;
+  padding: 0;
+  display: block;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:hover .photo-gallery__wide-portrait img,
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:focus-visible .photo-gallery__wide-portrait img {
+  transform: scale(1.018);
+}
+
+@media (max-width: 700px) {
+  body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend {
+    padding: 18px 10px 24px;
+    border-radius: 18px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-composition__grid {
+    width: 100%;
+    gap: 8px;
+  }
+
+  body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half {
+    width: 76%;
+  }
+
+  body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half img {
+    filter: blur(42px) saturate(1.14) brightness(.56);
+  }
+
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait,
+  body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait {
+    padding: 10px;
+  }
+
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait img,
+  body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait img {
+    width: 64%;
+    height: 90%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.photo-theme-instagram .photo-composition--tone-blend .photo-gallery__item,
+  body.photo-theme-instagram .photo-gallery__item--role-wide .photo-gallery__wide-portrait img {
+    transition: none !important;
+  }
+}
