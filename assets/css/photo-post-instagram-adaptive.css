@@ -105,7 +105,7 @@ body.photo-theme-instagram .photo-composition--tone-blend .photo-gallery__item--
    Adaptive wide presentation
    ------------------------------------------------------------------ */
 
-/* Default before image dimensions are known: use the portrait-safe mode. */
+/* Default before image dimensions are known: use the portrait treatment. */
 body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-backdrop img,
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-backdrop img {
   filter: blur(42px) saturate(1.02) brightness(.60);
@@ -130,14 +130,19 @@ body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscap
   box-shadow: 0 20px 60px rgba(0,0,0,.28);
 }
 
-/* Landscape source: no artificial blur stage; use the photo directly. */
+/* Landscape source: preserve the source ratio and show it directly. */
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape {
+  aspect-ratio: var(--photo-wide-ratio, 16 / 9);
+  min-height: 0;
+}
+
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop {
   opacity: 0;
   visibility: hidden;
 }
 
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-media::after {
-  background: linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.10));
+  background: linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.08));
 }
 
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait {
@@ -151,15 +156,16 @@ body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .ph
   height: 100%;
   max-width: none;
   aspect-ratio: auto;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center center;
   border-radius: 0;
   box-shadow: none;
+  background: #111;
 }
 
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:hover .photo-gallery__wide-portrait img,
 body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:focus-visible .photo-gallery__wide-portrait img {
-  transform: scale(1.018);
+  transform: scale(1.008);
 }
 
 @media (max-width: 700px) {
@@ -190,6 +196,10 @@ body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:foc
   body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait img {
     width: 64%;
     height: 90%;
+  }
+
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape {
+    aspect-ratio: var(--photo-wide-ratio, 4 / 3);
   }
 }
 
