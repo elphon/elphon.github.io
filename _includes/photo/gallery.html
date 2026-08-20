@@ -87,13 +87,14 @@
                         {% assign grid_name = section.grid | default: 'lead-two-wide' %}
                         {% assign tone_name = section.tone | default: 'paper' %}
                         {% assign trio_variant = section.variant | default: 'line' %}
+                        {% assign statement_variant = section.variant | default: 'normal' %}
                         {% assign photo_order = section.order | default: 'manual' %}
                         {% assign section_start = gallery_index | plus: 1 %}
                         {% assign section_size = section.photos | size %}
                         {% assign section_end = gallery_index | plus: section_size %}
 
                         <section
-                            class="photo-composition photo-composition--grid-{{ grid_name }} photo-composition--tone-{{ tone_name }}{% if grid_name == 'trio' %} photo-composition--variant-{{ trio_variant }}{% endif %}"
+                            class="photo-composition photo-composition--grid-{{ grid_name }} photo-composition--tone-{{ tone_name }}{% if grid_name == 'trio' %} photo-composition--variant-{{ trio_variant }}{% elsif grid_name == 'statement' %} photo-composition--variant-{{ statement_variant }}{% endif %}"
                             data-photo-composition
                             data-photo-grid="{{ grid_name }}"
                             data-photo-order="{{ photo_order }}">
@@ -134,7 +135,11 @@
                                             {% when 'trio' %}
                                                 {% assign photo_role = 'small' %}
                                             {% when 'statement' %}
-                                                {% assign photo_role = 'statement' %}
+                                                {% if statement_variant == 'wide' %}
+                                                    {% assign photo_role = 'wide' %}
+                                                {% else %}
+                                                    {% assign photo_role = 'statement' %}
+                                                {% endif %}
                                             {% when 'wide' %}
                                                 {% assign photo_role = 'wide' %}
                                             {% when 'pair' %}
