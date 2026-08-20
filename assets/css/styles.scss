@@ -1,3 +1,14 @@
 ---
 ---
 @import "jekflix";
+
+/* Blend compositions keep the blurred color field, shadow, and radius without a white photo-frame edge. */
+body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-gallery__item,
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-gallery__item {
+  border: 0 !important;
+}
+
+body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-gallery__item::before,
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-gallery__item::before {
+  border: 0 !important;
+}
