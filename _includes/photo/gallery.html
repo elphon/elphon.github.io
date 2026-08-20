@@ -9,6 +9,10 @@
     {% endfor %}
 {% endif %}
 
+{% if page.photo_theme == 'instagram' and page.photo_sections %}
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-adaptive.css' | prepend: site.baseurl }}">
+{% endif %}
+
 <section class="photo-collection" id="photo-gallery">
     <header class="photo-section-heading">
         <div>
@@ -60,6 +64,14 @@
                         {% assign section_end = gallery_index | plus: section_size %}
 
                         <section class="photo-composition photo-composition--grid-{{ grid_name }} photo-composition--tone-{{ tone_name }}" data-photo-composition>
+                            {% if grid_name == 'pair' and tone_name == 'blend' and section_size >= 2 %}
+                                {% assign blend_left_ref = section.photos | first %}
+                                {% assign blend_right_ref = section.photos | last %}
+                                {% assign blend_left = page.photos | where: 'id', blend_left_ref | first %}
+                                {% assign blend_right = page.photos | where: 'id', blend_right_ref | first %}
+                                {% include photo/pair-blend-background.html left=blend_left right=blend_right %}
+                            {% endif %}
+
                             <header class="photo-composition__meta">
                                 <span>{% if composition_index < 10 %}0{% endif %}{{ composition_index }}</span>
                                 <i aria-hidden="true"></i>
