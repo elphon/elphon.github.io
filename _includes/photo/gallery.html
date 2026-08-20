@@ -62,44 +62,8 @@
                             <div class="photo-cluster__grid">
                     {% endif %}
 
-                    {% if photo.src != blank %}
-                        {% assign photo_src = photo.src %}
-                        {% unless photo_src contains '://' %}
-                            {% assign photo_src = photo_src | prepend: site.baseurl %}
-                        {% endunless %}
-
-                        {% assign photo_thumb = photo.thumb %}
-                        {% if photo_thumb == blank and page.photo_thumbnail_base %}
-                            {% assign photo_path = photo_src | split: '?' | first %}
-                            {% assign photo_filename = photo_path | split: '/' | last %}
-                            {% assign photo_transform = page.photo_thumbnail_transform | default: 'w-720,q-78,f-jpg' %}
-                            {% capture photo_thumb %}{{ page.photo_thumbnail_base }}/{{ photo_filename }}?tr={{ photo_transform }}{% endcapture %}
-                        {% endif %}
-                        {% if photo_thumb == blank %}
-                            {% assign photo_thumb = photo_src %}
-                        {% endif %}
-                        {% unless photo_thumb contains '://' %}
-                            {% assign photo_thumb = photo_thumb | prepend: site.baseurl %}
-                        {% endunless %}
-
-                        <button
-                            class="photo-gallery__item photo-gallery__item--slot-{{ slot }}"
-                            type="button"
-                            data-photo-item
-                            data-photo-number="{{ forloop.index }}"
-                            data-photo-src="{{ photo_src }}"
-                            data-photo-alt="{{ photo.alt | default: page.title | escape }}"
-                            data-photo-caption="{{ photo.caption | escape }}"
-                            data-photo-meta="{{ photo.meta | escape }}"
-                            aria-label="Open photograph {{ forloop.index }}"
-                        >
-                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-                            <img src="{{ photo_thumb }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
-                            <span class="photo-gallery__overlay">
-                                {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
-                                {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
-                            </span>
-                        </button>
+                    {% if photo.file != blank or photo.src != blank %}
+                        {% include photo/gallery-item.html photo=photo index=forloop.index slot=slot editorial=true %}
                     {% else %}
                         <div class="photo-gallery__item photo-gallery__item--placeholder photo-gallery__item--slot-{{ slot }}" aria-label="Empty 3 by 4 photo slot">
                             <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
@@ -116,44 +80,8 @@
         {% else %}
             <div class="photo-gallery">
                 {% for photo in page.photos %}
-                    {% if photo.src != blank %}
-                        {% assign photo_src = photo.src %}
-                        {% unless photo_src contains '://' %}
-                            {% assign photo_src = photo_src | prepend: site.baseurl %}
-                        {% endunless %}
-
-                        {% assign photo_thumb = photo.thumb %}
-                        {% if photo_thumb == blank and page.photo_thumbnail_base %}
-                            {% assign photo_path = photo_src | split: '?' | first %}
-                            {% assign photo_filename = photo_path | split: '/' | last %}
-                            {% assign photo_transform = page.photo_thumbnail_transform | default: 'w-720,q-78,f-jpg' %}
-                            {% capture photo_thumb %}{{ page.photo_thumbnail_base }}/{{ photo_filename }}?tr={{ photo_transform }}{% endcapture %}
-                        {% endif %}
-                        {% if photo_thumb == blank %}
-                            {% assign photo_thumb = photo_src %}
-                        {% endif %}
-                        {% unless photo_thumb contains '://' %}
-                            {% assign photo_thumb = photo_thumb | prepend: site.baseurl %}
-                        {% endunless %}
-
-                        <button
-                            class="photo-gallery__item"
-                            type="button"
-                            data-photo-item
-                            data-photo-number="{{ forloop.index }}"
-                            data-photo-src="{{ photo_src }}"
-                            data-photo-alt="{{ photo.alt | default: page.title | escape }}"
-                            data-photo-caption="{{ photo.caption | escape }}"
-                            data-photo-meta="{{ photo.meta | escape }}"
-                            aria-label="Open photograph {{ forloop.index }}"
-                        >
-                            <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
-                            <img src="{{ photo_thumb }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
-                            <span class="photo-gallery__overlay">
-                                {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
-                                {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
-                            </span>
-                        </button>
+                    {% if photo.file != blank or photo.src != blank %}
+                        {% include photo/gallery-item.html photo=photo index=forloop.index editorial=false %}
                     {% else %}
                         <div class="photo-gallery__item photo-gallery__item--placeholder" aria-label="Empty 3 by 4 photo slot">
                             <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
