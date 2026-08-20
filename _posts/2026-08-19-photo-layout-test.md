@@ -823,13 +823,13 @@ photo_sections:
     tone: "paper"
     order: "auto"
     label: "JUL 13"
-    photos: [p16, p20]
+    photos: [p16, p17]
   - group: "d0713"
     grid: "wide-two-lead"
     tone: "paper"
     order: "auto"
     label: "JUL 13"
-    photos: [p17, p18, p19]
+    photos: [p18, p19, p20]
   - group: "d0713"
     grid: "pair"
     tone: "blend"
