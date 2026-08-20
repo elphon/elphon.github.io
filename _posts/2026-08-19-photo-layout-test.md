@@ -544,7 +544,8 @@ photo_sections:
     photos: [p01]
 
   - group: "d0713"
-    grid: "lead-four"
+    grid: "trio"
+    
     tone: "paper"
     variant: "normal"
     label: "JUL 13"
