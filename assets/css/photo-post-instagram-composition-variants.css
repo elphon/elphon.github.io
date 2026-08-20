@@ -1,9 +1,10 @@
 /*
- * Explicit three-image composition variants for the Instagram photo theme.
+ * Explicit composition variants for the Instagram photo theme.
  *
  * Authoring stays intentional:
  * - lead-two / two-lead always use photo 1 as the lead frame.
  * - trio defaults to `line` and may opt into `wave-up` or `wave-down`.
+ * - statement defaults to `normal` and may opt into `wide`.
  */
 
 /* ---------------------------------------------------------------------
@@ -118,6 +119,33 @@ body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--vari
   margin-top: 0;
 }
 
+/* ---------------------------------------------------------------------
+   Statement variants
+   ------------------------------------------------------------------ */
+
+/* NORMAL keeps the existing focused portrait treatment. */
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-normal .photo-gallery__item {
+  width: min(690px, 58vw);
+  margin-inline: auto;
+}
+
+/*
+ * WIDE reuses the adaptive wide-media renderer. Landscape sources keep their
+ * native aspect ratio; portrait sources become a blurred horizontal stage.
+ */
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-composition__grid {
+  display: block;
+}
+
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item {
+  width: min(1320px, 96%);
+  margin-inline: auto;
+}
+
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item--role-wide {
+  min-height: clamp(300px, 34vw, 620px);
+}
+
 @media (max-width: 700px) {
   /* Preserve the same centered lead/support relationship on mobile. */
   body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
@@ -177,5 +205,13 @@ body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--vari
   body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-2,
   body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-0 {
     margin-top: 36px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item {
+    width: 100%;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item--role-wide {
+    min-height: 250px;
   }
 }
