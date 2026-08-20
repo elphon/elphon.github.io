@@ -235,9 +235,9 @@ photo_sections:
   - grid: "statement"
     tone: "paper"
     photos: [p19]
-  - grid: "lead-two-wide"
+  - grid: "pair"
     tone: "paper"
-    photos: [p20, p21, p22]
+    photos: [p20, p21]
   - grid: "wide"
     tone: "paper"
     photos: [p22]
