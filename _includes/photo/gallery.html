@@ -43,8 +43,34 @@
             <div class="photo-gallery photo-gallery--editorial">
                 {% assign gallery_index = 0 %}
                 {% assign composition_index = 0 %}
+                {% assign active_group = '' %}
 
                 {% for section in page.photo_sections %}
+                    {% assign section_group = section.group | default: '' %}
+
+                    {% if section_group != active_group %}
+                        {% if active_group != '' %}
+                                </div>
+                            </section>
+                        {% endif %}
+
+                        {% if section_group != '' %}
+                            {% assign group_data = page.photo_groups | where: 'id', section_group | first %}
+                            {% assign group_tone = group_data.tone | default: 'paper' %}
+                            <section class="photo-story-group photo-story-group--tone-{{ group_tone }}" data-photo-group="{{ section_group }}">
+                                <header class="photo-story-group__header">
+                                    <div>
+                                        <span>{{ group_data.eyebrow | default: 'PHOTO CHAPTER' }}</span>
+                                        <h3>{{ group_data.title | default: section_group }}</h3>
+                                    </div>
+                                    {% if group_data.subtitle %}<p>{{ group_data.subtitle }}</p>{% endif %}
+                                </header>
+                                <div class="photo-story-group__body">
+                        {% endif %}
+
+                        {% assign active_group = section_group %}
+                    {% endif %}
+
                     {% if section.type == 'interlude' %}
                         <aside class="photo-interlude photo-interlude--{{ section.tone | default: 'dark' }}" aria-label="Photo story interlude">
                             <span>{{ section.eyebrow | default: page.kicker | default: 'PHOTO STORY' }}</span>
@@ -94,6 +120,12 @@
                                                 {% if slot == 0 %}{% assign photo_role = 'lead' %}{% elsif slot == 3 %}{% assign photo_role = 'wide' %}{% endif %}
                                             {% when 'wide-two-lead' %}
                                                 {% if slot == 0 %}{% assign photo_role = 'wide' %}{% elsif slot == 3 %}{% assign photo_role = 'lead' %}{% endif %}
+                                            {% when 'lead-two' %}
+                                                {% if slot == 0 %}{% assign photo_role = 'lead' %}{% endif %}
+                                            {% when 'two-lead' %}
+                                                {% if slot == 2 %}{% assign photo_role = 'lead' %}{% endif %}
+                                            {% when 'trio' %}
+                                                {% assign photo_role = 'small' %}
                                             {% when 'statement' %}
                                                 {% assign photo_role = 'statement' %}
                                             {% when 'wide' %}
@@ -109,6 +141,11 @@
                         </section>
                     {% endif %}
                 {% endfor %}
+
+                {% if active_group != '' %}
+                        </div>
+                    </section>
+                {% endif %}
             </div>
         {% else %}
             <div class="photo-gallery">
