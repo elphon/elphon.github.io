@@ -1,0 +1,54 @@
+{%- assign photo = include.photo -%}
+{%- assign index = include.index -%}
+{%- assign slot = include.slot | default: 0 -%}
+{%- assign editorial = include.editorial | default: false -%}
+
+{%- if photo.file != blank -%}
+  {%- capture photo_full -%}{%- include photo/imagekit-url.html file=photo.file transform=site.data.imagekit.presets.lightbox -%}{%- endcapture -%}
+  {%- capture photo_480 -%}{%- include photo/imagekit-url.html file=photo.file transform=site.data.imagekit.presets.gallery_480 -%}{%- endcapture -%}
+  {%- capture photo_720 -%}{%- include photo/imagekit-url.html file=photo.file transform=site.data.imagekit.presets.gallery_720 -%}{%- endcapture -%}
+  {%- capture photo_1080 -%}{%- include photo/imagekit-url.html file=photo.file transform=site.data.imagekit.presets.gallery_1080 -%}{%- endcapture -%}
+  {%- capture photo_1440 -%}{%- include photo/imagekit-url.html file=photo.file transform=site.data.imagekit.presets.gallery_1440 -%}{%- endcapture -%}
+{%- else -%}
+  {%- assign photo_full = photo.src -%}
+  {%- assign photo_720 = photo.thumb | default: photo.src -%}
+{%- endif -%}
+
+{%- if editorial -%}
+  {%- if slot == 0 -%}
+    {%- assign photo_sizes = '(max-width: 700px) calc(100vw - 18px), (max-width: 1100px) 72vw, 50vw' -%}
+  {%- else -%}
+    {%- assign photo_sizes = '(max-width: 700px) calc(100vw - 18px), (max-width: 1100px) 50vw, 25vw' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign photo_sizes = '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw' -%}
+{%- endif -%}
+
+<button
+  class="photo-gallery__item{% if editorial %} photo-gallery__item--slot-{{ slot }}{% endif %}"
+  type="button"
+  data-photo-item
+  data-photo-number="{{ index }}"
+  data-photo-src="{{ photo_full }}"
+  data-photo-alt="{{ photo.alt | default: page.title | escape }}"
+  data-photo-caption="{{ photo.caption | escape }}"
+  data-photo-meta="{{ photo.meta | escape }}"
+  aria-label="Open photograph {{ index }}"
+>
+  <span class="photo-gallery__number">{% if index < 10 %}0{% endif %}{{ index }}</span>
+  {%- if photo.file != blank -%}
+    <img
+      src="{{ photo_720 }}"
+      srcset="{{ photo_480 }} 480w, {{ photo_720 }} 720w, {{ photo_1080 }} 1080w, {{ photo_1440 }} 1440w"
+      sizes="{{ photo_sizes }}"
+      alt="{{ photo.alt | default: page.title | escape }}"
+      loading="lazy"
+      decoding="async">
+  {%- else -%}
+    <img src="{{ photo_720 }}" alt="{{ photo.alt | default: page.title | escape }}" loading="lazy" decoding="async">
+  {%- endif -%}
+  <span class="photo-gallery__overlay">
+    {% if photo.caption %}<strong>{{ photo.caption }}</strong>{% endif %}
+    {% if photo.meta %}<small>{{ photo.meta }}</small>{% endif %}
+  </span>
+</button>
