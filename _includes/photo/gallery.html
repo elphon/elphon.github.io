@@ -1,7 +1,15 @@
 {% assign photo_count = page.photos | size %}
+{% assign photo_sections = page.photo_sections %}
+{% if site.data.photo_layout_overrides and page.slug %}
+    {% assign photo_section_override = site.data.photo_layout_overrides[page.slug] %}
+    {% if photo_section_override %}
+        {% assign photo_sections = photo_section_override %}
+    {% endif %}
+{% endif %}
+
 {% assign arranged_count = 0 %}
-{% if page.photo_sections %}
-    {% for section in page.photo_sections %}
+{% if photo_sections %}
+    {% for section in photo_sections %}
         {% if section.photos %}
             {% assign section_photo_count = section.photos | size %}
             {% assign arranged_count = arranged_count | plus: section_photo_count %}
@@ -9,7 +17,7 @@
     {% endfor %}
 {% endif %}
 
-{% if page.photo_theme == 'instagram' and page.photo_sections %}
+{% if page.photo_theme == 'instagram' and photo_sections %}
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-adaptive.css' | prepend: site.baseurl }}">
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-composition-variants.css' | prepend: site.baseurl }}">
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-five.css' | prepend: site.baseurl }}">
@@ -26,7 +34,7 @@
     </header>
 
     {% if page.photos %}
-        {% if page.photo_theme == 'instagram' and page.photo_sections %}
+        {% if page.photo_theme == 'instagram' and photo_sections %}
             <div class="photo-collection__hud" data-photo-hud>
                 <div class="photo-collection__hud-brand">
                     <span class="photo-collection__hud-dot" aria-hidden="true"></span>
@@ -47,7 +55,7 @@
                 {% assign composition_index = 0 %}
                 {% assign active_group = '' %}
 
-                {% for section in page.photo_sections %}
+                {% for section in photo_sections %}
                     {% assign section_group = section.group | default: '' %}
 
                     {% if section_group != active_group %}
@@ -186,6 +194,6 @@
     {% endif %}
 </section>
 
-{% if page.photo_theme == 'instagram' and page.photo_sections %}
+{% if page.photo_theme == 'instagram' and photo_sections %}
 <script defer src="{{ '/assets/js/photo-post-gallery.js' | prepend: site.baseurl }}"></script>
 {% endif %}
