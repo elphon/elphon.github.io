@@ -207,17 +207,18 @@ photos:
 #   wide-two-lead : mirrored version of the above
 #   pair          : two quiet portrait frames
 #   statement     : one large portrait
-#   wide          : one portrait inside a horizontal stage
+#   wide          : adaptive horizontal stage (landscape direct / portrait blur + center crop)
 #   interlude     : text-only pause
 #
-# Tone is also explicit. `paper` is the default; use `mist`, `soft`, or `dark`
-# only when the story needs a deliberate visual break.
+# Tone is explicit. `paper` is the default; use `mist`, `soft`, or `dark`
+# only when the story needs a deliberate visual break. `blend` is intended for
+# `pair` and mixes the two source photographs into a strong blurred backdrop.
 photo_sections:
   - grid: "lead-two-wide"
     tone: "paper"
     photos: [p01, p02, p03, p04]
   - grid: "pair"
-    tone: "paper"
+    tone: "blend"
     photos: [p05, p06]
   - grid: "wide-two-lead"
     tone: "paper"
