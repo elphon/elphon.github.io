@@ -808,17 +808,28 @@ photo_sections:
     label: "JUL 13"
     photos: [p09, p10, p11, p12]
   - group: "d0713"
-    grid: "lead-two-wide"
+    grid: "pair"
+    tone: "blend"
+    label: "JUL 13"
+    photos: [p14, p15]
+  - group: "d0713"
+    grid: "statement"
+    tone: "blend"
+    variant: "normal"
+    label: "JUL 13"
+    photos: [p16]
+  - group: "d0713"
+    grid: "pair"
     tone: "paper"
     order: "auto"
     label: "JUL 13"
-    photos: [p13, p14, p15, p16]
+    photos: [p13, p20]
   - group: "d0713"
     grid: "wide-two-lead"
     tone: "paper"
     order: "auto"
     label: "JUL 13"
-    photos: [p17, p18, p19, p20]
+    photos: [p17, p18, p19]
   - group: "d0713"
     grid: "pair"
     tone: "blend"
@@ -846,13 +857,7 @@ photo_sections:
   - group: "d0715"
     grid: "statement"
     tone: "blend"
-    variant: "normal"
-    label: "JUL 15"
-    photos: [p30]
-  - group: "d0715"
-    grid: "statement"
-    tone: "blend"
-    variant: "normal"
+    variant: "wide"
     label: "JUL 20"
     photos: [p31]
 
@@ -949,7 +954,7 @@ photo_sections:
     grid: "pair"
     tone: "blend"
     label: "JUL 24"
-    photos: [p64, p65, p66]
+    photos: [p64, p65]
   - group: "d0724"
     grid: "statement"
     tone: "blend"
