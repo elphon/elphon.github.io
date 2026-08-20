@@ -2,18 +2,127 @@
 layout: page
 ---
 
-{% if site.email or site.formspree_form_id %}
+{% if site.email or site.business_email or site.formspree_form_id %}
 
 <style type="text/css" media="screen">
   .container {
-    margin: 0px auto;
-    max-width: 600px;
+    margin: 0 auto;
+    max-width: 640px;
+  }
+
+  .contact-directory {
+    margin: 26px 10px 34px;
+    border-top: 1px solid rgba(51, 51, 51, .14);
+    border-bottom: 1px solid rgba(51, 51, 51, .14);
+  }
+
+  .contact-directory__item {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+    padding: 17px 2px;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .contact-directory__item + .contact-directory__item {
+    border-top: 1px solid rgba(51, 51, 51, .10);
+  }
+
+  .contact-directory__item:hover,
+  .contact-directory__item:focus-visible {
+    opacity: .72;
+    transform: translateX(2px);
+  }
+
+  .contact-directory__label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .13em;
+  }
+
+  .contact-directory__copy {
+    min-width: 0;
+  }
+
+  .contact-directory__copy strong,
+  .contact-directory__copy small {
+    display: block;
+  }
+
+  .contact-directory__copy strong {
+    overflow-wrap: anywhere;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .contact-directory__copy small {
+    margin-top: 4px;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .contact-directory__arrow {
+    font-size: 17px;
+    line-height: 1;
+    opacity: .45;
+  }
+
+  @media (max-width: 520px) {
+    .contact-directory {
+      margin-top: 20px;
+    }
+
+    .contact-directory__item {
+      grid-template-columns: 1fr auto;
+      gap: 7px 12px;
+      padding: 15px 0;
+    }
+
+    .contact-directory__label {
+      grid-column: 1 / -1;
+      font-size: 10px;
+    }
+
+    .contact-directory__copy strong {
+      font-size: 15px;
+    }
   }
 </style>
 
 <div class="container">
 
   <h2>{{ site.data.translations.contact.title | default: "Talk to me" }}</h2>
+
+  {% if site.email or site.business_email %}
+    <div class="contact-directory" aria-label="Email contacts">
+      {% if site.email %}
+        <a class="contact-directory__item" href="mailto:{{ site.email }}">
+          <span class="contact-directory__label">GENERAL</span>
+          <span class="contact-directory__copy">
+            <strong>{{ site.email }}</strong>
+            <small>일반 문의 · 개인 연락</small>
+          </span>
+          <span class="contact-directory__arrow" aria-hidden="true">↗</span>
+        </a>
+      {% endif %}
+
+      {% if site.business_email %}
+        <a class="contact-directory__item" href="mailto:{{ site.business_email }}">
+          <span class="contact-directory__label">BUSINESS</span>
+          <span class="contact-directory__copy">
+            <strong>{{ site.business_email }}</strong>
+            <small>협업 · 프로젝트 · 비즈니스 문의</small>
+          </span>
+          <span class="contact-directory__arrow" aria-hidden="true">↗</span>
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
 
   <div id="form" class="contact-form">
     <form accept-charset="UTF-8" method="POST" action="https://formspree.io/{% if site.formspree_form_id %}f/{{ site.formspree_form_id }}{% else %}{{ site.email }}{% endif %}" v-on:submit.prevent="validateBeforeSubmit" ref="contact">
