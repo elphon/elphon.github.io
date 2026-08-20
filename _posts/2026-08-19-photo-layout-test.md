@@ -524,7 +524,17 @@ photo_groups:
     title: "JUL 31"
     subtitle: "19:05–19:05 · 1 frame"
 
-# Composition keeps chronological order. `order: auto` may only swap a landscape into a wide slot.
+# photo_sections 작성 힌트
+# - photos 개수는 grid와 맞춘다:
+#   statement / wide = 1, pair = 2, lead-two / two-lead / trio = 3,
+#   lead-two-wide / wide-two-lead = 4, lead-four / four-lead = 5.
+# - 4장 grid에서 `order: "auto"`를 쓰면 실제 이미지 비율을 확인한 뒤 landscape 1장을 wide 슬롯으로 최소 swap한다.
+#   lead-two-wide의 wide 슬롯은 4번째, wide-two-lead의 wide 슬롯은 1번째다.
+# - 5장 grid는 큰 슬롯이 lead-four=1번째, four-lead=5번째다.
+#   `variant: "wide"`를 쓸 때는 landscape 사진을 그 큰 슬롯 위치에 직접 넣는다. 5장 grid에는 auto swap을 쓰지 않는다.
+# - wide 슬롯에 portrait가 오면 기존 blurred background + 중앙 원본 처리를 사용한다.
+# - 한 section에 landscape가 2장 이상이면 한 장만 wide로 쓰고, 나머지는 별도 wide/다른 section으로 분리하는 편이 안전하다.
+# - 같은 photo id를 photo_sections 전체에서 두 번 쓰지 않는다. 기본은 촬영 순서를 유지하고, wide 승격에 필요한 최소 이동만 허용한다.
 photo_sections:
   - group: "d0712"
     grid: "statement"
@@ -532,180 +542,186 @@ photo_sections:
     variant: "normal"
     label: "JUL 12"
     photos: [p01]
+
   - group: "d0713"
-    grid: "wide-two-lead"
+    grid: "lead-four"
     tone: "paper"
-    order: "auto"
-    label: "JUL 13"
-    photos: [p02, p03, p04, p05]
-  - group: "d0713"
-    grid: "lead-two-wide"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 13"
-    photos: [p06, p07, p08, p09]
-  - group: "d0713"
-    grid: "wide-two-lead"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 13"
-    photos: [p10, p11, p12, p13]
-  - group: "d0713"
-    grid: "lead-two-wide"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 13"
-    photos: [p14, p15, p16, p17]
-  - group: "d0713"
-    grid: "wide-two-lead"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 13"
-    photos: [p18, p19, p20, p21]
-  - group: "d0713"
-    grid: "statement"
-    tone: "dark"
     variant: "normal"
     label: "JUL 13"
-    photos: [p22]
-  - group: "d0715"
+    photos: [p02, p03, p04, p05, p06]
+  - group: "d0713"
+    grid: "four-lead"
+    tone: "paper"
+    variant: "wide"
+    label: "JUL 13"
+    photos: [p07, p08, p09, p11, p10]
+  - group: "d0713"
+    grid: "four-lead"
+    tone: "paper"
+    variant: "wide"
+    label: "JUL 13"
+    photos: [p12, p13, p14, p15, p16]
+  - group: "d0713"
     grid: "wide-two-lead"
     tone: "paper"
     order: "auto"
+    label: "JUL 13"
+    photos: [p17, p18, p19, p20]
+  - group: "d0713"
+    grid: "pair"
+    tone: "blend"
+    label: "JUL 13"
+    photos: [p21, p22]
+
+  - group: "d0715"
+    grid: "four-lead"
+    tone: "paper"
+    variant: "wide"
     label: "JUL 15"
-    photos: [p23, p24, p25, p26]
+    photos: [p23, p24, p25, p26, p27]
   - group: "d0715"
     grid: "lead-two-wide"
     tone: "paper"
     order: "auto"
     label: "JUL 15"
-    photos: [p27, p28, p29, p30]
-  - group: "d0715"
-    grid: "wide"
-    tone: "paper"
-    label: "JUL 15"
-    photos: [p31]
+    photos: [p28, p29, p30, p31]
+
   - group: "d0716"
-    grid: "lead-two"
+    grid: "trio"
     tone: "paper"
+    variant: "wave-up"
     label: "JUL 16"
     photos: [p32, p33, p34]
+
   - group: "d0717"
-    grid: "wide-two-lead"
+    grid: "lead-two-wide"
     tone: "paper"
     order: "auto"
     label: "JUL 17"
     photos: [p35, p36, p37, p38]
+
   - group: "d0719"
-    grid: "lead-two-wide"
-    tone: "paper"
-    order: "auto"
+    grid: "four-lead"
+    tone: "dark"
+    variant: "wide"
     label: "JUL 19"
-    photos: [p39, p40, p41, p42]
+    photos: [p39, p40, p41, p42, p43]
   - group: "d0719"
     grid: "wide-two-lead"
     tone: "dark"
     order: "auto"
     label: "JUL 19"
-    photos: [p43, p44, p45, p46]
+    photos: [p44, p45, p46, p47]
   - group: "d0719"
-    grid: "two-lead"
-    tone: "dark"
+    grid: "pair"
+    tone: "blend"
     label: "JUL 19"
-    photos: [p47, p48, p49]
+    photos: [p48, p49]
+
   - group: "d0720"
     grid: "statement"
     tone: "dark"
     variant: "normal"
     label: "JUL 20"
     photos: [p50]
+
   - group: "d0721"
-    grid: "wide-two-lead"
+    grid: "lead-four"
     tone: "paper"
-    order: "auto"
+    variant: "wide"
     label: "JUL 21"
-    photos: [p51, p52, p53, p54]
-  - group: "d0721"
-    grid: "statement"
-    tone: "dark"
-    variant: "normal"
-    label: "JUL 21"
-    photos: [p55]
+    photos: [p52, p51, p53, p54, p55]
+
   - group: "d0722"
     grid: "pair"
     tone: "blend"
     label: "JUL 22"
     photos: [p56, p57]
+
   - group: "d0723"
-    grid: "lead-two-wide"
-    tone: "dark"
-    order: "auto"
+    grid: "pair"
+    tone: "blend"
     label: "JUL 23"
-    photos: [p58, p59, p60, p61]
-  - group: "d0724"
-    grid: "wide-two-lead"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 24"
-    photos: [p62, p63, p64, p65]
-  - group: "d0724"
-    grid: "statement"
+    photos: [p58, p59]
+  - group: "d0723"
+    grid: "wide"
     tone: "dark"
+    label: "JUL 23"
+    photos: [p60]
+  - group: "d0723"
+    grid: "wide"
+    tone: "dark"
+    label: "JUL 23"
+    photos: [p61]
+
+  - group: "d0724"
+    grid: "four-lead"
+    tone: "paper"
     variant: "normal"
     label: "JUL 24"
-    photos: [p66]
+    photos: [p62, p63, p64, p65, p66]
+
   - group: "d0725"
-    grid: "lead-two-wide"
+    grid: "wide"
     tone: "mist"
-    order: "auto"
     label: "JUL 25"
-    photos: [p67, p68, p69, p70]
+    photos: [p67]
   - group: "d0725"
-    grid: "wide-two-lead"
+    grid: "four-lead"
+    tone: "mist"
+    variant: "wide"
+    label: "JUL 25"
+    photos: [p68, p69, p70, p72, p71]
+  - group: "d0725"
+    grid: "lead-four"
     tone: "paper"
-    order: "auto"
+    variant: "wide"
     label: "JUL 25"
-    photos: [p71, p72, p73, p74]
+    photos: [p73, p74, p75, p76, p77]
   - group: "d0725"
-    grid: "lead-two-wide"
-    tone: "paper"
-    order: "auto"
-    label: "JUL 25"
-    photos: [p75, p76, p77, p78]
-  - group: "d0725"
-    grid: "wide-two-lead"
+    grid: "four-lead"
     tone: "dark"
-    order: "auto"
+    variant: "wide"
     label: "JUL 25"
-    photos: [p79, p80, p81, p82]
+    photos: [p78, p79, p80, p81, p82]
+
   - group: "d0726"
-    grid: "lead-two"
+    grid: "trio"
     tone: "paper"
+    variant: "wave-down"
     label: "JUL 26"
     photos: [p83, p84, p85]
+
+  - group: "d0727"
+    grid: "pair"
+    tone: "blend"
+    label: "JUL 27"
+    photos: [p86, p87]
+  - group: "d0727"
+    grid: "wide"
+    tone: "paper"
+    label: "JUL 27"
+    photos: [p88]
   - group: "d0727"
     grid: "wide-two-lead"
     tone: "paper"
     order: "auto"
     label: "JUL 27"
-    photos: [p86, p87, p88, p89]
+    photos: [p89, p90, p91, p92]
   - group: "d0727"
     grid: "lead-two-wide"
     tone: "paper"
     order: "auto"
     label: "JUL 27"
-    photos: [p90, p91, p92, p93]
-  - group: "d0727"
-    grid: "two-lead"
-    tone: "paper"
-    label: "JUL 27"
-    photos: [p94, p95, p96]
+    photos: [p93, p94, p95, p96]
+
   - group: "d0728"
     grid: "statement"
     tone: "paper"
     variant: "normal"
     label: "JUL 28"
     photos: [p97]
+
   - group: "d0731"
     grid: "statement"
     tone: "dark"
