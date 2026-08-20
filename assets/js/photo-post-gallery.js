@@ -22,6 +22,12 @@
     item.classList.toggle('is-wide-landscape', landscape);
     item.classList.toggle('is-wide-portrait', !landscape);
     item.dataset.photoOrientation = landscape ? 'landscape' : 'portrait';
+
+    if (landscape) {
+      item.style.setProperty('--photo-wide-ratio', `${image.naturalWidth} / ${image.naturalHeight}`);
+    } else {
+      item.style.removeProperty('--photo-wide-ratio');
+    }
   };
 
   wideItems.forEach((item) => {
