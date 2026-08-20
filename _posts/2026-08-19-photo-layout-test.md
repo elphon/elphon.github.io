@@ -202,121 +202,159 @@ photos:
   - id: "p86"
     file: "20250731_190526_HDR(1).jpg"
 
-# The layout only defines these composition rules:
-#   lead-two-wide : large portrait + two small portraits + one horizontal stage
-#   wide-two-lead : mirrored version of the above
-#   pair          : two quiet portrait frames
-#   statement     : one large portrait
-#   wide          : adaptive horizontal stage (landscape direct / portrait blur + center crop)
-#   interlude     : text-only pause
+# Groups visually bind several compositions that belong to the same place,
+# date range, or theme. Keep group tones subtle so the photos remain dominant.
+photo_groups:
+  - id: "first-days"
+    eyebrow: "CHAPTER 01"
+    title: "First Days"
+    subtitle: "Jeju · Jul 12–16"
+    tone: "sand"
+  - id: "mid-july"
+    eyebrow: "CHAPTER 02"
+    title: "Mid July"
+    subtitle: "Jeju · Jul 16–24"
+    tone: "sage"
+  - id: "last-days"
+    eyebrow: "CHAPTER 03"
+    title: "Last Days"
+    subtitle: "Jeju · Jul 25–31"
+    tone: "sea"
+
+# Composition presets:
+#   4 photos: lead-two-wide / wide-two-lead
+#   3 photos: trio / lead-two / two-lead
+#   2 photos: pair
+#   1 photo : statement / wide
+#   pause   : interlude
 #
-# Tone is explicit. `paper` is the default; use `mist`, `soft`, or `dark`
-# only when the story needs a deliberate visual break. `blend` is intended for
-# `pair` and mixes the two source photographs into a strong blurred backdrop.
+# Section `tone` is local to one composition. Group `tone` belongs to the whole
+# chapter block. `blend` is intended for pair and uses both photos as blur color.
 photo_sections:
-  - grid: "lead-two-wide"
+  - group: "first-days"
+    grid: "lead-two-wide"
     tone: "paper"
     photos: [p01, p02, p03, p04]
-  - grid: "pair"
+  - group: "first-days"
+    grid: "pair"
     tone: "blend"
     photos: [p05, p06]
-  - grid: "wide-two-lead"
+  - group: "first-days"
+    grid: "lead-two"
     tone: "paper"
-    photos: [p07, p08, p09, p10]
-  - grid: "lead-two-wide"
+    photos: [p07, p08, p09]
+  - group: "first-days"
+    grid: "trio"
     tone: "paper"
-    photos: [p11, p12, p13, p14]
-  - grid: "pair"
-    tone: "mist"
-    photos: [p15, p16]
-  - grid: "pair"
-    tone: "dark"
+    photos: [p10, p11, p12]
+  - group: "first-days"
+    grid: "lead-two-wide"
+    tone: "paper"
+    photos: [p13, p14, p15, p16]
+  - group: "first-days"
+    grid: "pair"
+    tone: "paper"
     photos: [p17, p18]
-  - grid: "statement"
-    tone: "paper"
+  - group: "first-days"
+    grid: "statement"
+    tone: "dark"
     photos: [p19]
-  - grid: "pair"
+  - group: "first-days"
+    grid: "trio"
     tone: "paper"
-    photos: [p20, p21]
-  - grid: "wide"
-    tone: "paper"
-    photos: [p22]
-  - grid: "wide-two-lead"
+    photos: [p20, p21, p22]
+  - group: "first-days"
+    grid: "wide-two-lead"
     tone: "paper"
     photos: [p23, p24, p25, p26]
-  - grid: "pair"
+  - group: "first-days"
+    grid: "pair"
     tone: "paper"
     photos: [p27, p28]
-  - type: "interlude"
-    title: "MID JULY"
-    subtitle: "Jeju · July 2025"
-  - grid: "lead-two-wide"
+
+  - group: "mid-july"
+    grid: "lead-two-wide"
     tone: "paper"
     photos: [p29, p30, p31, p32]
-  - grid: "pair"
+  - group: "mid-july"
+    grid: "lead-two"
     tone: "paper"
-    photos: [p33, p34]
-  - grid: "wide-two-lead"
+    photos: [p33, p34, p35]
+  - group: "mid-july"
+    grid: "trio"
     tone: "paper"
-    photos: [p35, p36, p37, p38]
-  - grid: "lead-two-wide"
+    photos: [p36, p37, p38]
+  - group: "mid-july"
+    grid: "wide-two-lead"
     tone: "paper"
     photos: [p39, p40, p41, p42]
-  - grid: "pair"
+  - group: "mid-july"
+    grid: "pair"
     tone: "mist"
     photos: [p43, p44]
-  - grid: "statement"
+  - group: "mid-july"
+    grid: "statement"
     tone: "dark"
     photos: [p45]
-  - grid: "lead-two-wide"
+  - group: "mid-july"
+    grid: "two-lead"
     tone: "paper"
-    photos: [p46, p47, p48, p49]
-  - grid: "wide"
+    photos: [p46, p47, p48]
+  - group: "mid-july"
+    grid: "wide"
     tone: "paper"
-    photos: [p50]
-  - grid: "wide-two-lead"
+    photos: [p49]
+  - group: "mid-july"
+    grid: "lead-two-wide"
     tone: "paper"
-    photos: [p51, p52, p53, p54]
-  - grid: "pair"
+    photos: [p50, p51, p52, p53]
+  - group: "mid-july"
+    grid: "trio"
     tone: "paper"
-    photos: [p55, p56]
-  - type: "interlude"
-    title: "LATE JULY"
-    subtitle: "Jeju · July 2025"
-  - grid: "lead-two-wide"
+    photos: [p54, p55, p56]
+
+  - group: "last-days"
+    grid: "lead-two-wide"
     tone: "paper"
     photos: [p57, p58, p59, p60]
-  - grid: "pair"
+  - group: "last-days"
+    grid: "lead-two"
     tone: "paper"
-    photos: [p61, p62]
-  - grid: "wide-two-lead"
+    photos: [p61, p62, p63]
+  - group: "last-days"
+    grid: "trio"
     tone: "paper"
-    photos: [p63, p64, p65, p66]
-  - grid: "lead-two-wide"
+    photos: [p64, p65, p66]
+  - group: "last-days"
+    grid: "wide-two-lead"
     tone: "paper"
     photos: [p67, p68, p69, p70]
-  - grid: "pair"
+  - group: "last-days"
+    grid: "pair"
     tone: "mist"
     photos: [p71, p72]
-  - grid: "statement"
+  - group: "last-days"
+    grid: "statement"
     tone: "dark"
     photos: [p73]
-  - grid: "lead-two-wide"
+  - group: "last-days"
+    grid: "two-lead"
     tone: "paper"
-    photos: [p74, p75, p76, p77]
-  - grid: "wide"
+    photos: [p74, p75, p76]
+  - group: "last-days"
+    grid: "wide"
     tone: "paper"
-    photos: [p78]
-  - grid: "wide-two-lead"
+    photos: [p77]
+  - group: "last-days"
+    grid: "lead-two-wide"
     tone: "paper"
-    photos: [p79, p80, p81, p82]
-  - grid: "pair"
+    photos: [p78, p79, p80, p81]
+  - group: "last-days"
+    grid: "trio"
     tone: "paper"
-    photos: [p83, p84]
-  - type: "interlude"
-    title: "LAST DAYS"
-    subtitle: "Jeju · July 2025"
-  - grid: "pair"
+    photos: [p82, p83, p84]
+  - group: "last-days"
+    grid: "pair"
     tone: "paper"
     photos: [p85, p86]
 
