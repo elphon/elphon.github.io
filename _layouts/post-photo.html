@@ -15,35 +15,49 @@
                 <div class="photo-hero__slides" data-hero-slides>
                     {% if page.hero %}
                         {% for slide in page.hero %}
-                            {% if slide.src != blank %}
-                                {% assign slide_src = slide.src %}
-                                {% unless slide_src contains '://' %}
-                                    {% assign slide_src = slide_src | prepend: site.baseurl %}
-                                {% endunless %}
-                                {% assign slide_thumb = slide.thumb %}
-                                {% if slide_thumb == blank and page.photo_thumbnail_base %}
-                                    {% assign slide_path = slide_src | split: '?' | first %}
-                                    {% assign slide_filename = slide_path | split: '/' | last %}
-                                    {% assign slide_transform = page.photo_hero_transform | default: 'w-1080,q-82,f-jpg' %}
-                                    {% capture slide_thumb %}{{ page.photo_thumbnail_base }}/{{ slide_filename }}?tr={{ slide_transform }}{% endcapture %}
+                            {% if slide.file != blank or slide.src != blank %}
+                                {% if slide.file != blank %}
+                                    {% capture slide_src %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1920 %}{% endcapture %}
+                                    {% capture slide_960 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_960 %}{% endcapture %}
+                                    {% capture slide_1440 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1440 %}{% endcapture %}
+                                    {% capture slide_1920 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1920 %}{% endcapture %}
+                                    {% assign slide_thumb = slide_1440 %}
+                                {% else %}
+                                    {% assign slide_src = slide.src %}
+                                    {% unless slide_src contains '://' %}
+                                        {% assign slide_src = slide_src | prepend: site.baseurl %}
+                                    {% endunless %}
+                                    {% assign slide_thumb = slide.thumb | default: slide_src %}
+                                    {% unless slide_thumb contains '://' %}
+                                        {% assign slide_thumb = slide_thumb | prepend: site.baseurl %}
+                                    {% endunless %}
                                 {% endif %}
-                                {% if slide_thumb == blank %}
-                                    {% assign slide_thumb = slide_src %}
-                                {% endif %}
-                                {% unless slide_thumb contains '://' %}
-                                    {% assign slide_thumb = slide_thumb | prepend: site.baseurl %}
-                                {% endunless %}
                                 <figure class="photo-hero__slide{% if forloop.first %} is-active{% endif %}" data-hero-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
                                     <div class="photo-hero__backdrop" aria-hidden="true">
-                                        <img src="{{ slide_thumb }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                                        {% if slide.file != blank %}
+                                            <img src="{{ slide_960 }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                                        {% else %}
+                                            <img src="{{ slide_thumb }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                                        {% endif %}
                                     </div>
                                     <div class="photo-hero__portrait-wrap">
-                                        <img
-                                            class="photo-hero__portrait"
-                                            src="{{ slide_thumb }}"
-                                            alt="{{ slide.alt | default: page.title | escape }}"
-                                            {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
-                                            decoding="async">
+                                        {% if slide.file != blank %}
+                                            <img
+                                                class="photo-hero__portrait"
+                                                src="{{ slide_1440 }}"
+                                                srcset="{{ slide_960 }} 960w, {{ slide_1440 }} 1440w, {{ slide_1920 }} 1920w"
+                                                sizes="(max-width: 700px) 88vw, 46vw"
+                                                alt="{{ slide.alt | default: page.title | escape }}"
+                                                {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                                                decoding="async">
+                                        {% else %}
+                                            <img
+                                                class="photo-hero__portrait"
+                                                src="{{ slide_thumb }}"
+                                                alt="{{ slide.alt | default: page.title | escape }}"
+                                                {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                                                decoding="async">
+                                        {% endif %}
                                     </div>
                                 </figure>
                             {% endif %}
@@ -116,25 +130,30 @@
                     </header>
 
                     <div class="photo-feature__stage">
-                        {% if page.feature.src != blank %}
-                            {% assign feature_src = page.feature.src %}
-                            {% unless feature_src contains '://' %}
-                                {% assign feature_src = feature_src | prepend: site.baseurl %}
-                            {% endunless %}
-                            {% assign feature_thumb = page.feature.thumb %}
-                            {% if feature_thumb == blank and page.photo_thumbnail_base %}
-                                {% assign feature_path = feature_src | split: '?' | first %}
-                                {% assign feature_filename = feature_path | split: '/' | last %}
-                                {% assign feature_transform = page.photo_hero_transform | default: 'w-1080,q-82,f-jpg' %}
-                                {% capture feature_thumb %}{{ page.photo_thumbnail_base }}/{{ feature_filename }}?tr={{ feature_transform }}{% endcapture %}
+                        {% if page.feature.file != blank or page.feature.src != blank %}
+                            {% if page.feature.file != blank %}
+                                {% capture feature_src %}{% include photo/imagekit-url.html file=page.feature.file transform=site.data.imagekit.presets.lightbox %}{% endcapture %}
+                                {% capture feature_960 %}{% include photo/imagekit-url.html file=page.feature.file transform=site.data.imagekit.presets.hero_960 %}{% endcapture %}
+                                {% capture feature_1440 %}{% include photo/imagekit-url.html file=page.feature.file transform=site.data.imagekit.presets.hero_1440 %}{% endcapture %}
+                                {% capture feature_1920 %}{% include photo/imagekit-url.html file=page.feature.file transform=site.data.imagekit.presets.hero_1920 %}{% endcapture %}
+                                {% assign feature_thumb = feature_1440 %}
+                            {% else %}
+                                {% assign feature_src = page.feature.src %}
+                                {% unless feature_src contains '://' %}
+                                    {% assign feature_src = feature_src | prepend: site.baseurl %}
+                                {% endunless %}
+                                {% assign feature_thumb = page.feature.thumb | default: feature_src %}
+                                {% unless feature_thumb contains '://' %}
+                                    {% assign feature_thumb = feature_thumb | prepend: site.baseurl %}
+                                {% endunless %}
                             {% endif %}
-                            {% if feature_thumb == blank %}
-                                {% assign feature_thumb = feature_src %}
-                            {% endif %}
-                            {% unless feature_thumb contains '://' %}
-                                {% assign feature_thumb = feature_thumb | prepend: site.baseurl %}
-                            {% endunless %}
-                            <div class="photo-feature__backdrop" aria-hidden="true"><img src="{{ feature_thumb }}" alt="" loading="lazy"></div>
+                            <div class="photo-feature__backdrop" aria-hidden="true">
+                                {% if page.feature.file != blank %}
+                                    <img src="{{ feature_960 }}" alt="" loading="lazy" decoding="async">
+                                {% else %}
+                                    <img src="{{ feature_thumb }}" alt="" loading="lazy" decoding="async">
+                                {% endif %}
+                            </div>
                             <button
                                 type="button"
                                 class="photo-feature__image"
@@ -144,7 +163,17 @@
                                 data-photo-caption="{{ page.feature.caption | escape }}"
                                 data-photo-meta="{{ page.feature.meta | escape }}"
                             >
-                                <img src="{{ feature_thumb }}" alt="{{ page.feature.alt | default: page.feature.title | default: page.title | escape }}" loading="lazy" decoding="async">
+                                {% if page.feature.file != blank %}
+                                    <img
+                                        src="{{ feature_1440 }}"
+                                        srcset="{{ feature_960 }} 960w, {{ feature_1440 }} 1440w, {{ feature_1920 }} 1920w"
+                                        sizes="(max-width: 700px) 90vw, 55vw"
+                                        alt="{{ page.feature.alt | default: page.feature.title | default: page.title | escape }}"
+                                        loading="lazy"
+                                        decoding="async">
+                                {% else %}
+                                    <img src="{{ feature_thumb }}" alt="{{ page.feature.alt | default: page.feature.title | default: page.title | escape }}" loading="lazy" decoding="async">
+                                {% endif %}
                             </button>
                         {% else %}
                             <div class="photo-feature__placeholder"><span>FEATURE PHOTO · 3:4</span></div>
