@@ -1,5 +1,5 @@
 {% assign photo_count = page.photos | size %}
-{% assign cluster_total = photo_count | plus: 4 | divided_by: 5 %}
+{% assign cluster_total = photo_count | plus: 3 | divided_by: 4 %}
 
 <section class="photo-collection" id="photo-gallery">
     <header class="photo-section-heading">
@@ -30,21 +30,54 @@
 
             <div class="photo-gallery photo-gallery--editorial">
                 {% for photo in page.photos %}
-                    {% assign slot = forloop.index0 | modulo: 5 %}
-                    {% assign cluster_index = forloop.index0 | divided_by: 5 %}
+                    {% assign slot = forloop.index0 | modulo: 4 %}
+                    {% assign cluster_index = forloop.index0 | divided_by: 4 %}
                     {% assign cluster_number = cluster_index | plus: 1 %}
-                    {% assign cluster_start = cluster_index | times: 5 %}
+                    {% assign cluster_start = cluster_index | times: 4 %}
                     {% assign cluster_remaining = photo_count | minus: cluster_start %}
-                    {% if cluster_remaining > 5 %}
-                        {% assign cluster_size = 5 %}
+                    {% if cluster_remaining > 4 %}
+                        {% assign cluster_size = 4 %}
                     {% else %}
                         {% assign cluster_size = cluster_remaining %}
                     {% endif %}
-                    {% assign cluster_side = cluster_index | modulo: 2 %}
                     {% assign cluster_end = cluster_start | plus: cluster_size %}
+                    {% assign pattern_index = cluster_index | modulo: 4 %}
+                    {% assign tone_index = cluster_index | modulo: 5 %}
+
+                    {% if pattern_index == 0 %}
+                        {% assign pattern_name = 'a' %}
+                    {% elsif pattern_index == 1 %}
+                        {% assign pattern_name = 'b' %}
+                    {% elsif pattern_index == 2 %}
+                        {% assign pattern_name = 'c' %}
+                    {% else %}
+                        {% assign pattern_name = 'd' %}
+                    {% endif %}
+
+                    {% if tone_index == 1 %}
+                        {% assign tone_name = 'mist' %}
+                    {% elsif tone_index == 3 %}
+                        {% assign tone_name = 'dark' %}
+                    {% elsif tone_index == 4 %}
+                        {% assign tone_name = 'soft' %}
+                    {% else %}
+                        {% assign tone_name = 'paper' %}
+                    {% endif %}
+
+                    {% assign auto_role = 'small' %}
+                    {% if pattern_index == 0 %}
+                        {% if slot == 0 %}{% assign auto_role = 'lead' %}{% elsif slot == 3 %}{% assign auto_role = 'wide' %}{% endif %}
+                    {% elsif pattern_index == 1 %}
+                        {% if slot == 0 %}{% assign auto_role = 'wide' %}{% elsif slot == 3 %}{% assign auto_role = 'lead' %}{% endif %}
+                    {% elsif pattern_index == 2 %}
+                        {% if slot == 1 %}{% assign auto_role = 'lead' %}{% elsif slot == 3 %}{% assign auto_role = 'wide' %}{% endif %}
+                    {% else %}
+                        {% if slot == 0 %}{% assign auto_role = 'wide' %}{% elsif slot == 1 %}{% assign auto_role = 'lead' %}{% endif %}
+                    {% endif %}
+                    {% assign photo_role = photo.emphasis | default: auto_role %}
 
                     {% if slot == 0 %}
-                        <section class="photo-cluster photo-cluster--count-{{ cluster_size }}{% if cluster_side == 1 %} photo-cluster--reverse{% endif %}" data-photo-cluster>
+                        <section class="photo-cluster photo-cluster--count-{{ cluster_size }} photo-cluster--pattern-{{ pattern_name }} photo-cluster--tone-{{ tone_name }}" data-photo-cluster>
                             <header class="photo-cluster__header">
                                 <div class="photo-cluster__chapter">
                                     <span>{% if cluster_number < 10 %}0{% endif %}{{ cluster_number }}</span>
@@ -63,7 +96,7 @@
                     {% endif %}
 
                     {% if photo.file != blank or photo.src != blank %}
-                        {% include photo/gallery-item.html photo=photo index=forloop.index slot=slot editorial=true %}
+                        {% include photo/gallery-item.html photo=photo index=forloop.index slot=slot editorial=true role=photo_role %}
                     {% else %}
                         <div class="photo-gallery__item photo-gallery__item--placeholder photo-gallery__item--slot-{{ slot }}" aria-label="Empty 3 by 4 photo slot">
                             <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
@@ -71,9 +104,17 @@
                         </div>
                     {% endif %}
 
-                    {% if slot == 4 or forloop.last %}
+                    {% if slot == 3 or forloop.last %}
                             </div>
                         </section>
+                        {% assign interlude_check = cluster_number | modulo: 3 %}
+                        {% if interlude_check == 0 and forloop.last == false %}
+                            <aside class="photo-interlude" aria-label="Photo story interlude">
+                                <span>{{ page.kicker | default: 'PHOTO STORY' }}</span>
+                                <strong>{{ page.location | default: page.title }}</strong>
+                                {% if page.date %}<small>{{ page.date | date: '%B · %Y' }}</small>{% endif %}
+                            </aside>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </div>
