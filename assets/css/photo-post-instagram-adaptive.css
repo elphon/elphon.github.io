@@ -4,6 +4,8 @@
  *
  * - `pair + tone: blend` creates a two-image blurred color field.
  * - `wide` adapts after JS inspects the image's natural aspect ratio.
+ * - `photo_groups` visually bind related compositions into one chapter block.
+ * - `trio`, `lead-two`, and `two-lead` cover deliberate three-image stories.
  */
 
 /* ---------------------------------------------------------------------
@@ -102,6 +104,125 @@ body.photo-theme-instagram .photo-composition--tone-blend .photo-gallery__item--
 }
 
 /* ---------------------------------------------------------------------
+   Three-image presets
+   ------------------------------------------------------------------ */
+
+body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid {
+  width: min(1180px, 88%);
+  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.7vw, 26px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  width: min(1280px, 94%);
+  margin: 0 auto;
+  gap: clamp(12px, 1.5vw, 24px);
+  align-items: end;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid {
+  grid-template-columns: 1.42fr 1fr 1fr;
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  grid-template-columns: 1fr 1fr 1.42fr;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--role-lead,
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--role-lead {
+  box-shadow: 0 18px 48px rgba(48,39,31,.085);
+}
+
+/* ---------------------------------------------------------------------
+   Story groups / chapter blocks
+   ------------------------------------------------------------------ */
+
+body.photo-theme-instagram .photo-story-group {
+  width: min(1480px, 100%);
+  margin: 0 auto clamp(112px, 11vw, 190px);
+  padding: clamp(34px, 4.4vw, 68px);
+  box-sizing: border-box;
+  border: 1px solid rgba(40,34,29,.065);
+  border-radius: clamp(26px, 3vw, 48px);
+  box-shadow: 0 22px 68px rgba(58,48,39,.045);
+}
+
+body.photo-theme-instagram .photo-story-group--tone-paper {
+  background: rgba(248,245,239,.72);
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sand {
+  background: #ece3d7;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sage {
+  background: #e4eae2;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sea {
+  background: #e4eaec;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-dusk {
+  background: #e9e3e8;
+}
+
+body.photo-theme-instagram .photo-story-group__header {
+  width: min(1320px, 100%);
+  margin: 0 auto clamp(58px, 6vw, 92px);
+  padding-bottom: clamp(22px, 2.5vw, 34px);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 1px solid rgba(31,27,24,.10);
+}
+
+body.photo-theme-instagram .photo-story-group__header > div {
+  min-width: 0;
+}
+
+body.photo-theme-instagram .photo-story-group__header span {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(31,27,24,.44);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+body.photo-theme-instagram .photo-story-group__header h3 {
+  margin: 0;
+  color: #1d1a18;
+  font-size: clamp(2rem, 4vw, 4.8rem);
+  font-weight: 300;
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+body.photo-theme-instagram .photo-story-group__header p {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(31,27,24,.48);
+  font-size: 11px;
+  line-height: 1.65;
+  letter-spacing: .06em;
+  text-align: right;
+}
+
+body.photo-theme-instagram .photo-story-group__body .photo-composition {
+  width: min(1320px, 100%);
+  margin-bottom: clamp(70px, 7.2vw, 118px);
+}
+
+body.photo-theme-instagram .photo-story-group__body .photo-composition:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------------
    Adaptive wide presentation
    ------------------------------------------------------------------ */
 
@@ -168,6 +289,19 @@ body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:foc
   transform: scale(1.008);
 }
 
+@media (max-width: 1100px) {
+  body.photo-theme-instagram .photo-story-group {
+    width: min(100%, 1040px);
+    padding: clamp(26px, 3.8vw, 46px);
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    width: min(100%, 920px);
+  }
+}
+
 @media (max-width: 700px) {
   body.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend {
     padding: 18px 10px 24px;
@@ -185,6 +319,61 @@ body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:foc
 
   body.photo-theme-instagram .photo-composition--tone-blend .photo-composition__blend-half img {
     filter: blur(42px) saturate(1.14) brightness(.56);
+  }
+
+  body.photo-theme-instagram .photo-story-group {
+    width: 100%;
+    margin-bottom: 88px;
+    padding: 24px 9px 30px;
+    border-radius: 20px;
+  }
+
+  body.photo-theme-instagram .photo-story-group__header {
+    margin-bottom: 38px;
+    padding: 0 8px 18px;
+    display: block;
+  }
+
+  body.photo-theme-instagram .photo-story-group__header h3 {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+
+  body.photo-theme-instagram .photo-story-group__header p {
+    margin-top: 12px;
+    max-width: none;
+    text-align: left;
+    font-size: 10px;
+  }
+
+  body.photo-theme-instagram .photo-story-group__body .photo-composition {
+    margin-bottom: 62px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid {
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    align-items: start;
+    gap: 7px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--role-lead {
+    grid-column: 1 / -1;
+    width: min(76%, 480px);
+    justify-self: start;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--role-lead {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: min(76%, 480px);
+    justify-self: end;
   }
 
   body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait,
