@@ -1,0 +1,5 @@
+{%- assign endpoint = site.data.imagekit.endpoint -%}
+{%- assign base_path = include.base_path | default: page.photo_base_path -%}
+{%- assign file = include.file -%}
+{%- assign transform = include.transform -%}
+{{- endpoint -}}/{{- base_path -}}/{{- file -}}{%- if transform != blank -%}?tr={{- transform -}}{%- endif -%}
