@@ -5,8 +5,39 @@
   if (!root) return;
 
   const gallery = root.querySelector('.photo-gallery--editorial');
+  if (!gallery) return;
+
+  /* Wide frames ---------------------------------------------------------
+   * Keep authoring simple: a `wide` slot does not need orientation metadata.
+   * Once the foreground image loads, use its intrinsic dimensions to choose
+   * between a direct landscape frame and a blurred portrait treatment.
+   */
+  const wideItems = Array.from(gallery.querySelectorAll('[data-photo-role="wide"]'));
+
+  const resolveWideOrientation = (item) => {
+    const image = item.querySelector('.photo-gallery__wide-portrait img');
+    if (!image || !image.naturalWidth || !image.naturalHeight) return;
+
+    const landscape = image.naturalWidth > image.naturalHeight;
+    item.classList.toggle('is-wide-landscape', landscape);
+    item.classList.toggle('is-wide-portrait', !landscape);
+    item.dataset.photoOrientation = landscape ? 'landscape' : 'portrait';
+  };
+
+  wideItems.forEach((item) => {
+    const image = item.querySelector('.photo-gallery__wide-portrait img');
+    if (!image) return;
+
+    if (image.complete && image.naturalWidth) {
+      resolveWideOrientation(item);
+    } else {
+      image.addEventListener('load', () => resolveWideOrientation(item), { once: true });
+    }
+  });
+
+  /* Archive progress ---------------------------------------------------- */
   const hud = root.querySelector('[data-photo-hud]');
-  if (!gallery || !hud) return;
+  if (!hud) return;
 
   const items = Array.from(gallery.querySelectorAll('[data-photo-item]'));
   const current = hud.querySelector('[data-photo-current]');
