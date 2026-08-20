@@ -54,13 +54,13 @@ photos:
   - id: "p12"
     file: "20250713_160006_HDR(1).jpg"
   - id: "p13"
-    file: "20250713_162033_HDR(1).jpg"
-  - id: "p14"
     file: "20250713_161513_HDR.jpg"
-  - id: "p15"
+  - id: "p14"
     file: "20250713_161937_HDR(1).jpg"
-  - id: "p16"
+  - id: "p15"
     file: "20250713_163105_HDR(1).jpg"
+  - id: "p16"
+    file: "20250713_162033_HDR(1).jpg"
   - id: "p17"
     file: "20250713_162202.jpg"
   - id: "p18"
@@ -245,14 +245,18 @@ photo_sections:
     tone: "paper"
     photos: [p07, p08, p09, p10]
   - group: "first-days"
-    grid: "lead-two-wide"
+    grid: "lead-two"
     variant: "line"
     tone: "paper"
-    photos: [p11, p12, p13, p14]
+    photos: [p11, p12, p13]
   - group: "first-days"
     grid: "trio variant: wave-down"
     tone: "paper"
-    photos: [p15, p16]
+    photos: [p14, p15]
+  - group: "first-days"
+    grid: "statement"
+    tone: "blend"
+    photos: [p16]
   - group: "first-days"
     grid: "pair"
     tone: "blend"
