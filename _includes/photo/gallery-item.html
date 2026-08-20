@@ -30,13 +30,18 @@
   {%- assign photo_sizes = '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw' -%}
 {%- endif -%}
 
+{%- capture photo_srcset -%}{%- if photo.file != blank -%}{{ photo_480 }} 480w, {{ photo_720 }} 720w, {{ photo_1080 }} 1080w, {{ photo_1440 }} 1440w{%- endif -%}{%- endcapture -%}
+
 <button
   class="photo-gallery__item{% if editorial %} photo-gallery__item--slot-{{ slot }} photo-gallery__item--role-{{ role }}{% endif %}"
   type="button"
   data-photo-item
   data-photo-number="{{ index }}"
   data-photo-role="{{ role }}"
-  data-photo-src="{{ photo_full }}"
+  data-photo-src="{{ photo_full | escape }}"
+  data-photo-display-src="{{ photo_720 | escape }}"
+  data-photo-srcset="{{ photo_srcset | escape }}"
+  data-photo-sizes="{{ photo_sizes | escape }}"
   data-photo-alt="{{ photo.alt | default: page.title | escape }}"
   data-photo-caption="{{ photo.caption | escape }}"
   data-photo-meta="{{ photo.meta | escape }}"
@@ -53,7 +58,7 @@
         {%- if photo.file != blank -%}
           <img
             src="{{ photo_720 }}"
-            srcset="{{ photo_480 }} 480w, {{ photo_720 }} 720w, {{ photo_1080 }} 1080w, {{ photo_1440 }} 1440w"
+            srcset="{{ photo_srcset }}"
             sizes="{{ photo_sizes }}"
             alt="{{ photo.alt | default: page.title | escape }}"
             loading="lazy"
@@ -67,7 +72,7 @@
     {%- if photo.file != blank -%}
       <img
         src="{{ photo_720 }}"
-        srcset="{{ photo_480 }} 480w, {{ photo_720 }} 720w, {{ photo_1080 }} 1080w, {{ photo_1440 }} 1440w"
+        srcset="{{ photo_srcset }}"
         sizes="{{ photo_sizes }}"
         alt="{{ photo.alt | default: page.title | escape }}"
         loading="lazy"
