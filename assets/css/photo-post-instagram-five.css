@@ -1,0 +1,168 @@
+/* Five-frame editorial compositions for the Instagram photo theme. */
+
+/* Desktop: one large frame and a 2x2 support grid on the opposite side. */
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-composition__grid,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-composition__grid {
+  width: min(1280px, 94%);
+  margin-inline: auto;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(10px, 1.15vw, 18px);
+  row-gap: clamp(10px, 1.15vw, 18px);
+  align-items: stretch;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-composition__grid {
+  grid-template-columns: minmax(0, 1.4fr) minmax(130px, .7fr) minmax(130px, .7fr);
+}
+
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-composition__grid {
+  grid-template-columns: minmax(130px, .7fr) minmax(130px, .7fr) minmax(0, 1.4fr);
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0 {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-1 { grid-column: 2; grid-row: 1; }
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-2 { grid-column: 3; grid-row: 1; }
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-3 { grid-column: 2; grid-row: 2; }
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-4 { grid-column: 3; grid-row: 2; }
+
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-0 { grid-column: 1; grid-row: 1; }
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-1 { grid-column: 2; grid-row: 1; }
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-2 { grid-column: 1; grid-row: 2; }
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-3 { grid-column: 2; grid-row: 2; }
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4 {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4 {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  align-self: stretch;
+  justify-self: stretch;
+  box-shadow: 0 18px 48px rgba(48,39,31,.085);
+}
+
+/* Portrait lead frames fill the tall large slot without changing the 3:4 crop language. */
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0.photo-gallery__item--role-lead,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4.photo-gallery__item--role-lead {
+  aspect-ratio: auto;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0.photo-gallery__item--role-lead > img,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4.photo-gallery__item--role-lead > img {
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+/*
+ * A landscape promoted to the large five-frame slot reuses the existing
+ * wide-media markup, but keeps the tall editorial slot: blurred field behind,
+ * uncropped landscape in front.
+ */
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0.photo-gallery__item--role-wide,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4.photo-gallery__item--role-wide,
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0.photo-gallery__item--role-wide.is-wide-landscape,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4.photo-gallery__item--role-wide.is-wide-landscape {
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop img,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop img {
+  filter: blur(38px) saturate(.92) brightness(.62);
+  transform: scale(1.14);
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait {
+  display: grid;
+  place-items: center;
+  padding: clamp(18px, 2vw, 30px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img,
+body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img {
+  width: 94%;
+  height: auto;
+  max-height: 90%;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 3px;
+  box-shadow: 0 18px 52px rgba(0,0,0,.25);
+}
+
+@media (max-width: 700px) {
+  /* Mobile: large frame first, then the four support frames as a 2x2 grid. */
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-composition__grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 6px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4 {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    width: min(80%, 520px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0 { justify-self: start; }
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4 { justify-self: end; }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-1,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-0 { grid-column: 1; grid-row: 2; }
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-2,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-1 { grid-column: 2; grid-row: 2; }
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-3,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-2 { grid-column: 1; grid-row: 3; }
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-4,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-3 { grid-column: 2; grid-row: 3; }
+
+  /* Landscape hero becomes a normal full-width wide frame on narrow screens. */
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--slot-0.photo-gallery__item--role-wide.is-wide-landscape,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--slot-4.photo-gallery__item--role-wide.is-wide-landscape {
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--photo-wide-ratio, 16 / 9);
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait {
+    display: block;
+    padding: 0;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-four .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img,
+  body.photo-theme-instagram .photo-composition--grid-four-lead .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 0;
+    box-shadow: none;
+    background: #111;
+  }
+}
