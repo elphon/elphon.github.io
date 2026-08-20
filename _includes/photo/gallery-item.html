@@ -20,6 +20,8 @@
 
 {%- if role == 'lead' -%}
   {%- assign photo_sizes = '(max-width: 700px) calc(100vw - 18px), (max-width: 1100px) 72vw, 48vw' -%}
+{%- elsif role == 'statement' -%}
+  {%- assign photo_sizes = '(max-width: 700px) calc(100vw - 28px), (max-width: 1100px) 72vw, 44vw' -%}
 {%- elsif role == 'wide' -%}
   {%- assign photo_sizes = '(max-width: 700px) calc(100vw - 18px), (max-width: 1100px) 92vw, 62vw' -%}
 {%- elsif editorial -%}
