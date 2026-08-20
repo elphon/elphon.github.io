@@ -252,7 +252,7 @@ photo_sections:
   - group: "first-days"
     grid: "trio variant: wave-down"
     tone: "paper"
-    photos: [p13, p14, p15, p16]
+    photos: [p14, p15, p16]
   - group: "first-days"
     grid: "pair"
     tone: "paper"
