@@ -12,6 +12,7 @@
 {% if page.photo_theme == 'instagram' and page.photo_sections %}
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-adaptive.css' | prepend: site.baseurl }}">
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-composition-variants.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-five.css' | prepend: site.baseurl }}">
 {% endif %}
 
 <section class="photo-collection" id="photo-gallery">
@@ -88,13 +89,14 @@
                         {% assign tone_name = section.tone | default: 'paper' %}
                         {% assign trio_variant = section.variant | default: 'line' %}
                         {% assign statement_variant = section.variant | default: 'normal' %}
+                        {% assign five_variant = section.variant | default: 'normal' %}
                         {% assign photo_order = section.order | default: 'manual' %}
                         {% assign section_start = gallery_index | plus: 1 %}
                         {% assign section_size = section.photos | size %}
                         {% assign section_end = gallery_index | plus: section_size %}
 
                         <section
-                            class="photo-composition photo-composition--grid-{{ grid_name }} photo-composition--tone-{{ tone_name }}{% if grid_name == 'trio' %} photo-composition--variant-{{ trio_variant }}{% elsif grid_name == 'statement' %} photo-composition--variant-{{ statement_variant }}{% endif %}"
+                            class="photo-composition photo-composition--grid-{{ grid_name }} photo-composition--tone-{{ tone_name }}{% if grid_name == 'trio' %} photo-composition--variant-{{ trio_variant }}{% elsif grid_name == 'statement' %} photo-composition--variant-{{ statement_variant }}{% elsif grid_name == 'lead-four' or grid_name == 'four-lead' %} photo-composition--variant-{{ five_variant }}{% endif %}"
                             data-photo-composition
                             data-photo-grid="{{ grid_name }}"
                             data-photo-order="{{ photo_order }}">
@@ -128,6 +130,14 @@
                                                 {% if slot == 0 %}{% assign photo_role = 'lead' %}{% elsif slot == 3 %}{% assign photo_role = 'wide' %}{% endif %}
                                             {% when 'wide-two-lead' %}
                                                 {% if slot == 0 %}{% assign photo_role = 'wide' %}{% elsif slot == 3 %}{% assign photo_role = 'lead' %}{% endif %}
+                                            {% when 'lead-four' %}
+                                                {% if slot == 0 %}
+                                                    {% if five_variant == 'wide' %}{% assign photo_role = 'wide' %}{% else %}{% assign photo_role = 'lead' %}{% endif %}
+                                                {% endif %}
+                                            {% when 'four-lead' %}
+                                                {% if slot == 4 %}
+                                                    {% if five_variant == 'wide' %}{% assign photo_role = 'wide' %}{% else %}{% assign photo_role = 'lead' %}{% endif %}
+                                                {% endif %}
                                             {% when 'lead-two' %}
                                                 {% if slot == 0 %}{% assign photo_role = 'lead' %}{% endif %}
                                             {% when 'two-lead' %}
