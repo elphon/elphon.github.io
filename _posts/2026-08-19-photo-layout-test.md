@@ -888,6 +888,7 @@ photo_sections:
     variant: "line"
     label: "JUL 19"
     photos: [p40, p41]
+  - group: "d0719"
     grid: "trio"
     tone: "blend"
     label: "JUL 19"
