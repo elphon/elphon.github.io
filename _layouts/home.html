@@ -18,7 +18,6 @@ layout: main
     {% if site.show_hero and paginator == nil or paginator.page == 1 %}
         <!-- Hero -->
         {% assign featured = posts.first %}
-        <!-- <section class="hero" style="background-image: url({{ featured.image }})"> -->
         <section class="hero" style="background-image: url('{{ featured.image }}')">
             <div class="pixels"></div>
             <div class="gradient"></div>
@@ -41,6 +40,7 @@ layout: main
             </div>
         </section>
     {% endif %}
+
     <!-- Posts -->
     <section id="grid" class="row flex-grid">
         {% for post in posts offset: offset %}
@@ -52,22 +52,12 @@ layout: main
                 </span>
                 <div class="box-body">
                     <a class="cover" href="{{ post.url | prepend: site.baseurl }}">
-                        {% include loader.html %}
                         {% if post.optimized_image %}
-                            <img src="/assets/img/placeholder.png" width="100%" data-url="{{ post.optimized_image }}" class="preload">
-                            <noscript>
-                                <img src="{{ post.optimized_image }}" width="100%">
-                            </noscript>
+                            <img src="{{ post.optimized_image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy" decoding="async">
                         {% elsif post.image %}
-                            <img src="/assets/img/placeholder.png" width="100%" data-url="{{ post.image }}" class="preload">
-                            <noscript>
-                                <img src="{{ post.image }}" width="100%">
-                            </noscript>
+                            <img src="{{ post.image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}" loading="lazy" decoding="async">
                         {% else %}
-                            <img src="/assets/img/placeholder.png" width="100%" data-url="/assets/img/off.jpg" class="preload">
-                            <noscript>
-                                <img src="/assets/img/off.jpg" width="100%">
-                            </noscript>
+                            <img src="{{ '/assets/img/off.jpg' | prepend: site.baseurl }}" width="100%" alt="{{ post.title | escape }}" loading="lazy" decoding="async">
                         {% endif %}
                         {% include new-post-tag.html date=post.date %}
                         {% include read-icon.html %}
@@ -77,9 +67,7 @@ layout: main
                             {% include date.html date=post.date %}
                         </time>
                         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
-                            <h2 class="post-title">
-                                {{ post.title }}
-                            </h2>
+                            <h2 class="post-title">{{ post.title }}</h2>
                         </a>
                         <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
                             <p class="description">{{ post.description }}</p>
@@ -96,6 +84,7 @@ layout: main
             </article>
         {% endfor %}
     </section>
+
     <!-- Pagination -->
     {% if site.paginate %}
         {% include pagination-home.html %}
@@ -177,9 +166,9 @@ layout: main
                 },
                 "mainEntityOfPage": "True",
                 "genre": "{{ post.category | capitalize }}",
-		        "articleSection": "{{ post.category | capitalize }}",
-                "keywords": [{{ post.tags | join: '","' | append: '"' | prepend: '"' }}]
-            }{% if forloop.last == false  %},{% endif %}
+                "articleSection": "{{ post.category | capitalize }}",
+                "keywords": [{{ post.tags | join: '\",\"' | append: '\"' | prepend: '\"' }}]
+            }{% if forloop.last == false %},{% endif %}
         {% endfor %}
         ]
     }
