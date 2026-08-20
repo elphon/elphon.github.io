@@ -535,6 +535,11 @@ photo_groups:
 # - wide 슬롯에 portrait가 오면 기존 blurred background + 중앙 원본 처리를 사용한다.
 # - 한 section에 landscape가 2장 이상이면 한 장만 wide로 쓰고, 나머지는 별도 wide/다른 section으로 분리하는 편이 안전하다.
 # - 같은 photo id를 photo_sections 전체에서 두 번 쓰지 않는다. 기본은 촬영 순서를 유지하고, wide 승격에 필요한 최소 이동만 허용한다.
+# trio 설정 힌트
+# variant: "line" → 세 장 같은 높이
+# variant: "wave-up" → 01 높음 → 02 중간 → 03 낮음, 왼쪽에서 오른쪽으로 흘러내리는 배치
+# variant: "wave-down" → 01 낮음 → 02 중간 → 03 높음, 반대로 올라가는 배치
+
 photo_sections:
   - group: "d0712"
     grid: "statement"
@@ -544,12 +549,11 @@ photo_sections:
     photos: [p01]
 
   - group: "d0713"
-    grid: "trio"
-    
+    grid: "four-lead"
     tone: "paper"
     variant: "normal"
     label: "JUL 13"
-    photos: [p02, p03, p04, p05, p06]
+    photos: [p02, p03,p05 , p04, p06]
   - group: "d0713"
     grid: "four-lead"
     tone: "paper"
