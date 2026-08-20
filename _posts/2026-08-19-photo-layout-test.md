@@ -224,6 +224,7 @@ photo_groups:
 # Composition presets:
 #   4 photos: lead-two-wide / wide-two-lead
 #   3 photos: trio / lead-two / two-lead
+#             trio variant: line / wave-up / wave-down
 #   2 photos: pair
 #   1 photo : statement / wide
 #   pause   : interlude
@@ -245,6 +246,7 @@ photo_sections:
     photos: [p07, p08, p09]
   - group: "first-days"
     grid: "trio"
+    variant: "line"
     tone: "paper"
     photos: [p10, p11, p12]
   - group: "first-days"
@@ -261,6 +263,7 @@ photo_sections:
     photos: [p19]
   - group: "first-days"
     grid: "trio"
+    variant: "wave-up"
     tone: "paper"
     photos: [p20, p21, p22]
   - group: "first-days"
@@ -282,6 +285,7 @@ photo_sections:
     photos: [p33, p34, p35]
   - group: "mid-july"
     grid: "trio"
+    variant: "wave-down"
     tone: "paper"
     photos: [p36, p37, p38]
   - group: "mid-july"
@@ -310,6 +314,7 @@ photo_sections:
     photos: [p50, p51, p52, p53]
   - group: "mid-july"
     grid: "trio"
+    variant: "line"
     tone: "paper"
     photos: [p54, p55, p56]
 
@@ -323,6 +328,7 @@ photo_sections:
     photos: [p61, p62, p63]
   - group: "last-days"
     grid: "trio"
+    variant: "wave-up"
     tone: "paper"
     photos: [p64, p65, p66]
   - group: "last-days"
@@ -351,6 +357,7 @@ photo_sections:
     photos: [p78, p79, p80, p81]
   - group: "last-days"
     grid: "trio"
+    variant: "wave-down"
     tone: "paper"
     photos: [p82, p83, p84]
   - group: "last-days"
