@@ -1,16 +1,16 @@
 /* Small Instagram-inspired polish for photo posts. */
 
 /* Keep the intro visually short: one compact line instead of a long essay. */
-body.photo-theme-instagram .photo-editorial-intro__body {
+body.photo-post-page.photo-theme-instagram .photo-editorial-intro__body {
   font-size: clamp(1.05rem, 1.45vw, 1.35rem);
   line-height: 1.6;
 }
 
-body.photo-theme-instagram .photo-editorial-intro__body p:not(:first-child) {
+body.photo-post-page.photo-theme-instagram .photo-editorial-intro__body p:not(:first-child) {
   display: none;
 }
 
-body.photo-theme-instagram .photo-editorial-intro__body p:first-child {
+body.photo-post-page.photo-theme-instagram .photo-editorial-intro__body p:first-child {
   display: -webkit-box;
   max-width: 760px;
   margin: 0;
@@ -21,26 +21,26 @@ body.photo-theme-instagram .photo-editorial-intro__body p:first-child {
 }
 
 /* A restrained Instagram gradient is used only as a small visual accent. */
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__number {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__number {
   border-color: rgba(255,255,255,.34);
   background: linear-gradient(135deg, rgba(247,178,103,.96), rgba(211,79,130,.94) 56%, rgba(142,91,183,.94));
   box-shadow: 0 7px 18px rgba(37,25,31,.14);
 }
 
-body.photo-theme-instagram .photo-composition__meta > i {
+body.photo-post-page.photo-theme-instagram .photo-composition__meta > i {
   height: 2px;
   border-radius: 999px;
   background: linear-gradient(90deg, #f7b267, #d34f82 58%, #8e5bb7);
   opacity: .62;
 }
 
-body.photo-theme-instagram .photo-composition--tone-dark .photo-composition__meta > i {
+body.photo-post-page.photo-theme-instagram .photo-composition--tone-dark .photo-composition__meta > i {
   background: linear-gradient(90deg, #f7b267, #d34f82 58%, #a878ca);
   opacity: .72;
 }
 
 /* Give every image a tiny editorial tag without exposing long EXIF in the grid. */
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
   left: 12px;
   right: auto;
   bottom: 11px;
@@ -50,7 +50,7 @@ body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
   pointer-events: none;
 }
 
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay::before {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay::before {
   content: "VIEW";
   display: inline-flex;
   align-items: center;
@@ -69,49 +69,49 @@ body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay::be
   letter-spacing: .12em;
 }
 
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay strong,
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay small {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay strong,
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay small {
   display: none;
 }
 
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item::after {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item::after {
   opacity: .32;
   background:
     linear-gradient(180deg, rgba(0,0,0,.08), transparent 24%),
     linear-gradient(180deg, transparent 66%, rgba(0,0,0,.3) 100%);
 }
 
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:hover::after,
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:focus-visible::after {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:hover::after,
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:focus-visible::after {
   opacity: .52;
 }
 
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:hover,
-body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:focus-visible {
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:hover,
+body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__item:focus-visible {
   transform: translateY(-4px) rotate(.12deg);
   box-shadow: 0 20px 48px rgba(48,39,31,.13);
 }
 
-body.photo-theme-instagram .photo-story-group__header span,
-body.photo-theme-instagram .photo-composition__meta > span {
+body.photo-post-page.photo-theme-instagram .photo-story-group__header span,
+body.photo-post-page.photo-theme-instagram .photo-composition__meta > span {
   color: #a04f72;
 }
 
-body.photo-theme-instagram .photo-composition--tone-dark .photo-composition__meta > span {
+body.photo-post-page.photo-theme-instagram .photo-composition--tone-dark .photo-composition__meta > span {
   color: #f7f5f2;
 }
 
 @media (max-width: 700px) {
-  body.photo-theme-instagram .photo-editorial-intro__body p:first-child {
+  body.photo-post-page.photo-theme-instagram .photo-editorial-intro__body p:first-child {
     -webkit-line-clamp: 2;
   }
 
-  body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
+  body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
     left: 8px;
     bottom: 7px;
   }
 
-  body.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay::before {
+  body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay::before {
     min-height: 22px;
     padding-inline: 7px;
     font-size: 6px;
