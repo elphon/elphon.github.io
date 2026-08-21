@@ -1,3 +1,12 @@
-{% if page.layout == 'post-photo' and page.photo_theme == 'instagram' %}
+{% if page.layout == 'post-photo' %}
+<link rel="stylesheet" href="{{ '/assets/css/photo-post.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-effects.css' | prepend: site.baseurl }}">
+{% if page.photo_theme == 'instagram' %}
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-gallery.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-adaptive.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-composition-variants.css' | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-five.css' | prepend: site.baseurl }}">
 <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-polish.css' | prepend: site.baseurl }}">
+{% endif %}
 {% endif %}
