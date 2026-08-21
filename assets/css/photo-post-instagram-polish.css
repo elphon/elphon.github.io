@@ -299,6 +299,11 @@ body.photo-post-page.photo-theme-instagram .photo-hero__exif-item strong {
     font-size: 11px;
   }
 
+  /* Keep the title below the EXIF strip instead of sharing its vertical band. */
+  body.photo-post-page.photo-theme-instagram .photo-hero__title-block {
+    padding-bottom: clamp(14px, 2.5vh, 22px);
+  }
+
   body.photo-post-page.photo-theme-instagram .photo-gallery--editorial .photo-gallery__overlay {
     left: 8px;
     bottom: 7px;
