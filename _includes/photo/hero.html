@@ -1,0 +1,92 @@
+<section class="photo-hero" aria-label="Photo story cover">
+    <div class="photo-hero__slides" data-hero-slides>
+        {% if page.hero %}
+            {% for slide in page.hero %}
+                {% if slide.file != blank or slide.src != blank %}
+                    {% if slide.file != blank %}
+                        {% capture slide_src %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1920 %}{% endcapture %}
+                        {% capture slide_960 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_960 %}{% endcapture %}
+                        {% capture slide_1440 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1440 %}{% endcapture %}
+                        {% capture slide_1920 %}{% include photo/imagekit-url.html file=slide.file transform=site.data.imagekit.presets.hero_1920 %}{% endcapture %}
+                        {% assign slide_thumb = slide_1440 %}
+                    {% else %}
+                        {% assign slide_src = slide.src %}
+                        {% unless slide_src contains '://' %}
+                            {% assign slide_src = slide_src | prepend: site.baseurl %}
+                        {% endunless %}
+                        {% assign slide_thumb = slide.thumb | default: slide_src %}
+                        {% unless slide_thumb contains '://' %}
+                            {% assign slide_thumb = slide_thumb | prepend: site.baseurl %}
+                        {% endunless %}
+                    {% endif %}
+                    <figure class="photo-hero__slide{% if forloop.first %} is-active{% endif %}" data-hero-slide aria-hidden="{% unless forloop.first %}true{% else %}false{% endunless %}">
+                        <div class="photo-hero__backdrop" aria-hidden="true">
+                            {% if slide.file != blank %}
+                                <img src="{{ slide_960 }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                            {% else %}
+                                <img src="{{ slide_thumb }}" alt="" {% unless forloop.first %}loading="lazy"{% endunless %} decoding="async">
+                            {% endif %}
+                        </div>
+                        <div class="photo-hero__portrait-wrap">
+                            {% if slide.file != blank %}
+                                <img
+                                    class="photo-hero__portrait"
+                                    src="{{ slide_1440 }}"
+                                    srcset="{{ slide_960 }} 960w, {{ slide_1440 }} 1440w, {{ slide_1920 }} 1920w"
+                                    sizes="(max-width: 700px) 88vw, 46vw"
+                                    alt="{{ slide.alt | default: page.title | escape }}"
+                                    {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                                    decoding="async">
+                            {% else %}
+                                <img
+                                    class="photo-hero__portrait"
+                                    src="{{ slide_thumb }}"
+                                    alt="{{ slide.alt | default: page.title | escape }}"
+                                    {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                                    decoding="async">
+                            {% endif %}
+                        </div>
+                    </figure>
+                {% endif %}
+            {% endfor %}
+        {% elsif page.image %}
+            {% assign cover_src = page.image %}
+            {% unless cover_src contains '://' %}
+                {% assign cover_src = cover_src | prepend: site.baseurl %}
+            {% endunless %}
+            <figure class="photo-hero__slide is-active" data-hero-slide aria-hidden="false">
+                <div class="photo-hero__backdrop" aria-hidden="true"><img src="{{ cover_src }}" alt=""></div>
+                <div class="photo-hero__portrait-wrap">
+                    <img class="photo-hero__portrait" src="{{ cover_src }}" alt="{{ page.image_alt | default: page.title | escape }}" fetchpriority="high" decoding="async">
+                </div>
+            </figure>
+        {% else %}
+            <div class="photo-hero__empty" aria-hidden="true"><span>PHOTO STORY</span></div>
+        {% endif %}
+    </div>
+
+    <div class="photo-hero__veil"></div>
+
+    <div class="photo-hero__masthead">
+        <div class="photo-hero__label">
+            <span>{{ page.kicker | default: page.category | default: "PHOTO STORY" }}</span>
+            {% if page.location %}<span>{{ page.location }}</span>{% endif %}
+        </div>
+        <div class="photo-hero__title-block">
+            <h1>{{ page.title }}</h1>
+            {% if page.subtitle %}<p>{{ page.subtitle }}</p>{% endif %}
+        </div>
+        <div class="photo-hero__footer">
+            <div class="photo-hero__meta">
+                {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y.%m.%d' }}</time>{% endif %}
+                {% if page.hero %}<span data-hero-counter>01 / 01</span>{% endif %}
+            </div>
+            <a href="#photo-gallery" class="photo-hero__scroll">VIEW COLLECTION <span aria-hidden="true">↓</span></a>
+        </div>
+    </div>
+
+    <div class="photo-hero__controls" data-hero-controls>
+        <button type="button" data-hero-prev aria-label="Previous photograph">←</button>
+        <button type="button" data-hero-next aria-label="Next photograph">→</button>
+    </div>
+</section>
