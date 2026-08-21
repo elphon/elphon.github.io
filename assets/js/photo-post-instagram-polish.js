@@ -1,42 +1,6 @@
 (() => {
   'use strict';
 
-  const initStatementBlend = () => {
-    const compositions = Array.from(document.querySelectorAll(
-      'body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend'
-    ));
-
-    compositions.forEach((composition) => {
-      if (composition.querySelector('.photo-composition__blend-bg')) return;
-
-      const item = composition.querySelector('[data-photo-item]');
-      if (!item) return;
-
-      const source = item.dataset.photoDisplaySrc || item.dataset.photoSrc || '';
-      if (!source) return;
-
-      const background = document.createElement('div');
-      background.className = 'photo-composition__blend-bg photo-composition__blend-bg--statement';
-      background.setAttribute('aria-hidden', 'true');
-
-      ['left', 'right'].forEach((side) => {
-        const half = document.createElement('span');
-        half.className = `photo-composition__blend-half photo-composition__blend-half--${side}`;
-
-        const image = document.createElement('img');
-        image.src = source;
-        image.alt = '';
-        image.loading = 'lazy';
-        image.decoding = 'async';
-
-        half.appendChild(image);
-        background.appendChild(half);
-      });
-
-      composition.insertBefore(background, composition.firstChild);
-    });
-  };
-
   const initHeroExif = () => {
     const hero = document.querySelector('body.photo-theme-instagram .photo-hero');
     if (!hero) return;
@@ -140,6 +104,5 @@
     render();
   };
 
-  initStatementBlend();
   initHeroExif();
 })();
