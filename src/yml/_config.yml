@@ -49,9 +49,10 @@ plugins:
   - jekyll-paginate
   - jekyll-paginate-content
 
-# Exclude my node related stuff
+# Exclude build/tooling files from the generated site
 exclude: [
   'docs/',
+  'tools/',
   'vendor/',
   'LICENSE',
   'CHANGELOG.md',
