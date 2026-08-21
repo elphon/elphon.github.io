@@ -1,0 +1,424 @@
+/*
+ * Photo post themes + motion layer.
+ * Loaded after photo-post.css so the base layout stays stable while each
+ * photo story can choose a mood with `photo_theme` in front matter.
+ */
+
+body.photo-post-page {
+  --photo-accent: rgba(255,255,255,.72);
+  --photo-hero-brightness: .52;
+  --photo-hero-saturation: .9;
+  --photo-hero-blur: 34px;
+  --photo-hero-shift-x: 0px;
+  --photo-hero-shift-y: 0px;
+}
+
+/* -------------------------------------------------------------------------
+   Theme presets
+   ---------------------------------------------------------------------- */
+
+body.photo-theme-neutral {
+  --photo-bg: #080808;
+  --photo-panel: #151515;
+  --photo-line: rgba(248,247,243,.16);
+  --photo-accent: rgba(255,255,255,.72);
+  --photo-hero-brightness: .52;
+  --photo-hero-saturation: .9;
+  --photo-hero-blur: 34px;
+}
+
+body.photo-theme-fresh {
+  --photo-bg: #fff9ed;
+  --photo-panel: #eee7da;
+  --photo-line: rgba(38,31,24,.15);
+  --photo-accent: #ef6a43;
+  --photo-hero-brightness: .82;
+  --photo-hero-saturation: 1.08;
+  --photo-hero-blur: 25px;
+}
+
+body.photo-theme-nature {
+  --photo-bg: #edf1e8;
+  --photo-panel: #dfe6d9;
+  --photo-line: rgba(30,49,35,.15);
+  --photo-accent: #6f8b5e;
+  --photo-hero-brightness: .68;
+  --photo-hero-saturation: 1.08;
+  --photo-hero-blur: 29px;
+}
+
+body.photo-theme-studio {
+  --photo-bg: #f4eff6;
+  --photo-panel: #e8dfea;
+  --photo-line: rgba(47,31,50,.14);
+  --photo-accent: #a96cc8;
+  --photo-hero-brightness: .66;
+  --photo-hero-saturation: 1.06;
+  --photo-hero-blur: 28px;
+}
+
+body.photo-theme-cinematic {
+  --photo-bg: #09090d;
+  --photo-panel: #141319;
+  --photo-line: rgba(236,224,207,.15);
+  --photo-accent: #c7a36a;
+  --photo-hero-brightness: .42;
+  --photo-hero-saturation: .82;
+  --photo-hero-blur: 40px;
+}
+
+.photo-hero__backdrop img {
+  filter: blur(var(--photo-hero-blur))
+          saturate(var(--photo-hero-saturation))
+          brightness(var(--photo-hero-brightness));
+  transition: filter .45s ease, transform .7s cubic-bezier(.16,1,.3,1);
+}
+
+.photo-theme-fresh .photo-hero__backdrop::after {
+  background:
+    radial-gradient(circle at 72% 40%, rgba(255,229,176,.28), transparent 28%),
+    linear-gradient(90deg, rgba(44,28,17,.56) 0%, rgba(44,28,17,.16) 45%, rgba(44,28,17,.03) 74%, rgba(44,28,17,.18) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.22));
+}
+
+.photo-theme-nature .photo-hero__backdrop::after {
+  background:
+    radial-gradient(circle at 70% 43%, rgba(175,207,157,.18), transparent 30%),
+    linear-gradient(90deg, rgba(16,34,24,.64) 0%, rgba(16,34,24,.18) 44%, rgba(16,34,24,.03) 72%, rgba(16,34,24,.2) 100%),
+    linear-gradient(180deg, rgba(5,15,8,.04), rgba(5,15,8,.26));
+}
+
+.photo-theme-studio .photo-hero__backdrop::after {
+  background:
+    radial-gradient(circle at 72% 42%, rgba(222,176,237,.22), transparent 28%),
+    linear-gradient(90deg, rgba(42,21,48,.62) 0%, rgba(42,21,48,.17) 44%, rgba(42,21,48,.03) 72%, rgba(42,21,48,.2) 100%),
+    linear-gradient(180deg, rgba(18,7,20,.04), rgba(18,7,20,.25));
+}
+
+.photo-theme-cinematic .photo-hero__backdrop::after {
+  background:
+    radial-gradient(circle at 68% 42%, rgba(188,147,91,.1), transparent 26%),
+    linear-gradient(90deg, rgba(0,0,0,.8) 0%, rgba(0,0,0,.32) 44%, rgba(0,0,0,.12) 72%, rgba(0,0,0,.38) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.5));
+}
+
+/* Light page variants. Hero chrome stays white over the image; once the hero
+   is passed, the header becomes a soft light glass surface. */
+.photo-theme-fresh .photo-editorial-intro__index,
+.photo-theme-nature .photo-editorial-intro__index,
+.photo-theme-studio .photo-editorial-intro__index {
+  color: rgba(24,24,24,.11);
+}
+
+.photo-theme-fresh .photo-editorial-intro__eyebrow,
+.photo-theme-nature .photo-editorial-intro__eyebrow,
+.photo-theme-studio .photo-editorial-intro__eyebrow,
+.photo-theme-fresh .photo-section-heading > div,
+.photo-theme-nature .photo-section-heading > div,
+.photo-theme-studio .photo-section-heading > div {
+  color: var(--photo-accent);
+}
+
+.photo-theme-fresh .photo-editorial-intro__body,
+.photo-theme-fresh .photo-editorial-intro__body strong,
+.photo-theme-fresh .photo-section-heading h2,
+.photo-theme-fresh .photo-story-end p,
+.photo-theme-nature .photo-editorial-intro__body,
+.photo-theme-nature .photo-editorial-intro__body strong,
+.photo-theme-nature .photo-section-heading h2,
+.photo-theme-nature .photo-story-end p,
+.photo-theme-studio .photo-editorial-intro__body,
+.photo-theme-studio .photo-editorial-intro__body strong,
+.photo-theme-studio .photo-section-heading h2,
+.photo-theme-studio .photo-story-end p {
+  color: #1d1d1d;
+}
+
+.photo-theme-nature .photo-editorial-intro__body,
+.photo-theme-nature .photo-editorial-intro__body strong,
+.photo-theme-nature .photo-section-heading h2,
+.photo-theme-nature .photo-story-end p {
+  color: #1c2a20;
+}
+
+.photo-theme-studio .photo-editorial-intro__body,
+.photo-theme-studio .photo-editorial-intro__body strong,
+.photo-theme-studio .photo-section-heading h2,
+.photo-theme-studio .photo-story-end p {
+  color: #281f2b;
+}
+
+.photo-theme-fresh .photo-editorial-intro__details span,
+.photo-theme-fresh .photo-section-heading > p,
+.photo-theme-fresh .photo-story-end > div:not(.photo-story-end__line),
+.photo-theme-fresh .photo-story-end > a,
+.photo-theme-nature .photo-editorial-intro__details span,
+.photo-theme-nature .photo-section-heading > p,
+.photo-theme-nature .photo-story-end > div:not(.photo-story-end__line),
+.photo-theme-nature .photo-story-end > a,
+.photo-theme-studio .photo-editorial-intro__details span,
+.photo-theme-studio .photo-section-heading > p,
+.photo-theme-studio .photo-story-end > div:not(.photo-story-end__line),
+.photo-theme-studio .photo-story-end > a {
+  color: rgba(30,30,30,.46);
+}
+
+.photo-theme-fresh .photo-editorial-intro__details strong,
+.photo-theme-fresh .photo-story-end > div strong,
+.photo-theme-nature .photo-editorial-intro__details strong,
+.photo-theme-nature .photo-story-end > div strong,
+.photo-theme-studio .photo-editorial-intro__details strong,
+.photo-theme-studio .photo-story-end > div strong {
+  color: rgba(30,30,30,.72);
+}
+
+.photo-theme-fresh .photo-feature__caption,
+.photo-theme-nature .photo-feature__caption,
+.photo-theme-studio .photo-feature__caption {
+  color: rgba(30,30,30,.46);
+}
+
+.photo-theme-fresh .photo-feature__caption strong,
+.photo-theme-nature .photo-feature__caption strong,
+.photo-theme-studio .photo-feature__caption strong {
+  color: rgba(30,30,30,.76);
+}
+
+.photo-theme-fresh .photo-story-end__line,
+.photo-theme-nature .photo-story-end__line,
+.photo-theme-studio .photo-story-end__line {
+  background: rgba(25,25,25,.2);
+}
+
+.photo-theme-fresh .photo-story-end > a,
+.photo-theme-nature .photo-story-end > a,
+.photo-theme-studio .photo-story-end > a {
+  border-bottom-color: rgba(25,25,25,.2);
+}
+
+.photo-theme-fresh .photo-story-end > a:hover,
+.photo-theme-nature .photo-story-end > a:hover,
+.photo-theme-studio .photo-story-end > a:hover {
+  color: #111;
+}
+
+body.photo-post-page.light:not(.photo-hero-past) .bar-header {
+  background: rgba(8,8,8,.22);
+  border-bottom-color: rgba(255,255,255,.06);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+}
+
+body.photo-theme-fresh.photo-hero-past .bar-header,
+body.photo-theme-nature.photo-hero-past .bar-header,
+body.photo-theme-studio.photo-hero-past .bar-header {
+  background: rgba(250,249,246,.78);
+  border-bottom-color: rgba(25,25,25,.08);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+}
+
+body.photo-theme-fresh.photo-hero-past .bar-header .logo a,
+body.photo-theme-fresh.photo-hero-past .bar-header .version,
+body.photo-theme-nature.photo-hero-past .bar-header .logo a,
+body.photo-theme-nature.photo-hero-past .bar-header .version,
+body.photo-theme-studio.photo-hero-past .bar-header .logo a,
+body.photo-theme-studio.photo-hero-past .bar-header .version {
+  color: #161616;
+}
+
+body.photo-theme-fresh.photo-hero-past .bar-header .icon-menu,
+body.photo-theme-fresh.photo-hero-past .bar-header .icon-search,
+body.photo-theme-nature.photo-hero-past .bar-header .icon-menu,
+body.photo-theme-nature.photo-hero-past .bar-header .icon-search,
+body.photo-theme-studio.photo-hero-past .bar-header .icon-menu,
+body.photo-theme-studio.photo-hero-past .bar-header .icon-search {
+  fill: #161616;
+}
+
+/* -------------------------------------------------------------------------
+   Bigger hero
+   ---------------------------------------------------------------------- */
+
+@media (min-width: 1101px) {
+  .photo-hero__portrait-wrap {
+    inset: 48px 18px 44px;
+    padding-right: clamp(0px, 2.5vw, 46px);
+    transform: translate3d(var(--photo-hero-shift-x), var(--photo-hero-shift-y), 0);
+    transition: transform .24s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .photo-hero__portrait {
+    height: min(91svh, 1020px);
+    max-height: 91svh;
+    max-width: min(66vw, 790px);
+    box-shadow: 0 28px 100px rgba(0,0,0,.34);
+  }
+
+  .photo-hero__title-block {
+    width: min(700px, 47vw);
+    padding-bottom: clamp(42px, 6.5vh, 74px);
+  }
+
+  .photo-hero__title-block h1 {
+    font-size: clamp(3.15rem, 6.45vw, 7.15rem);
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .photo-hero__portrait {
+    height: min(84svh, 850px);
+    max-height: 84svh;
+    max-width: min(72vw, 680px);
+  }
+}
+
+@media (max-width: 700px) {
+  .photo-hero__portrait-wrap {
+    inset: 70px 6px 102px;
+  }
+
+  .photo-hero__portrait {
+    width: min(92vw, 560px);
+    max-width: 92vw;
+    max-height: 78svh;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Fast, restrained motion
+   ---------------------------------------------------------------------- */
+
+.photo-hero__slide {
+  transition-duration: 480ms;
+  transition-timing-function: cubic-bezier(.16,1,.3,1);
+}
+
+.photo-hero__slide.is-active .photo-hero__portrait {
+  animation: photoHeroIn 640ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.photo-hero__slide.is-active .photo-hero__backdrop img {
+  animation: photoBackdropIn 720ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-ready .photo-hero__label,
+body.photo-motion-ready .photo-hero__title-block h1,
+body.photo-motion-ready .photo-hero__title-block p,
+body.photo-motion-ready .photo-hero__footer,
+body.photo-motion-ready .photo-hero__controls {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+body.photo-motion-mounted .photo-hero__label {
+  animation: photoEnterUp 430ms 40ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-mounted .photo-hero__title-block h1 {
+  animation: photoEnterUp 520ms 100ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-mounted .photo-hero__title-block p {
+  animation: photoEnterUp 480ms 170ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-mounted .photo-hero__footer {
+  animation: photoEnterUp 430ms 220ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-mounted .photo-hero__controls {
+  animation: photoEnterUp 400ms 270ms cubic-bezier(.16,1,.3,1) both;
+}
+
+body.photo-motion-ready .photo-reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(.992);
+  transition:
+    opacity 420ms cubic-bezier(.16,1,.3,1),
+    transform 470ms cubic-bezier(.16,1,.3,1);
+  transition-delay: var(--photo-reveal-delay, 0ms);
+}
+
+body.photo-motion-ready .photo-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.photo-gallery__item img {
+  transition-duration: .38s;
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
+}
+
+.photo-gallery__item:hover img,
+.photo-gallery__item:focus-visible img {
+  transform: scale(1.045);
+}
+
+.photo-gallery__overlay {
+  transition-duration: .24s;
+}
+
+.photo-feature__image img {
+  transition-duration: .3s;
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
+}
+
+.photo-lightbox.is-open {
+  animation: photoLightboxFade 180ms ease-out both;
+}
+
+.photo-lightbox.is-open .photo-lightbox__figure img,
+.photo-lightbox__figure.is-switching img {
+  animation: photoLightboxImageIn 280ms cubic-bezier(.16,1,.3,1) both;
+}
+
+.photo-hero__controls button,
+.photo-hero__scroll span,
+.photo-story-end > a {
+  transition-duration: .16s;
+}
+
+@keyframes photoHeroIn {
+  from { opacity: .25; transform: translateY(12px) scale(1.035); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes photoBackdropIn {
+  from { transform: scale(1.16); opacity: .6; }
+  to { transform: scale(1.12); opacity: 1; }
+}
+
+@keyframes photoEnterUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes photoLightboxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes photoLightboxImageIn {
+  from { opacity: 0; transform: scale(.965); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-hero__slide.is-active .photo-hero__portrait,
+  .photo-hero__slide.is-active .photo-hero__backdrop img,
+  body.photo-motion-mounted .photo-hero__label,
+  body.photo-motion-mounted .photo-hero__title-block h1,
+  body.photo-motion-mounted .photo-hero__title-block p,
+  body.photo-motion-mounted .photo-hero__footer,
+  body.photo-motion-mounted .photo-hero__controls,
+  body.photo-motion-ready .photo-reveal,
+  .photo-lightbox.is-open,
+  .photo-lightbox.is-open .photo-lightbox__figure img,
+  .photo-lightbox__figure.is-switching img {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

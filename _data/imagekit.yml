@@ -1,0 +1,14 @@
+# Central ImageKit delivery configuration for photo posts.
+# Keep original uploads in ImageKit; pages request only resized derivatives.
+endpoint: "https://ik.imagekit.io/7gsxpuecqj"
+
+presets:
+  gallery_480: "w-480,q-72,f-auto"
+  gallery_720: "w-720,q-74,f-auto"
+  gallery_1080: "w-1080,q-76,f-auto"
+  gallery_1440: "w-1440,q-78,f-auto"
+  hero_960: "w-960,q-78,f-auto"
+  hero_1440: "w-1440,q-80,f-auto"
+  hero_1920: "w-1920,q-82,f-auto"
+  lightbox: "w-1920,q-82,f-auto"
+  social: "w-1200,q-80,f-jpg"

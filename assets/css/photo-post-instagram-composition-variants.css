@@ -1,0 +1,217 @@
+/*
+ * Explicit composition variants for the Instagram photo theme.
+ *
+ * Authoring stays intentional:
+ * - lead-two / two-lead always use photo 1 as the lead frame.
+ * - trio defaults to `line` and may opt into `wave-up` or `wave-down`.
+ * - statement defaults to `normal` and may opt into `wide`.
+ */
+
+/* ---------------------------------------------------------------------
+   Lead + two support frames
+   ------------------------------------------------------------------ */
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  width: min(1220px, 92%);
+  margin-inline: auto;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(14px, 2vw, 30px);
+  row-gap: clamp(12px, 1.4vw, 22px);
+  align-items: stretch;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(150px, .66fr);
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  grid-template-columns: minmax(150px, .66fr) minmax(0, 1.5fr);
+}
+
+/* Photo 1 remains the lead in both mirrored presets. */
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--slot-0 {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 100%;
+  align-self: center;
+  justify-self: stretch;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--slot-1 {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--slot-2 {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--slot-0 {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  width: 100%;
+  align-self: center;
+  justify-self: stretch;
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--slot-1 {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: end;
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--slot-2 {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+}
+
+/* ---------------------------------------------------------------------
+   Trio variants
+   ------------------------------------------------------------------ */
+
+body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid {
+  align-items: start;
+}
+
+/* 1. LINE: three frames share one baseline. */
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-line .photo-gallery__item {
+  margin-top: 0;
+}
+
+/*
+ * 2. WAVE-UP: 01 high -> 02 middle -> 03 low.
+ * 02 visually bridges the two levels while preserving the same card size.
+ */
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-composition__grid,
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-composition__grid {
+  width: min(1200px, 90%);
+  gap: clamp(8px, 1.25vw, 18px);
+  padding-block: clamp(10px, 1.6vw, 24px) clamp(70px, 9vw, 142px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-0 {
+  margin-top: 0;
+}
+
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-1 {
+  margin-top: clamp(34px, 4.6vw, 72px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-2 {
+  margin-top: clamp(68px, 9.2vw, 144px);
+}
+
+/* 3. WAVE-DOWN: 03 high -> 02 middle -> 01 low. */
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-0 {
+  margin-top: clamp(68px, 9.2vw, 144px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-1 {
+  margin-top: clamp(34px, 4.6vw, 72px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-2 {
+  margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------
+   Statement variants
+   ------------------------------------------------------------------ */
+
+/* NORMAL keeps the existing focused portrait treatment. */
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-normal .photo-gallery__item {
+  width: min(690px, 58vw);
+  margin-inline: auto;
+}
+
+/*
+ * WIDE reuses the adaptive wide-media renderer. Landscape sources keep their
+ * native aspect ratio; portrait sources become a blurred horizontal stage.
+ */
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-composition__grid {
+  display: block;
+}
+
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item {
+  width: min(1320px, 96%);
+  margin-inline: auto;
+}
+
+body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item--role-wide {
+  min-height: clamp(300px, 34vw, 620px);
+}
+
+@media (max-width: 700px) {
+  /* Preserve the same centered lead/support relationship on mobile. */
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    width: 100%;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    column-gap: 7px;
+    row-gap: 6px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid {
+    grid-template-columns: minmax(0, 1.52fr) minmax(92px, .62fr);
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    grid-template-columns: minmax(92px, .62fr) minmax(0, 1.52fr);
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--role-lead {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--role-lead {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--slot-1,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--slot-1 {
+    grid-row: 1;
+    align-self: end;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--slot-2,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--slot-2 {
+    grid-row: 2;
+    align-self: start;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-composition__grid {
+    width: 100%;
+    gap: 5px;
+    padding-block: 4px 38px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-1,
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-1 {
+    margin-top: 18px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-up .photo-gallery__item--slot-2,
+  body.photo-theme-instagram .photo-composition--grid-trio.photo-composition--variant-wave-down .photo-gallery__item--slot-0 {
+    margin-top: 36px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item {
+    width: 100%;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-statement.photo-composition--variant-wide .photo-gallery__item--role-wide {
+    min-height: 250px;
+  }
+}

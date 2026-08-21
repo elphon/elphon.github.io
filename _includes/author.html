@@ -44,6 +44,23 @@
           </a>
         {% endif %}
       </p>
+
+      {% if author.general_email or author.business_email %}
+        <div class="author-contacts" aria-label="Author email contacts">
+          {% if author.general_email %}
+            <a class="author-contact" href="mailto:{{ author.general_email }}">
+              <span>GENERAL</span>
+              <strong>{{ author.general_email }}</strong>
+            </a>
+          {% endif %}
+          {% if author.business_email %}
+            <a class="author-contact" href="mailto:{{ author.business_email }}">
+              <span>BUSINESS</span>
+              <strong>{{ author.business_email }}</strong>
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
     </div>
   </section>
 

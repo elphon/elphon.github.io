@@ -88,4 +88,48 @@
       font-size: rem(18px);
     }
   }
+
+  .author-contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: rem(9px) rem(22px);
+    margin-top: rem(16px);
+    padding-top: rem(14px);
+    border-top: 1px solid darken($lightGray, 8%);
+
+    @include media("<sm") {
+      justify-content: center;
+    }
+  }
+
+  .author-contact {
+    display: inline-flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    color: $texts;
+    line-height: 1.35;
+
+    @include media("<sm") {
+      align-items: center;
+    }
+
+    span {
+      margin-bottom: rem(2px);
+      color: darken($lightGray, 38%);
+      font-size: rem(10px);
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    strong {
+      font-size: rem(13px);
+      font-weight: 400;
+      overflow-wrap: anywhere;
+    }
+
+    &:hover {
+      color: $themeColor;
+    }
+  }
 }
