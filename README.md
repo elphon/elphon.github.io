@@ -7,6 +7,21 @@
 블로그를 보안 주제에 맞게 디자인 및 기능 커스터마이징.
 보안 관련 태그와 카테고리 추가.
 
+## 사진 포스트 검증
+사진 포스트의 `photos`, `photo_groups`, `photo_sections` 구조는 Ruby 검증기로 빠르게 확인할 수 있습니다.
+
+```bash
+ruby tools/validate_photo_posts.rb
+```
+
+기본 모드는 존재하지 않는 photo/group id, 중복 photo id처럼 렌더링을 깨뜨릴 수 있는 항목만 오류로 처리하고, grid 장수·variant·tone·`order: auto` 조합은 경고로 보여줍니다.
+
+경고까지 실패로 처리하려면 strict 모드를 사용합니다.
+
+```bash
+PHOTO_VALIDATE_STRICT=1 ruby tools/validate_photo_posts.rb
+```
+
 ---
 
 # 라이선스
