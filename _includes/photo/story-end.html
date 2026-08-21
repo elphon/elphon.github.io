@@ -1,0 +1,9 @@
+<section class="photo-story-end">
+    <div class="photo-story-end__line"></div>
+    <p>{{ page.closing | default: "Some places stay with you long after the photographs are taken." }}</p>
+    <div>
+        {% if page.location %}<strong>{{ page.location }}</strong>{% endif %}
+        {% if page.date %}<time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y' }}</time>{% endif %}
+    </div>
+    <a href="#" data-photo-top>BACK TO TOP ↑</a>
+</section>
