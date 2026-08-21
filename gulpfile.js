@@ -3,7 +3,6 @@
 import gulp from "gulp";
 import concat from "gulp-concat";
 import imagemin from "gulp-imagemin";
-import include from "gulp-include";
 import plumber from "gulp-plumber";
 import rename from "gulp-rename";
 import sourcemaps from "gulp-sourcemaps";
@@ -16,52 +15,34 @@ import fs from "fs";
 import jsonSass from "json-sass";
 import source from "vinyl-source-stream";
 
-
 /**
  * Notify
- * 
+ *
  * Show a notification in the browser's corner.
- * 
- * @param {*} message 
+ *
+ * @param {*} message
  */
 function notify(message) {
   browserSync.notify(message);
 }
 
 /**
- * Config Task
- * 
- * Build the main YAML config file.
- */
-function config() {
-  return gulp.src('src/yml/_config.yml')
-    .pipe(include())
-    .on('error', console.error)
-    .pipe(gulp.dest('./'));
-}
-
-/**
  * Jekyll Task
- * 
- * Build the Jekyll Site.
- * 
- * @param {*} done 
+ *
+ * `_config.yml` is the single source of truth for site configuration.
+ * The build no longer regenerates it from legacy src/yml fragments.
+ *
+ * @param {*} done
  */
 function jekyll(done) {
   notify('Building Jekyll...');
-  let bundle = process.platform === "win32" ? "bundle.bat" : "bundle";
+  const bundle = process.platform === "win32" ? "bundle.bat" : "bundle";
   return cp
     .spawn(bundle, ['exec', 'jekyll build'], { stdio: 'inherit' })
     .on('close', done);
 }
 
-/**
- * Server Task
- * 
- * Launch server using BrowserSync.
- * 
- * @param {*} done 
- */
+/** Launch the generated site through BrowserSync. */
 function server(done) {
   browserSync({
     server: {
@@ -71,13 +52,7 @@ function server(done) {
   done();
 }
 
-/**
- * Reload Task
- * 
- * Reload page with BrowserSync.
- * 
- * @param {*} done 
- */
+/** Reload the browser after a successful rebuild. */
 function reload(done) {
   notify('Reloading...');
   browserSync.reload();
@@ -86,16 +61,10 @@ function reload(done) {
 
 /**
  * Theme Tasks
- * 
- * These three tasks are responsible for:
- * 1. Converting src/yml/theme.yml to src/tmp/theme.json
- * 2. Converting src/tmp/theme.json to _sass/_theme.scss
- * 3. Deleting src/tmp
- * 
- * With these tasks we can apply the theme colors to SVGs and CSS elements using
- * just the src/yml/theme.yml file.
+ *
+ * Theme colors still use src/yml/theme.yml as their dedicated source because
+ * they are compiled into _sass/_theme.scss. Site configuration itself does not.
  */
-
 function yamlTheme() {
   return gulp.src('src/yml/theme.yml')
     .pipe(yaml({ schema: 'DEFAULT_SAFE_SCHEMA' }))
@@ -118,12 +87,7 @@ async function cleanTheme() {
 
 const theme = gulp.series(yamlTheme, jsonTheme, cleanTheme);
 
-/**
- * Main JS Task
- * 
- * All regular .js files are collected, minified and concatonated into one
- * single scripts.min.js file (and sourcemap)
- */
+/** Build the legacy theme JavaScript bundle. */
 function mainJs() {
   notify('Building JS files...');
   return gulp.src('src/js/main/**/*.js')
@@ -137,29 +101,15 @@ function mainJs() {
     .pipe(gulp.dest('assets/js'));
 }
 
-/**
- * Preview JS Task
- * 
- * Copy preview JS files to the assets folder.
- */
 function previewJs() {
   notify('Copying preview files...');
   return gulp.src('src/js/preview/**/*.*')
     .pipe(gulp.dest('assets/js/'));
 }
 
-/**
- * JavaScript Task
- * 
- * Run all the JS related tasks.
- */
 const js = gulp.parallel(mainJs, previewJs);
 
-/**
- * Images Task
- * 
- * All images are optimized and copied to assets folder.
- */
+/** Optimize and copy source images used by the theme. */
 function images() {
   notify('Copying image files...');
   return gulp.src('src/img/**/*.{jpg,png,gif,svg}')
@@ -168,55 +118,40 @@ function images() {
     .pipe(gulp.dest('assets/img/'));
 }
 
-/**
- * Watch Task
- * 
- * Watch files to run proper tasks.
- */
+/** Development watchers. */
 function watch() {
-  // Watch YAML files for changes & recompile
-  gulp.watch(['src/yml/*.yml', '!src/yml/theme.yml'], gulp.series(config, jekyll, reload));
+  // Root Jekyll config is authoritative.
+  gulp.watch('_config.yml', gulp.series(jekyll, reload));
 
-  // Watch theme file for changes, rebuild styles & recompile
-  gulp.watch(['src/yml/theme.yml'], gulp.series(theme, config, jekyll, reload));
+  // Theme colors are the only YAML source that still has a compile step.
+  gulp.watch('src/yml/theme.yml', gulp.series(theme, jekyll, reload));
 
-  // Watch SASS files for changes & rebuild styles
-  gulp.watch(['_sass/**/*.scss'], gulp.series(jekyll, reload));
-
-  // Watch JS files for changes & recompile
+  gulp.watch(['_sass/**/*.scss', 'assets/css/**/*.css', 'assets/css/**/*.scss'], gulp.series(jekyll, reload));
   gulp.watch('src/js/main/**/*.js', mainJs);
-
-  // Watch preview JS files for changes, copy files & reload
   gulp.watch('src/js/preview/**/*.js', gulp.series(previewJs, reload));
+  gulp.watch('assets/js/**/*.js', gulp.series(jekyll, reload));
+  gulp.watch('src/img/**/*', gulp.series(images, jekyll, reload));
 
-  // Watch images for changes, optimize & recompile
-  gulp.watch('src/img/**/*', gulp.series(images, config, jekyll, reload));
-
-  // Watch html/md files, rebuild config, run Jekyll & reload BrowserSync
-  gulp.watch(['*.html', '_includes/*.html', '_layouts/*.html', '_posts/*', '_authors/*', 'pages/*', 'category/*'], gulp.series(config, jekyll, reload));
+  gulp.watch([
+    '*.html',
+    '_includes/**/*.html',
+    '_layouts/*.html',
+    '_posts/*',
+    '_authors/*',
+    '_data/*',
+    '_plugins/**/*.rb',
+    'pages/*',
+    'category/*'
+  ], gulp.series(jekyll, reload));
 }
 
 /**
- * Default Task
- *
- * Running just `gulp` will:
- * - Compile the theme, SASS and JavaScript files
- * - Optimize and copy images to its folder
- * - Build the config file
- * - Compile the Jekyll site
- * - Launch BrowserSync & watch files
+ * Default development task:
+ * build theme assets, build Jekyll, launch BrowserSync, then watch changes.
  */
-const run = gulp.series(gulp.parallel(js, theme, images), config, jekyll, gulp.parallel(server, watch));
+const run = gulp.series(gulp.parallel(js, theme, images), jekyll, gulp.parallel(server, watch));
 
-/**
- * Build Task
- * 
- * Running just `gulp build` will:
- * - Compile the theme, SASS and JavaScript files
- * - Optimize and copy images to its folder
- * - Build the config file
- * - Compile the Jekyll site
- */
-const build = gulp.series(gulp.parallel(js, theme, images), config, jekyll);
+/** Production/local verification build. */
+const build = gulp.series(gulp.parallel(js, theme, images), jekyll);
 
 export { run as default, build };
