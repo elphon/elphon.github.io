@@ -28,7 +28,6 @@ disqus_username: elphon-github-io
 formspree_form_id: mbjnzypy
 timezone: Asia/Seoul
 
-
 # Social Media Settings
 # Remove the item if you don't need it
 github_username: elphon
@@ -38,26 +37,26 @@ instagram_username: sangchu_7724
 linkedin_username: linkedin_username
 medium_username: medium_username
 
-
 # Posts Settings
 show_time_bar: true
 show_modal_on_exit: false
 show_modal_on_finish_post: true
 two_columns_layout: true
-comments: true # disqus 서비스 ON
 
 comments:
-  provider               : "disqus" # 블로그 댓글 기능 false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  provider: "disqus"
   disqus:
-    shortname            : "elphon-github-io" # 블로그 댓글 기능 https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname: "elphon-github-io"
   discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+    server:
 
-
+# Photo post validation logs layout/data mistakes during Jekyll builds.
+# Set true when all existing photo posts are clean and warnings should fail builds.
+photo_validation_strict: false
 
 # Advanced Settings
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+baseurl: ""
+url: "https://elphon.github.io"
 google_analytics: "G-NRW525PW6E"
 language: "ko"
 categories_folder: category
@@ -103,23 +102,22 @@ plugins:
   - jekyll-paginate
   - jekyll-paginate-content
 
-# Exclude my node related stuff
-exclude: [
-  'docs/',
-  'vendor/',
-  'LICENSE',
-  'CHANGELOG.md',
-  'jekflix.gemspec',
-  'package.json',
-  'package-lock.json',
-  'src',
-  'node_modules',
-  'initpost.sh',
-  'Gemfile',
-  'Gemfile.lock',
-  'gulpfile.js',
-  'README.md'
-]
+# Exclude source/build-only files from the generated site
+exclude:
+  - docs/
+  - vendor/
+  - LICENSE
+  - CHANGELOG.md
+  - jekflix.gemspec
+  - package.json
+  - package-lock.json
+  - src
+  - node_modules
+  - initpost.sh
+  - Gemfile
+  - Gemfile.lock
+  - gulpfile.js
+  - README.md
 
 # Theme
 version: v3.1.2
