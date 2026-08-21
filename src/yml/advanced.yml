@@ -1,6 +1,9 @@
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site
-google_analytics: "UA-XXXXXXXX-X"
-language: "en"
+google_analytics: "G-NRW525PW6E"
+language: "ko"
+lang: ko
+timezone: Asia/Seoul
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
+safe: false
