@@ -3,7 +3,7 @@
 
   const initHeroExif = () => {
     const hero = document.querySelector('body.photo-theme-instagram .photo-hero');
-    if (!hero) return;
+    if (!hero || hero.querySelector('.photo-hero__exif')) return;
 
     const slides = Array.from(hero.querySelectorAll('[data-hero-slide]'));
     if (!slides.length) return;
