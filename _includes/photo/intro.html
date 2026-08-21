@@ -1,0 +1,14 @@
+<section class="photo-editorial-intro">
+    <div class="photo-editorial-intro__index" aria-hidden="true">01</div>
+    <div class="photo-editorial-intro__copy">
+        <p class="photo-editorial-intro__eyebrow">{{ page.intro_label | default: "A VISUAL JOURNAL" }}</p>
+        <div class="photo-editorial-intro__body">
+            {{ content }}
+        </div>
+    </div>
+    <aside class="photo-editorial-intro__details">
+        {% if page.location %}<div><span>LOCATION</span><strong>{{ page.location }}</strong></div>{% endif %}
+        {% if page.date %}<div><span>DATE</span><strong>{{ page.date | date: '%B %Y' }}</strong></div>{% endif %}
+        {% if page.camera %}<div><span>CAMERA</span><strong>{{ page.camera }}</strong></div>{% endif %}
+    </aside>
+</section>
