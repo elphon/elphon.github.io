@@ -9,12 +9,6 @@
     {% endfor %}
 {% endif %}
 
-{% if page.photo_theme == 'instagram' and page.photo_sections %}
-<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-adaptive.css' | prepend: site.baseurl }}">
-<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-composition-variants.css' | prepend: site.baseurl }}">
-<link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-five.css' | prepend: site.baseurl }}">
-{% endif %}
-
 <section class="photo-collection" id="photo-gallery">
     <header class="photo-section-heading">
         <div>
@@ -100,12 +94,18 @@
                             data-photo-composition
                             data-photo-grid="{{ grid_name }}"
                             data-photo-order="{{ photo_order }}">
-                            {% if grid_name == 'pair' and tone_name == 'blend' and section_size >= 2 %}
-                                {% assign blend_left_ref = section.photos | first %}
-                                {% assign blend_right_ref = section.photos | last %}
-                                {% assign blend_left = page.photos | where: 'id', blend_left_ref | first %}
-                                {% assign blend_right = page.photos | where: 'id', blend_right_ref | first %}
-                                {% include photo/pair-blend-background.html left=blend_left right=blend_right %}
+                            {% if tone_name == 'blend' %}
+                                {% if grid_name == 'pair' and section_size >= 2 %}
+                                    {% assign blend_left_ref = section.photos | first %}
+                                    {% assign blend_right_ref = section.photos | last %}
+                                    {% assign blend_left = page.photos | where: 'id', blend_left_ref | first %}
+                                    {% assign blend_right = page.photos | where: 'id', blend_right_ref | first %}
+                                    {% include photo/blend-background.html left=blend_left right=blend_right %}
+                                {% elsif grid_name == 'statement' and section_size >= 1 %}
+                                    {% assign blend_photo_ref = section.photos | first %}
+                                    {% assign blend_photo = page.photos | where: 'id', blend_photo_ref | first %}
+                                    {% include photo/blend-background.html left=blend_photo right=blend_photo %}
+                                {% endif %}
                             {% endif %}
 
                             <header class="photo-composition__meta">
@@ -185,7 +185,3 @@
         {% endif %}
     {% endif %}
 </section>
-
-{% if page.photo_theme == 'instagram' and page.photo_sections %}
-<script defer src="{{ '/assets/js/photo-post-gallery.js' | prepend: site.baseurl }}"></script>
-{% endif %}
