@@ -1,7 +1,6 @@
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
-description: Jekflix is a template for Jekyll inspired by Netflix and made by
-  Thiago Rossener.
+name: elphon
+title: Elphon's blog
+description: 테스트
 tags:
   - blog
   - template
@@ -11,16 +10,18 @@ tags:
 show_hero: true
 menu:
   - title: Home
-    url: /
+    url: https://elphon.github.io
   - title: About
     url: /about
   - title: Contact
     url: /contact
   - title: Feed
     url: /feed.xml
+  - title: Tags
+    url: /tags
 email: elphon909@gmail.com
 # See: https://disqus.com/
 disqus_username: elphon-github-io
 # Contact Form Setting
 # See: https://formspree.io/
-formspree_form_id: formspree_form_id
+formspree_form_id: mbjnzypy
