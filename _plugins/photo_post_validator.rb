@@ -51,15 +51,15 @@ module PhotoPostValidator
     groups = Array(post.data['photo_groups'])
     sections = Array(post.data['photo_sections'])
 
-    photo_ids = photos.filter_map { |photo| photo.is_a?(Hash) ? photo['id'] : nil }
+    photo_ids = photos.map { |photo| photo.is_a?(Hash) ? photo['id'] : nil }.compact
     duplicate_library_ids = duplicates(photo_ids)
     duplicate_library_ids.each do |id|
       warnings << "#{label}: duplicate photo library id `#{id}`."
     end
 
-    known_photo_ids = photo_ids.to_h { |id| [id, true] }
-    group_ids = groups.filter_map { |group| group.is_a?(Hash) ? group['id'] : nil }
-    known_group_ids = group_ids.to_h { |id| [id, true] }
+    known_photo_ids = index_values(photo_ids)
+    group_ids = groups.map { |group| group.is_a?(Hash) ? group['id'] : nil }.compact
+    known_group_ids = index_values(group_ids)
 
     groups.each do |group|
       next unless group.is_a?(Hash)
@@ -151,7 +151,11 @@ module PhotoPostValidator
   end
 
   def duplicates(values)
-    values.group_by(&:itself).select { |_value, entries| entries.length > 1 }.keys
+    values.group_by { |value| value }.select { |_value, entries| entries.length > 1 }.keys
+  end
+
+  def index_values(values)
+    values.each_with_object({}) { |value, index| index[value] = true }
   end
 end
 
