@@ -5,11 +5,6 @@
         {% include svg-icons.html %}
         {% include header.html %}
 
-        <link rel="stylesheet" href="{{ '/assets/css/photo-post.css' | prepend: site.baseurl }}">
-        <link rel="stylesheet" href="{{ '/assets/css/photo-post-effects.css' | prepend: site.baseurl }}">
-        <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram.css' | prepend: site.baseurl }}">
-        <link rel="stylesheet" href="{{ '/assets/css/photo-post-instagram-gallery.css' | prepend: site.baseurl }}">
-
         <main class="photo-post" data-photo-post data-photo-theme="{{ page.photo_theme | default: 'neutral' }}">
             <section class="photo-hero" aria-label="Photo story cover">
                 <div class="photo-hero__slides" data-hero-slides>
@@ -226,5 +221,8 @@
         </div>
 
         <script defer src="{{ '/assets/js/photo-post.js' | prepend: site.baseurl }}"></script>
+        {% if page.photo_theme == 'instagram' and page.photo_sections %}
+        <script defer src="{{ '/assets/js/photo-post-gallery.js' | prepend: site.baseurl }}"></script>
+        {% endif %}
     </body>
 </html>
