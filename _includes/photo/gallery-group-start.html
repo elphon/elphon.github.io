@@ -1,0 +1,12 @@
+{% assign group = include.group %}
+{% assign group_id = include.group_id %}
+{% assign group_tone = group.tone | default: 'paper' %}
+<section class="photo-story-group photo-story-group--tone-{{ group_tone }}" data-photo-group="{{ group_id }}">
+    <header class="photo-story-group__header">
+        <div>
+            <span>{{ group.eyebrow | default: 'PHOTO CHAPTER' }}</span>
+            <h3>{{ group.title | default: group_id }}</h3>
+        </div>
+        {% if group.subtitle %}<p>{{ group.subtitle }}</p>{% endif %}
+    </header>
+    <div class="photo-story-group__body">
