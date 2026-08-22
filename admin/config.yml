@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: edit-header
 publish_mode: editorial_workflow
 media_folder: "assets/img/uploads"
 collections:
@@ -151,7 +151,7 @@ collections:
       - label: "Short Name"
         name: "name"
         widget: "string"
-      - label: "Diplay Name"
+      - label: "Display Name"
         name: "display_name"
         widget: "string"
       - label: "Position"
@@ -161,6 +161,14 @@ collections:
       - label: "Bio"
         name: "bio"
         widget: "text"
+      - label: "General Email"
+        name: "general_email"
+        widget: "string"
+        required: false
+      - label: "Business Email"
+        name: "business_email"
+        widget: "string"
+        required: false
       - label: "GitHub Username"
         name: "github_username"
         widget: "string"
@@ -497,7 +505,7 @@ collections:
           - label: "URL"
             name: "url"
             widget: "string"
-            hint: "The base hostname and protocol for your site, e.g. https://rossener.com"
+            hint: "The base hostname and protocol for your site, e.g. https://elphon.github.io"
           - label: "Google Analytics ID"
             name: "google_analytics"
             widget: "string"
@@ -505,7 +513,7 @@ collections:
           - label: "Language"
             name: "language"
             widget: "string"
-            hint: "Content language, ex: pt-BR, en, fr"
+            hint: "Content language, ex: ko, en, fr"
           - label: "Categories folder"
             name: "categories_folder"
             widget: "string"
@@ -515,5 +523,3 @@ collections:
             name: "sent_message_url"
             hint: "URL where the user will be redirected for after submit the contact form. Ex: /contact/message-sent/"
             required: false
-
-
