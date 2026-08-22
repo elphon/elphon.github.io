@@ -1,0 +1,10 @@
+{% assign section = include.section %}
+<aside class="photo-interlude photo-interlude--{{ section.tone | default: 'dark' }}" aria-label="Photo story interlude">
+    <span>{{ section.eyebrow | default: page.kicker | default: 'PHOTO STORY' }}</span>
+    <strong>{{ section.title | default: page.location | default: page.title }}</strong>
+    {% if section.subtitle %}
+        <small>{{ section.subtitle }}</small>
+    {% elsif page.date %}
+        <small>{{ page.date | date: '%B · %Y' }}</small>
+    {% endif %}
+</aside>
