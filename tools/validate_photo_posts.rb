@@ -48,9 +48,29 @@ paths.each do |path|
   data = YAML.safe_load(front_matter, permitted_classes: [Date, Time], aliases: true) || {}
   next unless data['layout'] == 'post-photo'
 
-  photos = Array(data['photos'])
-  sections = Array(data['photo_sections'])
-  groups = Array(data['photo_groups'])
+  external_data = nil
+  if data['photo_data']
+    external_path = File.join('_data', 'photo_posts', "#{data['photo_data']}.yml")
+    unless File.file?(external_path)
+      errors << Error.new(path, "photo_data file not found: #{external_path}")
+      next
+    end
+
+    begin
+      external_data = YAML.safe_load(
+        File.read(external_path, encoding: 'UTF-8'),
+        permitted_classes: [Date, Time],
+        aliases: true
+      ) || {}
+    rescue Psych::SyntaxError => e
+      errors << Error.new(path, "invalid photo_data YAML #{external_path}: #{e.message.lines.first.strip}")
+      next
+    end
+  end
+
+  photos = Array(external_data&.fetch('photos', nil) || data['photos'])
+  sections = Array(external_data&.fetch('photo_sections', nil) || data['photo_sections'])
+  groups = Array(external_data&.fetch('photo_groups', nil) || data['photo_groups'])
 
   photo_ids = photos.filter_map { |photo| photo.is_a?(Hash) ? photo['id'] : nil }
   duplicate_library_ids = photo_ids.group_by(&:itself).select { |_id, values| values.length > 1 }.keys
