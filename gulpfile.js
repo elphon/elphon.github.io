@@ -180,6 +180,9 @@ function watch() {
   // Watch theme file for changes, rebuild styles & recompile
   gulp.watch(['src/yml/theme.yml'], gulp.series(theme, config, jekyll, reload));
 
+  // Watch Jekyll data independently; these files do not regenerate _config.yml.
+  gulp.watch('_data/**/*.yml', gulp.series(jekyll, reload));
+
   // Watch SASS files for changes & rebuild styles
   gulp.watch(['_sass/**/*.scss'], gulp.series(jekyll, reload));
 
