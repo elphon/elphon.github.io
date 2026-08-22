@@ -7,8 +7,19 @@
 블로그를 보안 주제에 맞게 디자인 및 기능 커스터마이징.
 보안 관련 태그와 카테고리 추가.
 
+## 사진 포스트 구조
+사진이 많은 `post-photo`는 포스트 front matter에 전체 라이브러리를 넣지 않고 `_data/photo_posts/`에 분리할 수 있습니다.
+
+```yaml
+photo_data: "jeju-summer-2025"
+```
+
+위 값은 `_data/photo_posts/jeju-summer-2025.yml`의 `photos`, `photo_groups`, `photo_sections`를 사용합니다. 포스트에는 제목, SEO 정보, ImageKit 경로, Hero처럼 글 자체에 가까운 정보만 남깁니다.
+
+레이아웃 DSL과 tone/grid 옵션은 [`docs/photo-post-layout.md`](docs/photo-post-layout.md)에 정리되어 있습니다.
+
 ## 사진 포스트 검증
-사진 포스트의 `photos`, `photo_groups`, `photo_sections` 구조는 Ruby 검증기로 빠르게 확인할 수 있습니다.
+사진 포스트의 `photos`, `photo_groups`, `photo_sections` 구조는 Ruby 검증기로 빠르게 확인할 수 있습니다. front matter와 `photo_data` 방식 모두 지원합니다.
 
 ```bash
 ruby tools/validate_photo_posts.rb
