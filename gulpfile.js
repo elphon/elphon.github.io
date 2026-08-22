@@ -192,8 +192,18 @@ function watch() {
   // Watch images for changes, optimize & recompile
   gulp.watch('src/img/**/*', gulp.series(images, config, jekyll, reload));
 
-  // Watch html/md files, rebuild config, run Jekyll & reload BrowserSync
-  gulp.watch(['*.html', '_includes/*.html', '_layouts/*.html', '_posts/*', '_authors/*', 'pages/*', 'category/*'], gulp.series(config, jekyll, reload));
+  // Watch templates, content, and standalone photo assets.
+  gulp.watch([
+    '*.html',
+    '_includes/**/*.html',
+    '_layouts/**/*.html',
+    '_posts/*',
+    '_authors/*',
+    'pages/*',
+    'category/*',
+    'assets/css/photo-post*.css',
+    'assets/js/photo-post*.js'
+  ], gulp.series(config, jekyll, reload));
 }
 
 /**
