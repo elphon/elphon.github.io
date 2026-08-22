@@ -1,0 +1,14 @@
+<div class="photo-collection__hud" data-photo-hud>
+    <div class="photo-collection__hud-brand">
+        <span class="photo-collection__hud-dot" aria-hidden="true"></span>
+        <strong>PHOTO ARCHIVE</strong>
+    </div>
+    <div class="photo-collection__progress" aria-hidden="true">
+        <i data-photo-progress></i>
+    </div>
+    <div class="photo-collection__count" aria-label="Current photograph">
+        <span data-photo-current>01</span>
+        <span>/</span>
+        <span>{% if include.count < 10 %}0{% endif %}{{ include.count }}</span>
+    </div>
+</div>
