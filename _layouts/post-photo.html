@@ -7,7 +7,7 @@
 
         <main class="photo-post" data-photo-post data-photo-theme="{{ page.photo_theme | default: 'neutral' }}">
             {% include photo/hero.html %}
-            {% include photo/intro.html %}
+            {% include photo/intro.html content=content %}
             {% include photo/gallery.html %}
             {% include photo/feature.html %}
             {% include photo/story-end.html %}
