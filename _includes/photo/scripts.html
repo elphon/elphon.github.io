@@ -1,5 +1,13 @@
+{% assign photo_sections = page.photo_sections %}
+{% if page.photo_data %}
+    {% assign external_photo_data = site.data.photo_posts[page.photo_data] %}
+    {% if external_photo_data %}
+        {% assign photo_sections = external_photo_data.photo_sections | default: photo_sections %}
+    {% endif %}
+{% endif %}
+
 <script defer src="{{ '/assets/js/photo-post.js' | prepend: site.baseurl }}"></script>
-{% if page.photo_theme == 'instagram' and page.photo_sections %}
+{% if page.photo_theme == 'instagram' and photo_sections %}
 <script defer src="{{ '/assets/js/photo-post-gallery.js' | prepend: site.baseurl }}"></script>
 <script defer src="{{ '/assets/js/photo-post-instagram-polish.js' | prepend: site.baseurl }}"></script>
 {% endif %}
