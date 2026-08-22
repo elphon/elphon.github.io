@@ -31,11 +31,7 @@ timezone: Asia/Seoul
 # Social Media Settings
 # Remove the item if you don't need it
 github_username: elphon
-facebook_username: facebook_username
-twitter_username: twitter_username
 instagram_username: sangchu_7724
-linkedin_username: linkedin_username
-medium_username: medium_username
 
 # Posts Settings
 show_time_bar: true
@@ -45,7 +41,7 @@ two_columns_layout: true
 
 # Advanced Settings
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+url: "https://elphon.github.io" # canonical site origin
 google_analytics: "G-NRW525PW6E"
 language: "ko"
 categories_folder: category
