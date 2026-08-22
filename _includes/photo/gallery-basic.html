@@ -1,0 +1,12 @@
+<div class="photo-gallery">
+    {% for photo in include.photos %}
+        {% if photo.file != blank or photo.src != blank %}
+            {% include photo/gallery-item.html photo=photo index=forloop.index editorial=false %}
+        {% else %}
+            <div class="photo-gallery__item photo-gallery__item--placeholder" aria-label="Empty 3 by 4 photo slot">
+                <span class="photo-gallery__number">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+                <div><strong>PHOTO SLOT</strong><small>3 : 4</small></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
