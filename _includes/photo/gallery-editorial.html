@@ -1,0 +1,44 @@
+{% assign photos = include.photos %}
+{% assign sections = include.sections %}
+{% assign groups = include.groups %}
+
+{% include photo/gallery-hud.html count=include.arranged_count %}
+
+<div class="photo-gallery photo-gallery--editorial">
+    {% assign gallery_index = 0 %}
+    {% assign composition_index = 0 %}
+    {% assign active_group = '' %}
+
+    {% for section in sections %}
+        {% assign section_group = section.group | default: '' %}
+
+        {% if section_group != active_group %}
+            {% if active_group != '' %}
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if section_group != '' %}
+                {% assign group_data = groups | where: 'id', section_group | first %}
+                {% include photo/gallery-group-start.html group=group_data group_id=section_group %}
+            {% endif %}
+
+            {% assign active_group = section_group %}
+        {% endif %}
+
+        {% if section.type == 'interlude' %}
+            {% include photo/gallery-interlude.html section=section %}
+        {% elsif section.photos %}
+            {% assign composition_index = composition_index | plus: 1 %}
+            {% assign section_start = gallery_index | plus: 1 %}
+            {% assign section_size = section.photos | size %}
+            {% include photo/gallery-composition.html section=section photos=photos composition_index=composition_index section_start=section_start %}
+            {% assign gallery_index = gallery_index | plus: section_size %}
+        {% endif %}
+    {% endfor %}
+
+    {% if active_group != '' %}
+            </div>
+        </section>
+    {% endif %}
+</div>
