@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -31,7 +30,7 @@ jobs:
           ruby-version: '3.2'
 
       - name: Install Node dependencies
-        run: npm ci --ignore-scripts
+        run: npm install --ignore-scripts --no-audit --no-fund
 
       - name: Run JavaScript and photo-post checks
         run: npm run check
@@ -48,7 +47,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -59,7 +57,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Install Node dependencies
-        run: npm ci --ignore-scripts
+        run: npm install --ignore-scripts --no-audit --no-fund
 
       - name: Build site
         run: npm run build
