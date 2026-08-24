@@ -1,9 +1,0 @@
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://elphon.github.io" # canonical site origin
-google_analytics: "G-NRW525PW6E"
-language: "ko"
-lang: ko
-timezone: Asia/Seoul
-categories_folder: category
-sent_message_url: "/contact/message-sent/"
-safe: false
