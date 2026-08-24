@@ -1,0 +1,66 @@
+/* Base sizing for three-frame editorial compositions. Variant files refine these rules later. */
+
+body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid {
+  width: min(1180px, 88%);
+  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.7vw, 26px);
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  width: min(1280px, 94%);
+  margin: 0 auto;
+  gap: clamp(12px, 1.5vw, 24px);
+  align-items: end;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid {
+  grid-template-columns: 1.42fr 1fr 1fr;
+}
+
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+  grid-template-columns: 1fr 1fr 1.42fr;
+}
+
+body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--role-lead,
+body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--role-lead {
+  box-shadow: 0 18px 48px rgba(48,39,31,.085);
+}
+
+@media (max-width: 1100px) {
+  body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    width: min(100%, 920px);
+  }
+}
+
+@media (max-width: 700px) {
+  body.photo-theme-instagram .photo-composition--grid-trio .photo-composition__grid {
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-composition__grid,
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-composition__grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    align-items: start;
+    gap: 7px;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-lead-two .photo-gallery__item--role-lead {
+    grid-column: 1 / -1;
+    width: min(76%, 480px);
+    justify-self: start;
+  }
+
+  body.photo-theme-instagram .photo-composition--grid-two-lead .photo-gallery__item--role-lead {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: min(76%, 480px);
+    justify-self: end;
+  }
+}
