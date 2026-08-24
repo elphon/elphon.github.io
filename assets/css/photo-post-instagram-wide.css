@@ -1,0 +1,84 @@
+/* Adaptive wide presentation: landscape stays natural, portrait becomes a blurred stage. */
+
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-backdrop img,
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-backdrop img {
+  filter: blur(42px) saturate(1.02) brightness(.60);
+  transform: scale(1.14);
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait,
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait {
+  padding: clamp(18px, 2vw, 34px);
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait img,
+body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait img {
+  width: min(60%, 760px);
+  height: 88%;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.28);
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape {
+  aspect-ratio: var(--photo-wide-ratio, 16 / 9);
+  min-height: 0;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-backdrop {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-media::after {
+  background: linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.08));
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait {
+  inset: 0;
+  padding: 0;
+  display: block;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape .photo-gallery__wide-portrait img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: 0;
+  box-shadow: none;
+  background: #111;
+}
+
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:hover .photo-gallery__wide-portrait img,
+body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape:focus-visible .photo-gallery__wide-portrait img {
+  transform: scale(1.008);
+}
+
+@media (max-width: 700px) {
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait,
+  body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait {
+    padding: 10px;
+  }
+
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-portrait .photo-gallery__wide-portrait img,
+  body.photo-theme-instagram .photo-gallery__item--role-wide:not(.is-wide-landscape) .photo-gallery__wide-portrait img {
+    width: 64%;
+    height: 90%;
+  }
+
+  body.photo-theme-instagram .photo-gallery__item--role-wide.is-wide-landscape {
+    aspect-ratio: var(--photo-wide-ratio, 4 / 3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.photo-theme-instagram .photo-gallery__item--role-wide .photo-gallery__wide-portrait img {
+    transition: none !important;
+  }
+}
