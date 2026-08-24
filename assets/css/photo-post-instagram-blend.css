@@ -1,0 +1,87 @@
+/* Final blend refinements loaded after composition variants. */
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend,
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend {
+  border: 0;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-gallery__item,
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-gallery__item {
+  border: 0;
+  background: transparent;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-gallery__item::before,
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-gallery__item::before {
+  content: none;
+  display: none;
+  border: 0;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-pair.photo-composition--tone-blend .photo-gallery__item > img,
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-gallery__item > img {
+  display: block;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend {
+  width: min(1440px, 100%);
+  padding: clamp(30px, 4vw, 64px);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: clamp(24px, 2.8vw, 42px);
+  background: #171519;
+  box-shadow: 0 32px 90px rgba(28,22,26,.15);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__grid {
+  position: relative;
+  z-index: 1;
+  padding-bottom: clamp(12px, 2vw, 30px);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend.photo-composition--variant-normal .photo-gallery__item {
+  width: min(690px, 58vw);
+  border: 0;
+  background: transparent;
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend.photo-composition--variant-wide .photo-gallery__item {
+  width: min(1240px, 92%);
+  border: 0;
+  background: transparent;
+  box-shadow: 0 24px 70px rgba(0,0,0,.28);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__blend-half {
+  width: 78%;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__blend-half img {
+  filter: blur(64px) saturate(1.2) brightness(.56);
+  transform: scale(1.26);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__blend-half--left img {
+  object-position: 28% center;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__blend-half--right img {
+  object-position: 72% center;
+}
+
+@media (max-width: 700px) {
+  body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend {
+    padding: 18px 10px 24px;
+    border-radius: 18px;
+  }
+
+  body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend.photo-composition--variant-normal .photo-gallery__item,
+  body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend.photo-composition--variant-wide .photo-gallery__item {
+    width: min(92%, 560px);
+  }
+
+  body.photo-post-page.photo-theme-instagram .photo-composition--grid-statement.photo-composition--tone-blend .photo-composition__blend-half img {
+    filter: blur(44px) saturate(1.16) brightness(.56);
+  }
+}
