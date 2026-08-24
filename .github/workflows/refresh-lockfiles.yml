@@ -1,0 +1,67 @@
+name: Refresh lockfiles
+
+on:
+  push:
+    branches:
+      - agent/repository-cleanup
+    paths:
+      - package.json
+      - Gemfile
+      - .github/workflows/refresh-lockfiles.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/repository-cleanup
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Refresh Node lockfile
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Refresh Ruby lockfile
+        run: bundle lock
+
+      - name: Verify locked Node dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install locked Ruby dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Run static checks
+        run: npm run check
+
+      - name: Build Jekyll site
+        run: npm run build
+
+      - name: Commit refreshed lockfiles
+        shell: bash
+        run: |
+          git add package-lock.json Gemfile.lock
+          if git diff --cached --quiet; then
+            echo "Lockfiles are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh dependency lockfiles"
+          git push origin HEAD:agent/repository-cleanup
