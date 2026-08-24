@@ -57,6 +57,17 @@ photo_data: "jeju-summer-2025"
 
 레이아웃 DSL과 tone/grid 옵션은 [`docs/photo-post-layout.md`](docs/photo-post-layout.md)에 정리되어 있습니다.
 
+## 사진 포스트 자산
+사진 포스트 CSS는 역할별 소스 파일을 유지하되 페이지에서는 `assets/css/photo-post-bundle.css` 하나만 로드합니다. 이 파일이 Jekyll `include_relative`로 기존 스타일 순서를 그대로 결합하므로 cascade 순서를 바꾸지 않고 네트워크 요청만 단순화합니다.
+
+사진 포스트 JavaScript는 역할을 이름에 맞게 분리합니다.
+
+- `photo-post.js` — 공통 photo-post 동작
+- `photo-post-gallery.js` — editorial gallery 동작
+- `photo-post-hero-exif.js` — Hero EXIF/촬영 시각 표시
+
+실제 `<script>` 로딩은 `_includes/photo/scripts.html` 한 곳에서 관리합니다.
+
 ## 사진 포스트 검증
 사진 포스트 구조는 Ruby 검증기로 빠르게 확인할 수 있습니다. front matter와 `photo_data` 방식 모두 지원합니다.
 
