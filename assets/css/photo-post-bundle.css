@@ -1,0 +1,17 @@
+---
+---
+/*
+ * Photo post stylesheet bundle.
+ *
+ * Keep this order stable: later source files intentionally refine earlier rules.
+ * Source files stay separate for maintainability, while Jekyll emits this as the
+ * single stylesheet requested by post-photo pages.
+ */
+{% include_relative photo-post.css %}
+{% include_relative photo-post-effects.css %}
+{% include_relative photo-post-instagram.css %}
+{% include_relative photo-post-instagram-gallery.css %}
+{% include_relative photo-post-instagram-adaptive.css %}
+{% include_relative photo-post-instagram-composition-variants.css %}
+{% include_relative photo-post-instagram-five.css %}
+{% include_relative photo-post-instagram-polish.css %}
