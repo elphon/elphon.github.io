@@ -1,0 +1,121 @@
+/* Chapter blocks that visually bind related photo compositions. */
+
+body.photo-theme-instagram .photo-story-group {
+  width: min(1480px, 100%);
+  margin: 0 auto clamp(112px, 11vw, 190px);
+  padding: clamp(34px, 4.4vw, 68px);
+  box-sizing: border-box;
+  border: 1px solid rgba(40,34,29,.065);
+  border-radius: clamp(26px, 3vw, 48px);
+  box-shadow: 0 22px 68px rgba(58,48,39,.045);
+}
+
+body.photo-theme-instagram .photo-story-group--tone-paper {
+  background: rgba(248,245,239,.72);
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sand {
+  background: #ece3d7;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sage {
+  background: #e4eae2;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-sea {
+  background: #e4eaec;
+}
+
+body.photo-theme-instagram .photo-story-group--tone-dusk {
+  background: #e9e3e8;
+}
+
+body.photo-theme-instagram .photo-story-group__header {
+  width: min(1320px, 100%);
+  margin: 0 auto clamp(58px, 6vw, 92px);
+  padding-bottom: clamp(22px, 2.5vw, 34px);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  border-bottom: 1px solid rgba(31,27,24,.10);
+}
+
+body.photo-theme-instagram .photo-story-group__header > div {
+  min-width: 0;
+}
+
+body.photo-theme-instagram .photo-story-group__header span {
+  display: block;
+  margin-bottom: 10px;
+  color: rgba(31,27,24,.44);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+body.photo-theme-instagram .photo-story-group__header h3 {
+  margin: 0;
+  color: #1d1a18;
+  font-size: clamp(2rem, 4vw, 4.8rem);
+  font-weight: 300;
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+body.photo-theme-instagram .photo-story-group__header p {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(31,27,24,.48);
+  font-size: 11px;
+  line-height: 1.65;
+  letter-spacing: .06em;
+  text-align: right;
+}
+
+body.photo-theme-instagram .photo-story-group__body .photo-composition {
+  width: min(1320px, 100%);
+  margin-bottom: clamp(70px, 7.2vw, 118px);
+}
+
+body.photo-theme-instagram .photo-story-group__body .photo-composition:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+  body.photo-theme-instagram .photo-story-group {
+    width: min(100%, 1040px);
+    padding: clamp(26px, 3.8vw, 46px);
+  }
+}
+
+@media (max-width: 700px) {
+  body.photo-theme-instagram .photo-story-group {
+    width: 100%;
+    margin-bottom: 88px;
+    padding: 24px 9px 30px;
+    border-radius: 20px;
+  }
+
+  body.photo-theme-instagram .photo-story-group__header {
+    margin-bottom: 38px;
+    padding: 0 8px 18px;
+    display: block;
+  }
+
+  body.photo-theme-instagram .photo-story-group__header h3 {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+  }
+
+  body.photo-theme-instagram .photo-story-group__header p {
+    margin-top: 12px;
+    max-width: none;
+    text-align: left;
+    font-size: 10px;
+  }
+
+  body.photo-theme-instagram .photo-story-group__body .photo-composition {
+    margin-bottom: 62px;
+  }
+}
