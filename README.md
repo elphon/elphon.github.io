@@ -58,9 +58,21 @@ photo_data: "jeju-summer-2025"
 레이아웃 DSL과 tone/grid 옵션은 [`docs/photo-post-layout.md`](docs/photo-post-layout.md)에 정리되어 있습니다.
 
 ## 사진 포스트 자산
-사진 포스트 CSS는 역할별 소스 파일을 유지하되 페이지에서는 `assets/css/photo-post-bundle.css` 하나만 로드합니다. 이 파일이 Jekyll `include_relative`로 기존 스타일 순서를 그대로 결합하므로 cascade 순서를 바꾸지 않고 네트워크 요청만 단순화합니다.
+사진 포스트 CSS는 역할별 소스 파일을 유지하되 페이지에서는 `assets/css/photo-post-bundle.css` 하나만 로드합니다. Jekyll `include_relative`로 소스를 결합하므로 브라우저 요청은 하나이고, bundle의 include 순서가 cascade 우선순위를 명시합니다.
 
-사진 포스트 JavaScript는 역할을 이름에 맞게 분리합니다.
+Instagram 사진 테마의 추가 스타일은 임시 `adaptive`/`polish` 파일 대신 책임별로 나뉩니다.
+
+- `photo-post-instagram-blend-base.css` — 공통 blend 배경과 pair 기본값
+- `photo-post-instagram-composition-base.css` — 기본 composition 크기/배치
+- `photo-post-instagram-story-groups.css` — 날짜/챕터 그룹
+- `photo-post-instagram-wide.css` — 가로/세로 wide 표시
+- `photo-post-instagram-composition-variants.css` — trio/statement/3-frame variant
+- `photo-post-instagram-five.css` — 5-frame composition
+- `photo-post-instagram-ui.css` — 타이포그래피, accent, gallery overlay
+- `photo-post-instagram-blend.css` — variant 이후 적용되는 blend 마감
+- `photo-post-hero-exif.css` — Hero EXIF strip
+
+사진 포스트 JavaScript도 역할을 이름에 맞게 분리합니다.
 
 - `photo-post.js` — 공통 photo-post 동작
 - `photo-post-gallery.js` — editorial gallery 동작
