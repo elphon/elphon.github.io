@@ -24,7 +24,7 @@
   "scripts": {
     "dev": "gulp",
     "build": "gulp build",
-    "check:js": "node --check gulpfile.js && node --check assets/js/photo-post.js && node --check assets/js/photo-post-gallery.js && node --check assets/js/photo-post-instagram-polish.js",
+    "check:js": "node --check gulpfile.js && node --check assets/js/photo-post.js && node --check assets/js/photo-post-gallery.js && node --check assets/js/photo-post-hero-exif.js",
     "validate:photos": "ruby tools/validate_photo_posts.rb",
     "check": "npm run check:js && npm run validate:photos"
   },
