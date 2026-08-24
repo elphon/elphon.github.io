@@ -21,6 +21,11 @@
   "bugs": {
     "url": "https://github.com/thiagorossener/jekflix-template/issues"
   },
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
+    "validate:photos": "ruby tools/validate_photo_posts.rb"
+  },
   "devDependencies": {
     "browser-sync": "^2.26.7",
     "child_process": "^1.0.2",
@@ -40,6 +45,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "engines": {
-    "node": "^18"
+    "node": "^20"
   }
 }
