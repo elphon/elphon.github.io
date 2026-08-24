@@ -5,7 +5,7 @@
 Node.js 20과 Ruby/Bundler 환경을 기준으로 합니다.
 
 ```bash
-npm install
+npm ci
 bundle install
 npm run dev
 ```
@@ -17,6 +17,22 @@ npm run build
 ```
 
 `npm run dev`는 테마/JavaScript/이미지를 준비한 뒤 Jekyll과 BrowserSync를 실행하고, 템플릿·포스트·사진 데이터 변경을 감시합니다.
+
+## 로컬 검사와 CI
+JavaScript 문법과 사진 포스트 구성을 한 번에 검사하려면 다음 명령을 사용합니다.
+
+```bash
+npm run check
+```
+
+개별 명령은 다음과 같습니다.
+
+```bash
+npm run check:js
+npm run validate:photos
+```
+
+GitHub Actions의 `.github/workflows/ci.yml`은 push와 pull request마다 같은 정적 검사를 실행한 뒤, Node.js 20과 Ruby 환경에서 실제 `npm run build`까지 수행합니다.
 
 ## 사진 포스트 구조
 사진이 많은 `post-photo`는 포스트 front matter에 전체 라이브러리를 넣지 않고 `_data/photo_posts/`에 분리할 수 있습니다.
