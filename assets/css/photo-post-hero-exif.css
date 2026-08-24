@@ -1,0 +1,76 @@
+/* Hero EXIF strip attached by photo-post-hero-exif.js. */
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif {
+  position: absolute;
+  right: clamp(20px, 7vw, 118px);
+  bottom: 0;
+  z-index: 5;
+  width: min(54vw, 690px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 14px;
+  background: rgba(8,8,8,.34);
+  box-shadow: 0 14px 38px rgba(0,0,0,.18);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  pointer-events: none;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item {
+  min-width: 0;
+  padding: 11px 13px 12px;
+  background: rgba(255,255,255,.025);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item + .photo-hero__exif-item {
+  border-left: 1px solid rgba(255,255,255,.11);
+}
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item span,
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item strong {
+  display: block;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item span {
+  margin-bottom: 5px;
+  color: rgba(255,255,255,.52);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .11em;
+}
+
+body.photo-post-page.photo-theme-instagram .photo-hero__exif-item strong {
+  overflow: hidden;
+  color: rgba(255,255,255,.94);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  body.photo-post-page.photo-theme-instagram .photo-hero__exif {
+    left: 8px;
+    right: 8px;
+    bottom: 4px;
+    width: auto;
+    border-radius: 11px;
+  }
+
+  body.photo-post-page.photo-theme-instagram .photo-hero__exif-item {
+    padding: 9px 7px 10px;
+  }
+
+  body.photo-post-page.photo-theme-instagram .photo-hero__exif-item span {
+    font-size: 8px;
+    letter-spacing: .06em;
+  }
+
+  body.photo-post-page.photo-theme-instagram .photo-hero__exif-item strong {
+    font-size: 11px;
+  }
+}
