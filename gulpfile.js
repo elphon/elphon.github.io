@@ -10,9 +10,9 @@ import sourcemaps from "gulp-sourcemaps";
 import uglify from "gulp-uglify";
 import yaml from "gulp-yaml";
 import browserSync from "browser-sync";
-import cp from "child_process";
+import cp from "node:child_process";
 import { deleteAsync } from "del";
-import fs from "fs";
+import fs from "node:fs";
 import jsonSass from "json-sass";
 import source from "vinyl-source-stream";
 
